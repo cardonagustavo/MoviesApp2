@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0z3-Qg-ywH">
+                                <rect key="frame" x="0.0" y="338.66666666666669" width="393" height="200.00000000000006"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="MoviesLogo" translatesAutoresizingMaskIntoConstraints="NO" id="EIo-w4-FnX">
+                                        <rect key="frame" x="14" y="55" width="365" height="90"/>
+                                        <color key="backgroundColor" name="ColorLogo"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="90" id="6p2-Jj-s4W"/>
+                                            <constraint firstAttribute="width" constant="365" id="Z63-RA-FKw"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="EIo-w4-FnX" firstAttribute="centerX" secondItem="0z3-Qg-ywH" secondAttribute="centerX" id="9Yd-R7-n8I"/>
+                                    <constraint firstItem="EIo-w4-FnX" firstAttribute="centerY" secondItem="0z3-Qg-ywH" secondAttribute="centerY" id="CZH-MQ-giC"/>
+                                    <constraint firstAttribute="height" constant="200" id="xNF-dS-krL"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" name="PrincipalColorBackground"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="0z3-Qg-ywH" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="BzA-ed-uqS"/>
+                            <constraint firstItem="0z3-Qg-ywH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="J4z-pc-PWb"/>
+                            <constraint firstItem="0z3-Qg-ywH" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="TFT-Le-oHd"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0z3-Qg-ywH" secondAttribute="trailing" id="k41-re-QEF"/>
+                            <constraint firstItem="0z3-Qg-ywH" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="oI2-ZN-WKy"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52.671755725190835" y="374.64788732394368"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="MoviesLogo" width="1400" height="350"/>
+        <namedColor name="ColorLogo">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PrincipalColorBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
