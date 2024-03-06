@@ -30,8 +30,6 @@
 		29B02D932B71652B000DA55C /* KeyboardManager(facade).swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B02D922B71652B000DA55C /* KeyboardManager(facade).swift */; };
 		29CA891D2B9212FC0043AF1D /* RetriveMoviesDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA891C2B9212FC0043AF1D /* RetriveMoviesDetail.swift */; };
 		29CA891F2B92663A0043AF1D /* DetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA891E2B92663A0043AF1D /* DetailsModel.swift */; };
-		29CA89242B95534B0043AF1D /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA89232B95534B0043AF1D /* FavoritesView.swift */; };
-		29CA89262B95535F0043AF1D /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA89252B95535F0043AF1D /* FavoritesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,8 +57,6 @@
 		29B02D922B71652B000DA55C /* KeyboardManager(facade).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardManager(facade).swift"; sourceTree = "<group>"; };
 		29CA891C2B9212FC0043AF1D /* RetriveMoviesDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetriveMoviesDetail.swift; sourceTree = "<group>"; };
 		29CA891E2B92663A0043AF1D /* DetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsModel.swift; sourceTree = "<group>"; };
-		29CA89232B95534B0043AF1D /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
-		29CA89252B95535F0043AF1D /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,7 +128,6 @@
 		2949A8342B59FE800087FEF1 /* MoviesApp */ = {
 			isa = PBXGroup;
 			children = (
-				29CA89222B9553270043AF1D /* Favorites */,
 				2917C2B92B8FEC300013D588 /* Details */,
 				299550CF2B5FE80A000F1D51 /* Started */,
 				2949A8512B5AB9040087FEF1 /* Login */,
@@ -176,15 +171,6 @@
 				29A8BA272B60180A00238C97 /* RegisterViewController.swift */,
 			);
 			path = Register;
-			sourceTree = "<group>";
-		};
-		29CA89222B9553270043AF1D /* Favorites */ = {
-			isa = PBXGroup;
-			children = (
-				29CA89232B95534B0043AF1D /* FavoritesView.swift */,
-				29CA89252B95535F0043AF1D /* FavoritesViewController.swift */,
-			);
-			path = Favorites;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,7 +250,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29CA89242B95534B0043AF1D /* FavoritesView.swift in Sources */,
 				29CA891F2B92663A0043AF1D /* DetailsModel.swift in Sources */,
 				29A8BA282B60180A00238C97 /* RegisterViewController.swift in Sources */,
 				2927DBC32B8E23CE00C105A1 /* MoviesListAdapter.swift in Sources */,
@@ -280,7 +265,6 @@
 				2927DBB92B8D30A700C105A1 /* MoviesModel.swift in Sources */,
 				29A8BA262B6017F700238C97 /* RegisterView.swift in Sources */,
 				29CA891D2B9212FC0043AF1D /* RetriveMoviesDetail.swift in Sources */,
-				29CA89262B95535F0043AF1D /* FavoritesViewController.swift in Sources */,
 				2949A8382B59FE800087FEF1 /* SceneDelegate.swift in Sources */,
 				2917C2BB2B8FEC480013D588 /* DetailsView.swift in Sources */,
 				299550D12B5FE82A000F1D51 /* GetStartedView.swift in Sources */,

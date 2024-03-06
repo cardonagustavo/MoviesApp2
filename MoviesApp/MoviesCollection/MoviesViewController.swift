@@ -18,7 +18,15 @@ class MoviesViewController: UIViewController {
         self.moviesView?.delegate = self
         self.moviesView?.setupAdapters()
         self.getWebService()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem()
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem()
+        
+    }
+
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutButtonTapped))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem()
     }
     
     private func getWebService() {
@@ -40,6 +48,10 @@ class MoviesViewController: UIViewController {
   
 //MARK: - Extension
 extension MoviesViewController: MoviesViewDelegate {
+    @objc func logoutButtonTapped() {
+        
+    }
+    
     func moviesView(_ moviesView: MoviesView, didSelectMovies movies: Movies) {
         print("seleccionado")
         self.performSegue(withIdentifier: "DetailViewController", sender: movies)

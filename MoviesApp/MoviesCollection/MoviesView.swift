@@ -7,8 +7,10 @@
 
 import UIKit
 
-protocol MoviesViewDelegate: AnyObject {
+ protocol MoviesViewDelegate: AnyObject {
     func moviesView(_ moviesView: MoviesView, didSelectMovies movies: Movies)
+    
+ func logoutButtonTapped()
 }
 
 class MoviesView: UIView {
@@ -17,7 +19,9 @@ class MoviesView: UIView {
     @IBOutlet private weak var collectionViewMovies: UICollectionView!
     
     var listAdapter: MoviesListAdapterProtocol =  MoviesListAdapter()
-    
+    func setupCustomButton() {
+        
+    }
     func setupAdapters() {
         self.listAdapter.setCollectionView(self.collectionViewMovies)
         
@@ -30,5 +34,10 @@ class MoviesView: UIView {
         self.listAdapter.datasource = datasource
         self.collectionViewMovies.reloadData()
     }
+    
+    func logoutButtonTapped() {
+        
+    }
 }
  
+

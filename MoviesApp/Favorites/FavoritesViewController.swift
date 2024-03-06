@@ -7,6 +7,6 @@
 
 import UIKit
 
-class FavoritesViewController: UIViewController {
+class FavoritesViewController: UICollectionViewCell {
     
 }

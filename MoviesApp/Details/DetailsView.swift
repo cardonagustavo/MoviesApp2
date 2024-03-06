@@ -44,27 +44,26 @@ class DetailView: UIView {
 
 
 extension DetailView {
-    func viewContainer() {
-        // Configurar el borde
-        self.layer.borderWidth = 2.0 // Ancho del borde
-        self.layer.borderColor = UIColor.black.cgColor // Color del borde
-        self.layer.cornerRadius = 10.0 // Radio de la esquina para un borde redondeado
-        
-        // Aplicar un degradado con efecto 3D
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = self.bounds
-        gradientLayer.colors = [UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0).cgColor, // Color claro
-                                UIColor(red: 0.65, green: 0.65, blue: 0.65, alpha: 1.0).cgColor] // Color oscuro
-        gradientLayer.locations = [0.0, 1.0]
-        gradientLayer.cornerRadius = 10.0 // Radio de la esquina para un efecto degradado en los bordes
-        gradientLayer.shadowOffset = CGSize(width: 0, height: 5) // Desplazamiento de la sombra
-        gradientLayer.shadowColor = UIColor.black.cgColor // Color de la sombra
-        gradientLayer.shadowOpacity = 0.8 // Opacidad de la sombra
-        gradientLayer.shadowRadius = 5.0 // Radio de la sombra
-        
-        // Insertar el degradado como la primera subcapa para que esté detrás de otros contenidos
-        self.layer.insertSublayer(gradientLayer, at: 0)
-    }
+//    func viewContainer() {
+//      
+//        self.layer.borderWidth = 2.0
+//        self.layer.borderColor = UIColor.black.cgColor
+//        self.layer.cornerRadius = 10.0
+//        
+//      
+//        let gradientLayer = CAGradientLayer()
+//        gradientLayer.frame = self.bounds
+//        gradientLayer.colors = [UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0).cgColor,
+//                                UIColor(red: 0.65, green: 0.65, blue: 0.65, alpha: 1.0).cgColor]
+//        gradientLayer.locations = [0.0, 1.0]
+//        gradientLayer.cornerRadius = 10.0
+//        gradientLayer.shadowOffset = CGSize(width: 0, height: 5)
+//        gradientLayer.shadowColor = UIColor.black.cgColor
+//        gradientLayer.shadowOpacity = 0.8
+//        gradientLayer.shadowRadius = 5.0
+// 
+//        self.layer.insertSublayer(gradientLayer, at: 0)
+//    }
 
     
     func imageDetailBackdrop(_ movies: MovieDetails) {
@@ -75,18 +74,21 @@ extension DetailView {
             URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
                 guard let self = self, let imageData = data else { return }
                 DispatchQueue.main.async {
-                    // Configurar la imagen
                     let image = UIImage(data: imageData)
                     self.imageBackdrop.image = image
                     
-                    let fadeView = UIView(frame: self.imageBackdrop.bounds)
-                    fadeView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-                    self.imageBackdrop.addSubview(fadeView)
+//                    let fadeView = UIView(frame: self.imageBackdrop.bounds)
+//                    fadeView.backgroundColor = UIColor.black.withAlphaComponent(1)
+//                    self.imageBackdrop.addSubview(fadeView)
+                    
+                    let blurEffect = UIBlurEffect(style: .light)
+                    let blurView = UIVisualEffectView(effect: blurEffect)
+                    blurView.frame = self.imageBackdrop.bounds
+                    self.imageBackdrop.addSubview(blurView)
                 }
             }.resume()
         }
     }
-
 
     func imageDetail(_ movies: MovieDetails) {
 //        self.imageMovie.image = movies.posterPath

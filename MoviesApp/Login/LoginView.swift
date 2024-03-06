@@ -5,7 +5,7 @@
 import UIKit
 
 @objc protocol LoginViewDelegade: AnyObject {
-    func tapButtonLoginShowToMoviesCell(_ loginView: LoginView)
+//    func tapButtonLoginShowToMoviesCell(_ loginView: LoginView)
    // func tapButtonLoginShowRegisterView(_ loginView: LoginView)
 }
 
@@ -13,7 +13,6 @@ import UIKit
 protocol LoginViewProtocol {
     func textFieldLoginUpdate()
     func setupNavigationBarAppearance()
-    
 }
 
 //MARK: - Class
@@ -34,11 +33,11 @@ class LoginView: UIView {
     }
     
     @IBAction func buttonTapLogin(_ sender: UIButton) {
-        self.delegate?.tapButtonLoginShowToMoviesCell(self)
+//        self.delegate?.tapButtonLoginShowToMoviesCell(self)
+        
 
     }
-    
-    
+//    
     @IBOutlet private weak var groupViewKeyboardView: UIView!
     @IBOutlet private weak var groupViewKeyboardAnchorCenterAxisY: NSLayoutConstraint!
     

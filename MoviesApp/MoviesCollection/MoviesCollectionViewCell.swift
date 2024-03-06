@@ -14,7 +14,6 @@ class MoviesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageMovie: UIImageView!
     @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var labelDescription: UILabel!
-    @IBOutlet weak var starsStackView: UIStackView!
     
     fileprivate func updateDataWith(_ movies: Movies) {
 //       self.imageMovie.image = movies.posterPath
@@ -32,7 +31,7 @@ class MoviesCollectionViewCell: UICollectionViewCell {
               }.resume()
                 self.labelName.text = movies.title
                 self.labelDescription.text = movies.releaseDate
-                
+                self.imageMovie.layer.cornerRadius = 20
           }
     }
 }
@@ -49,4 +48,6 @@ extension MoviesCollectionViewCell {
         cell?.updateDataWith(movies)
         return cell ?? Self()
     }
+    
+  
 }

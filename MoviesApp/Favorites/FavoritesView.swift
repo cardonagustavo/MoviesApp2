@@ -9,4 +9,5 @@ import UIKit
 
 class FavoritesView: UIView {
 
+    @IBOutlet weak var favoritesCollectionView: UICollectionView!
 }

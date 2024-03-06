@@ -46,7 +46,7 @@ class MoviesListAdapter: NSObject, MoviesListAdapterProtocol {
         let section = NSCollectionLayoutSection(group: group)
         
         section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
-        section.interGroupSpacing = 20
+        section.interGroupSpacing = 10
         
         let layout = UICollectionViewCompositionalLayout(section: section)
         self.collectionView?.collectionViewLayout = layout
