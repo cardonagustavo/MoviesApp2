@@ -33,7 +33,7 @@ class LoginView: UIView {
     }
     
     @IBAction func buttonTapLogin(_ sender: UIButton) {
-//        self.delegate?.tapButtonLoginShowToMoviesCell(self)
+     //   self.delegate?.tapButtonLoginShowToMoviesCell(self)
         
 
     }

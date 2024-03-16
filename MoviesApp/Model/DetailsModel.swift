@@ -7,41 +7,101 @@
 
 import Foundation
 
-struct MovieDetails {
-    let originalTitle: String?
+struct Movie {
+    let adult: Bool
+    let backdrop_path: String
+    let genre_ids: [Int]
+    let genres: [MoviesWebService.GenreDTO]
+    let id: Int
+    let original_language: String
+    let original_title: String
     let overview: String
-    let backdrop: String
-    let posterPath: String
-    let releaseDate: String
+    let popularity: Double
+    let poster_path: String
+    let release_date: String
     let title: String
-    let voteAverage: Double
+    let video: Bool
+    let vote_average: Float
+    let vote_count: Int
     
-    var titleNil: String {
-        guard let titleUpdate = self.originalTitle else {
-            return title
-        }
-        return "\(titleUpdate)"
+    
+    init(dto: MoviesWebService.MovieDTO) {
+        self.adult = dto.adult ?? false
+        self.backdrop_path = dto.backdrop_path ?? ""
+        self.genre_ids = dto.genre_ids ?? []
+        self.genres = []
+        self.id = dto.id ?? 0
+        self.original_language = dto.original_language ?? ""
+        self.original_title = dto.original_title ?? ""
+        self.overview = dto.overview ?? ""
+        self.popularity = dto.popularity ?? 0.0
+        self.poster_path = dto.poster_path ?? ""
+        self.release_date = dto.release_date ?? ""
+        self.title = dto.title ?? ""
+        self.video = dto.video ?? false
+        self.vote_average = dto.vote_average ?? 0.0
+        self.vote_count = dto.vote_count ?? 0
     }
     
-    init(
-        dto: MoviesWebService.MovieDetailDTO) {
-            self.originalTitle = dto.originalTitle
-            self.overview = dto.overview ?? "Not Available"
-            self.posterPath = dto.posterPath ?? "Not Available"
-            self.releaseDate = dto.releaseDate ?? "Not Available"
-            self.title = dto.originalTitle ?? "Not Available"
-            self.backdrop = dto.backdropPath ?? ""
-            self.voteAverage = dto.voteAverage ?? 0
-        }
+    init(detailDto: MoviesWebService.MovieDetailDTO) {
+        self.adult = detailDto.adult ?? false
+        self.backdrop_path = detailDto.backdrop_path ?? ""
+        self.genre_ids = []
+        self.genres = detailDto.genres ?? []
+        self.id = detailDto.id ?? 0
+        self.original_language = detailDto.original_language ?? ""
+        self.original_title = detailDto.original_title ?? ""
+        self.overview = detailDto.overview ?? ""
+        self.popularity = detailDto.popularity ?? 0.0
+        self.poster_path = detailDto.poster_path ?? ""
+        self.release_date = detailDto.release_date ?? ""
+        self.title = detailDto.title ?? ""
+        self.video = detailDto.video ?? false
+        self.vote_average = detailDto.vote_average ?? 0.0
+        self.vote_count = detailDto.vote_count ?? 0
+    }
+    
+    init(favorite: Favorite) {
+        self.adult = false
+        self.backdrop_path = ""
+        self.genre_ids = []
+        self.genres = []
+        self.id = favorite.id
+        self.original_language = ""
+        self.original_title = ""
+        self.overview = ""
+        self.popularity = 0.0
+        self.poster_path = favorite.poster_path
+        self.release_date = favorite.release_date
+        self.title = favorite.title
+        self.video = false
+        self.vote_average = 0.0
+        self.vote_count = 0
+    }
 }
 
-struct Genre {
-    var id: Int?
-    var name: String?
-    
-    mutating func int(
-        dto: MoviesWebService.Genre) {
-            self.id = dto.id ?? 0
-            self.name = dto.name ?? ""
-        }
+struct Favorite: Codable {
+    let id: Int
+    let poster_path: String
+    let title: String
+    let release_date: String
 }
+
+extension Array where Element == MoviesWebService.MovieDTO {
+    var toList: [Movie] {
+        self.map( { Movie(dto: $0) } )
+    }
+}
+
+extension Array where Element == MoviesWebService.MovieDetailDTO {
+    var toList: [Movie] {
+        self.map( { Movie(detailDto: $0) } )
+    }
+}
+
+extension Array where Element == Favorite {
+    var toMovies: [Movie] {
+        self.map( { Movie(favorite: $0) } )
+    }
+}
+

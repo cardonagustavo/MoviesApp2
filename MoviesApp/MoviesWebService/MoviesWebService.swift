@@ -26,7 +26,7 @@ class MoviesWebService {
             guard let dataTest = try? JSONSerialization.jsonObject(with: data) else { return }
            print(dataTest)
             let response = try? JSONDecoder().decode(MovieDetailDTO.self, from: data)
-            completionHandler(response ?? MovieDetailDTO.movideDetail())
+            completionHandler(response ?? MovieDetailDTO())
         }
     }
 }
@@ -43,64 +43,124 @@ extension MoviesWebService {
 extension MoviesWebService {
     
     struct MoviesDTO: Decodable {
-  
+        
+        let page: Int?
         let results: [MovieDTO]?
-     
-
+        let total_pages: Int?
+        let total_results: Int?
+        
+        
         init() {
+            self.page = 0
             self.results = []
-    
+            self.total_pages = 0
+            self.total_results = 0
+            
         }
     }
-    
     struct MovieDTO: Decodable {
+        let adult: Bool?
+        let backdrop_path: String?
+        let genre_ids: [Int]?
         let id: Int?
-        let originalLanguage: String?
-        let originalTitle: String?
+        let original_language: String?
+        let original_title: String?
         let overview: String?
-        let popularity: Float?
+        let popularity: Double?
         let poster_path: String?
         let release_date: String?
         let title: String?
         let video: Bool?
-        let voteAverage: Float?
-        let voteCount: Int?
+        let vote_average: Float?
+        let vote_count: Int?
+        
+        init() {
+            self.adult = false
+            self.backdrop_path = ""
+            self.genre_ids = []
+            self.id = 0
+            self.original_language = ""
+            self.original_title = ""
+            self.overview = ""
+            self.popularity = 0.0
+            self.poster_path = ""
+            self.release_date = ""
+            self.title = ""
+            self.video = false
+            self.vote_average = 0.0
+            self.vote_count = 0
+        }
+    }
+    struct MovieDetailDTO: Decodable {
+        let adult: Bool?
+        let backdrop_path: String?
+        let budget: Int?
+        let genres: [GenreDTO]?
+        let homepage: String?
+        let id: Int?
+        let imdb_id, original_language, original_title, overview: String?
+        let popularity: Double?
+        let poster_path: String?
+        let production_companies: [ProducerCompanyDTO]?
+        let production_countries: [ProducerCountryDTO]?
+        let release_date: String?
+        let revenue, runtime: Int?
+        let spoken_languages: [LanguageDTO]?
+        let status, tagline, title: String?
+        let video: Bool?
+        let vote_average: Float?
+        let vote_count: Int?
+        
+        init() {
+            self.adult = false
+            self.backdrop_path = ""
+            self.budget = 0
+            self.genres = []
+            self.homepage = ""
+            self.id = 0
+            self.imdb_id = ""
+            self.original_language = ""
+            self.original_title = ""
+            self.overview = ""
+            self.popularity = 0.0
+            self.poster_path = ""
+            self.production_companies = []
+            self.production_countries = []
+            self.release_date = ""
+            self.revenue = 0
+            self.runtime = 0
+            self.spoken_languages = []
+            self.status = ""
+            self.tagline = ""
+            self.title = ""
+            self.video = false
+            self.vote_average = 0.0
+            self.vote_count = 0
+        }
     }
     
-    struct MovieDetailDTO: Decodable {
-        let backdropPath: String?
-        let genres: [Genre]?
-        let originalTitle, overview: String?
-        let posterPath: String?
-        let releaseDate: String?
-        let voteAverage: Double?
-        
-        enum CodingKeys: String, CodingKey {
-            case backdropPath = "backdrop_path"
-            case genres
-            case originalTitle = "original_title"
-            case overview
-            case posterPath = "poster_path"
-            case releaseDate = "release_date"
-            case voteAverage = "vote_average"
-        }
-        
-        static func movideDetail() -> Self {
-            return Self(backdropPath: "", 
-                        genres: [],
-                        originalTitle: "",
-                        overview: "",
-                        posterPath: "",
-                        releaseDate: "",
-                        voteAverage: 0)
-        }
-    }
-
     // MARK: - Genre
-    struct Genre: Codable {
+    struct GenreDTO: Decodable {
         let id: Int?
         let name: String?
     }
+    
+    // MARK: - ProducerCompany
+    struct ProducerCompanyDTO: Decodable {
+        let id: Int?
+        let logo_path: String?
+        let name, origin_country: String?
+    }
+    
+    // MARK: - ProducerCountry
+    struct ProducerCountryDTO: Codable {
+        let name: String?
+    }
+    
+    // MARK: - Language
+    struct LanguageDTO: Codable {
+        let english_name, name: String?
+    }
+    
 }
-
 

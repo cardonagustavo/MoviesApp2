@@ -61,9 +61,9 @@ class KeyboardManager {
         let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect ?? .zero
         let animationDuration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double ?? 0
         print("""
-                 frame: \(keyboardFrame)
-                 duration: \(animationDuration)
-                 """)
+                frame: \(keyboardFrame)
+                duration: \(animationDuration)
+                """)
         
     }
 }

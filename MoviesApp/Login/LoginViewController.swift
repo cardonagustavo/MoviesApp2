@@ -73,12 +73,12 @@ extension LoginViewController: LoginViewDelegade {
         }
         self.show(controller, sender: self)
     }
-//    */
-//    func tapButtonLoginShowToMoviesCell(_ loginView: LoginView) {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        guard let controller = storyboard.instantiateViewController(withIdentifier: "MoviesViewController") as? MoviesViewController else { return }
-//        self.show(controller, sender: self)
-////        controller.modalTransitionStyle = .coverVertical
-////        self.present(controller, animated: true)
-//    }
+*//*
+    func tapButtonLoginShowToMoviesCell(_ loginView: LoginView) {
+       let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let controller = storyboard.instantiateViewController(withIdentifier: "AppNavigationController") as? MoviesViewController else { return }
+        self.show(controller, sender: self)
+//        controller.modalTransitionStyle = .coverVertical
+//        self.present(controller, animated: true)
+    }*/
 }

@@ -10,19 +10,19 @@ import Foundation
 
 struct Movies {
     let id: Int
-    let originalLanguage: String
-    private let originalTitle: String?
+    let original_language: String
+    private let original_title: String?
     let overview: String
     let popularity: Float
     let posterPath: String
     let releaseDate: String
     let title: String
     let video: Bool
-    let voteAverage: Float
-    let voteCount: Int
+    let vote_average: Float
+    let vote_count: Int
     
     var titleNil: String {
-        guard let titleUpdate = self.originalTitle else {
+        guard let titleUpdate = self.original_title else {
             return title
         }
         return "\(titleUpdate)"
@@ -31,16 +31,16 @@ struct Movies {
     init(
         dto: MoviesWebService.MovieDTO) {
             self.id = dto.id ?? 0
-            self.originalLanguage = dto.originalLanguage ?? "Not Available"
-            self.originalTitle = dto.originalTitle
+            self.original_language = dto.original_language ?? "Not Available"
+            self.original_title = dto.original_title
             self.overview = dto.overview ?? "Not Available"
-            self.popularity = dto.popularity ?? 0.0
+            self.popularity = Float(dto.popularity ?? 0.0)
             self.posterPath = dto.poster_path ?? "Not Available"
             self.releaseDate = dto.release_date ?? "Not Available"
             self.title = dto.title ?? "Not Available"
             self.video = dto.video ?? false
-            self.voteAverage = dto.voteAverage ?? 0
-            self.voteCount = dto.voteCount ?? 0
+            self.vote_average = Float(dto.vote_average ?? 0)
+            self.vote_count = dto.vote_count ?? 0
         }
 }
 
