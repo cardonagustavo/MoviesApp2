@@ -42,6 +42,14 @@
 		29A8BA262B6017F700238C97 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A8BA252B6017F700238C97 /* RegisterView.swift */; };
 		29A8BA282B60180A00238C97 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A8BA272B60180A00238C97 /* RegisterViewController.swift */; };
 		29B02D932B71652B000DA55C /* KeyboardManager(facade).swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B02D922B71652B000DA55C /* KeyboardManager(facade).swift */; };
+		29C6C02C2BA5E6F100182E32 /* LoginStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C6C02B2BA5E6F100182E32 /* LoginStrategy.swift */; };
+		29C6C02E2BA5E72400182E32 /* ShortLoginStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C6C02D2BA5E72400182E32 /* ShortLoginStrategy.swift */; };
+		29C6C0302BA5E73E00182E32 /* FullLoginStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C6C02F2BA5E73E00182E32 /* FullLoginStrategy.swift */; };
+		29C6C0322BA5E7A300182E32 /* LoginAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C6C0312BA5E7A300182E32 /* LoginAdapter.swift */; };
+		29C6C0342BA5FED300182E32 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C6C0332BA5FED300182E32 /* SessionManager.swift */; };
+		29C6C0362BA5FFA100182E32 /* keyChangeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C6C0352BA5FFA100182E32 /* keyChangeManager.swift */; };
+		29C6C0382BA6028A00182E32 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C6C0372BA6028A00182E32 /* AuthenticationManager.swift */; };
+		29C6C03A2BA614FE00182E32 /* ShortLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C6C0392BA614FE00182E32 /* ShortLoginViewController.swift */; };
 		29CA891F2B92663A0043AF1D /* DetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA891E2B92663A0043AF1D /* DetailsModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +90,14 @@
 		29A8BA252B6017F700238C97 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		29A8BA272B60180A00238C97 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		29B02D922B71652B000DA55C /* KeyboardManager(facade).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardManager(facade).swift"; sourceTree = "<group>"; };
+		29C6C02B2BA5E6F100182E32 /* LoginStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStrategy.swift; sourceTree = "<group>"; };
+		29C6C02D2BA5E72400182E32 /* ShortLoginStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortLoginStrategy.swift; sourceTree = "<group>"; };
+		29C6C02F2BA5E73E00182E32 /* FullLoginStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullLoginStrategy.swift; sourceTree = "<group>"; };
+		29C6C0312BA5E7A300182E32 /* LoginAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAdapter.swift; sourceTree = "<group>"; };
+		29C6C0332BA5FED300182E32 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		29C6C0352BA5FFA100182E32 /* keyChangeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keyChangeManager.swift; sourceTree = "<group>"; };
+		29C6C0372BA6028A00182E32 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		29C6C0392BA614FE00182E32 /* ShortLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortLoginViewController.swift; sourceTree = "<group>"; };
 		29CA891E2B92663A0043AF1D /* DetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				296C072E2BA08CA2006A6348 /* TabBarNavigationController.swift */,
+				29C6C0372BA6028A00182E32 /* AuthenticationManager.swift */,
 			);
 			path = Navigations;
 			sourceTree = "<group>";
@@ -221,6 +238,8 @@
 			isa = PBXGroup;
 			children = (
 				2940BE892BA33B4A009D7FDD /* StarsRank.swift */,
+				29C6C0332BA5FED300182E32 /* SessionManager.swift */,
+				29C6C0352BA5FFA100182E32 /* keyChangeManager.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -268,8 +287,11 @@
 		2949A8512B5AB9040087FEF1 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				29C6C02A2BA5E6A500182E32 /* Strategy */,
+				29C6C0292BA5E69800182E32 /* Adapter */,
 				2949A8522B5AB9AA0087FEF1 /* LoginView.swift */,
 				2949A8542B5AB9BD0087FEF1 /* LoginViewController.swift */,
+				29C6C0392BA614FE00182E32 /* ShortLoginViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -290,6 +312,24 @@
 				29A8BA272B60180A00238C97 /* RegisterViewController.swift */,
 			);
 			path = Register;
+			sourceTree = "<group>";
+		};
+		29C6C0292BA5E69800182E32 /* Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				29C6C0312BA5E7A300182E32 /* LoginAdapter.swift */,
+			);
+			path = Adapter;
+			sourceTree = "<group>";
+		};
+		29C6C02A2BA5E6A500182E32 /* Strategy */ = {
+			isa = PBXGroup;
+			children = (
+				29C6C02B2BA5E6F100182E32 /* LoginStrategy.swift */,
+				29C6C02D2BA5E72400182E32 /* ShortLoginStrategy.swift */,
+				29C6C02F2BA5E73E00182E32 /* FullLoginStrategy.swift */,
+			);
+			path = Strategy;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,7 +412,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29C6C02E2BA5E72400182E32 /* ShortLoginStrategy.swift in Sources */,
 				29CA891F2B92663A0043AF1D /* DetailsModel.swift in Sources */,
+				29C6C0322BA5E7A300182E32 /* LoginAdapter.swift in Sources */,
 				29A8BA282B60180A00238C97 /* RegisterViewController.swift in Sources */,
 				2927DBC32B8E23CE00C105A1 /* MoviesListAdapter.swift in Sources */,
 				291D73FF2B9FA2E8002B1C8D /* MoviesCollectionViewCell.swift in Sources */,
@@ -386,16 +428,22 @@
 				29B02D932B71652B000DA55C /* KeyboardManager(facade).swift in Sources */,
 				2927DBBE2B8D4A8300C105A1 /* FavoritesCollectionViewCell.swift in Sources */,
 				2927DBB12B8D207700C105A1 /* MoviesViewController.swift in Sources */,
+				29C6C0342BA5FED300182E32 /* SessionManager.swift in Sources */,
 				2927DBC12B8D4F2E00C105A1 /* MoviesView.swift in Sources */,
 				291D73F82B9F9C65002B1C8D /* MoviesViewControllerBuilder.swift in Sources */,
+				29C6C0302BA5E73E00182E32 /* FullLoginStrategy.swift in Sources */,
 				291D74082B9FBBEE002B1C8D /* SearchMovieByYearAdapter.swift in Sources */,
+				29C6C0382BA6028A00182E32 /* AuthenticationManager.swift in Sources */,
 				2940BE8A2BA33B4A009D7FDD /* StarsRank.swift in Sources */,
 				2949A8362B59FE800087FEF1 /* AppDelegate.swift in Sources */,
+				29C6C0362BA5FFA100182E32 /* keyChangeManager.swift in Sources */,
+				29C6C03A2BA614FE00182E32 /* ShortLoginViewController.swift in Sources */,
 				291D740B2BA06FD2002B1C8D /* ErrorCollectionViewCell.swift in Sources */,
 				2917C2BD2B8FEC660013D588 /* DetailsViewController.swift in Sources */,
 				291D74012B9FABAE002B1C8D /* SearchMoviesAdapterProtocol.swift in Sources */,
 				2927DBB92B8D30A700C105A1 /* MoviesModel.swift in Sources */,
 				29A8BA262B6017F700238C97 /* RegisterView.swift in Sources */,
+				29C6C02C2BA5E6F100182E32 /* LoginStrategy.swift in Sources */,
 				2949A8382B59FE800087FEF1 /* SceneDelegate.swift in Sources */,
 				2917C2BB2B8FEC480013D588 /* DetailsView.swift in Sources */,
 				299550D12B5FE82A000F1D51 /* GetStartedView.swift in Sources */,

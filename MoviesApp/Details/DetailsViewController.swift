@@ -6,58 +6,59 @@
 //
 
 import UIKit
+import Foundation
 
 class DetailViewController: UIViewController {
     
     var detailView: DetailView? { self.view as? DetailView }
     lazy var movieWebService = MoviesWebService()
     
-  var movie: Movie?
-    
+    var movie: Movie?
     var movieId: Int?
     var movieSelected: Movies?
- 
     
     private lazy var webServiceDetail = MoviesWebService()
+    private let sessionManager = SessionManager.standard // Instancia de SessionManager
     
     override func viewWillAppear(_ animated: Bool) {
-    guard let movieToDisplay = self.movie else { return }
+        guard let movieToDisplay = self.movie else { return }
         
         if self.movie != nil {
             self.detailView?.dataInjection(fromModel: movieToDisplay)
         }
-        // let movieToDisplay = movie ?? Movie(id: 0, title: "Sin título", overview: "Sin descripción")
-          
     }
     
-   override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
-//       print(self.movieId)
-//       getWebServiceDetail()
-//       setupNavigationBar()
-//       customButtonTappedLoguot()
-       
+        getWebServiceDetail()
+        setupNavigationBar()
     }
    
-    /*
     private func setupNavigationBar() {
-       
         let customButtonBack = UIBarButtonItem(image: UIImage(systemName: "arrowshape.left.circle.fill"), style: .plain, target: self, action: #selector(backButtonTapped))
         navigationItem.leftBarButtonItems = [customButtonBack]
         
-        
         let favoritesButton = UIBarButtonItem(image: UIImage(systemName: "star"), style: .plain, target: self, action: #selector(favoritesButtonTapped))
         
+        let customButton = UIButton(type: .custom)
+        customButton.setImage(UIImage(named: "logout.png"), for: .normal)
+        customButton.addTarget(self, action: #selector(customButtonTappedLoguot), for: .touchUpInside)
+        customButton.contentMode = .scaleAspectFit // Ajusta el contenido del botón para que se ajuste correctamente
         
-       // let customButton = UIButton(type: .custom)
-        let customButton = UIBarButtonItem(image: UIImage(systemName: "person.circle.fill"), style: .plain, target: self, action: #selector(customButtonTappedLoguot))
-       // customButton.addTarget(self, action: #selector(customButtonTappedLoguot), for: .touchUpInside)
-       
+        let customBarButtonItem = UIBarButtonItem(customView: customButton)
+        customBarButtonItem.customView?.translatesAutoresizingMaskIntoConstraints = false // Desactiva las restricciones automáticas
         
-      
-        navigationItem.rightBarButtonItems = [customButton, favoritesButton]
+        if let customView = customBarButtonItem.customView {
+            // Establece restricciones para el botón personalizado
+            NSLayoutConstraint.activate([
+                customView.widthAnchor.constraint(equalToConstant: 30), // Ancho fijo
+                customView.heightAnchor.constraint(equalToConstant: 30) // Alto fijo
+            ])
+        }
+        
+        navigationItem.rightBarButtonItems = [customBarButtonItem, favoritesButton]
     }
-    
+
     @objc private func backButtonTapped() {
         navigationController?.popViewController(animated: true)
     }
@@ -67,17 +68,22 @@ class DetailViewController: UIViewController {
     }
     
     @objc private func customButtonTappedLoguot() {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        sessionManager.logoutWithRememberme() // Llama al método de cierre de sesión desde SessionManager
+        
+        if sessionManager.isUserRequestedRememberLogin() {
+            let shortLoginViewController = storyBoard.instantiateViewController(withIdentifier: "ShortLoginViewController") as! ShortLoginViewController
+            self.show(shortLoginViewController, sender: self)
+        } else {
+            let loginViewController = storyBoard.instantiateViewController(withIdentifier: "ShortLoginViewController") as! ShortLoginViewController
+            self.show(loginViewController, sender: self)
+        }
     }
-    */
     
     private func getWebServiceDetail() {
         guard let movieId = movieId else { return }
         self.webServiceDetail.retriveMovies(idMovie: movieId) { movie in
-            self.detailView?.labelDescriptionTitle.text = movie.original_title
-            self.detailView?.labelDescriptionText.text = movie.overview
-            self.detailView?.imageBackdrop.image = UIImage(named: "backdrop_path")
-            self.detailView?.imageMovie.image = UIImage(named: "poster_path")
-            self.detailView?.labelTitle.text = movie.original_title
+            // Actualización de la vista con los detalles de la película
         }
     }
 }

@@ -6,14 +6,19 @@ import UIKit
 
 //MARK: - Delegade
 @objc protocol RegisterViewDelegate: AnyObject {
-    func loginViewTapButtonRegister(_ registerView:  RegisterView)
+    @objc optional func loginViewDidTapLoginButtonWith(_ registerView: RegisterView, email: String, andRememberme rememberme: Bool)
+        func loginViewTapButtonRegister(_ registerView:  RegisterView)
+        func switchValueChanged(isOn: Bool)
+
 }
 
-//MARK: - <protocol
+//MARK: - protocol
 protocol RegisterViewProtocol {
     func customComponentsLabel()
     func customComponentsTextField()
     func updateButtonCreate()
+    
+
 }
 
 //MARK: - Class
@@ -29,15 +34,15 @@ class RegisterView: UIView {
     @IBOutlet weak var viewBottom: UIView!
     @IBOutlet weak var secondLabel: UILabel!
     @IBOutlet weak var textFieldEmail: UITextField!
-    @IBOutlet weak var textFieldNumberPhone: UITextField!
     @IBOutlet weak var textFieldNickName: UITextField!
-    @IBOutlet weak var switchRememberMe: UISwitch!
-    @IBOutlet weak var labelRememberMe: UILabel!
-    @IBOutlet weak var buttonCreateUpdate: UIButton!
+    @IBOutlet weak var swithToRememberme: UISwitch!
+    @IBOutlet weak var labelRememberme: UILabel!
+    @IBOutlet weak var buttonCreateAccount: UIButton!
     
-
+    
     @IBAction func buttonCreateAccount(_ sender: UIButton) {
         self.delegate?.loginViewTapButtonRegister(self)
+        self.delegate?.loginViewDidTapLoginButtonWith?(self, email: self.textFieldEmail.text ?? "", andRememberme: self.labelRememberme.tag == 1 ? true : false)
     }
     
     @IBOutlet weak var textBottom: UILabel!
@@ -46,6 +51,7 @@ class RegisterView: UIView {
     }
     @IBOutlet private weak var viewKeyboard: UIView!
     @IBOutlet private weak var viewKeyBoardGroupAnchor: NSLayoutConstraint!
+    
     
     func keyboardAppear(_ info: KeyboardManager.Info) {
         let keyboardHeight = info.frame.size.height
@@ -63,33 +69,44 @@ class RegisterView: UIView {
                    - Posición máxima Y de la vista: \(maxYView)
                    - Desplazamiento necesario: \(displacement)
            """)
-           
-           if displacement > 0 {
-               viewKeyBoardGroupAnchor.constant = displacement + 50
-           } else {
-              
-               viewKeyBoardGroupAnchor.constant = 0
-           }
+        
+        if displacement > 0 {
+            viewKeyBoardGroupAnchor.constant = displacement + 50
+        } else {
+            
+            viewKeyBoardGroupAnchor.constant = 0
+        }
     }
-
     
     func keyboardDisappear(_ info: KeyboardManager.Info) {
         self.viewKeyBoardGroupAnchor.constant = 0
         
     }
+    
+    func configureSwitch(isOn: Bool) {
+        swithToRememberme.isOn = isOn
+        swithToRememberme.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
+    }
 
     
+    @objc public func switchValueChanged(_ sender: UISwitch) {
+        delegate?.switchValueChanged(isOn: sender.isOn)
+    }
+
+
 }
 
 //MARK: - Extension
 extension RegisterView: RegisterViewProtocol {
+    
+    
 
     
     func updateButtonCreate() {
-        buttonCreateUpdate.setTitle(nil, for: .normal)
-        buttonCreateUpdate.setTitle("Create Account", for: .normal)
-        buttonCreateUpdate.setTitleColor(UIColor.black, for: .normal)
-        buttonCreateUpdate.layer.cornerRadius = 19
+        buttonCreateAccount.setTitle(nil, for: .normal)
+        buttonCreateAccount.setTitle("Create Account", for: .normal)
+        buttonCreateAccount.setTitleColor(UIColor.black, for: .normal)
+        buttonCreateAccount.layer.cornerRadius = 19
     }
     
     func customComponentsLabel() {
@@ -104,11 +121,6 @@ extension RegisterView: RegisterViewProtocol {
         textFieldEmail.textColor = .black
         textFieldEmail.attributedPlaceholder = NSAttributedString(string: "E-mail", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         
-        
-  //    textFieldNumberPhone.placeholder = "Phone Number"
-        textFieldNumberPhone.leftViewMode = .always
-        textFieldNumberPhone.textColor = .black
-        textFieldNumberPhone.attributedPlaceholder = NSAttributedString(string: "Phone Number", attributes: [NSAttributedString.Key.foregroundColor:  UIColor.black])
         
  //       textFieldNickName.placeholder = "Nick Name"
         textFieldNickName.leftViewMode = .always

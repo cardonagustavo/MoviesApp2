@@ -19,8 +19,8 @@ class LoginViewController: UIViewController {
           loginView?.textFieldLoginUpdate()
           loginView?.setupNavigationBarAppearance()
       }
+
     
-      
       override func viewDidAppear(_ animated: Bool) {
           super.viewDidAppear(animated)
           self.keyboardManager.registerKeyboardNotifications()
@@ -65,6 +65,12 @@ extension LoginViewController: KeyboardManagerDelegate {
 
 //MARK: - Login View Delegade
 extension LoginViewController: LoginViewDelegade {
+    func buttonShortLogin(_ sender: Any) {
+        
+    }
+    
+    
+    
  /*   func tapButtonLoginShowRegisterView(_ loginView: LoginView) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let controller = storyboard.instantiateViewController(withIdentifier: "RegisterViewController") as? RegisterViewController

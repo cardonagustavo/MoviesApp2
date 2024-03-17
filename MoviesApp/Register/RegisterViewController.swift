@@ -9,6 +9,7 @@ class RegisterViewController: UIViewController {
     private var registerView: RegisterView? { self.view as? RegisterView }
     lazy var keyboardManager = KeyboardManager(delegate: self)
     
+    private let remembermeSwitch = UISwitch()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,6 +18,10 @@ class RegisterViewController: UIViewController {
         registerView?.customComponentsTextField()
 //        registerView?.setupTransparentBackgroundViews()
         registerView?.updateButtonCreate()
+        
+        let isRemembering = UserDefaults.standard.bool(forKey: "Rememberme")
+        remembermeSwitch.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
+        remembermeSwitch.isOn = isRemembering
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,6 +41,9 @@ class RegisterViewController: UIViewController {
         self.keyboardManager.unregisterKeyboardNotifications()
     }
     
+    @objc func switchValueChanged(_ sender: UISwitch) {
+        UserDefaults.standard.set(sender.isOn, forKey: "Rememberme")
+    }
     
 }
 
@@ -55,6 +63,10 @@ extension RegisterViewController: KeyboardManagerDelegate {
 }
 
 extension RegisterViewController: RegisterViewDelegate {
+    func switchValueChanged(isOn: Bool) {
+            UserDefaults.standard.set(isOn, forKey: "Rememberme")
+        }
+    
     func loginViewTapButtonRegister(_ registerView: RegisterView) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         self.dismiss(animated: true)
@@ -69,4 +81,3 @@ extension RegisterViewController: RegisterViewDelegate {
 //        self.present(controller, animated: true)
     }
 }
-

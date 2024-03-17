@@ -7,12 +7,16 @@ import UIKit
 @objc protocol LoginViewDelegade: AnyObject {
 //    func tapButtonLoginShowToMoviesCell(_ loginView: LoginView)
    // func tapButtonLoginShowRegisterView(_ loginView: LoginView)
+    func buttonShortLogin(_ sender: Any)
+    @objc func buttonShortLogin(_ loginView: LoginView)
 }
 
 // MARK: - Protocolos
 protocol LoginViewProtocol {
     func textFieldLoginUpdate()
     func setupNavigationBarAppearance()
+    func updateStyleButtonShortLogin()
+    func shortLoginButtonEmail(_ email: String)
 }
 
 //MARK: - Class
@@ -35,14 +39,19 @@ class LoginView: UIView {
     @IBAction func buttonTapLogin(_ sender: UIButton) {
      //   self.delegate?.tapButtonLoginShowToMoviesCell(self)
         
-
     }
 //    
     @IBOutlet private weak var groupViewKeyboardView: UIView!
     @IBOutlet private weak var groupViewKeyboardAnchorCenterAxisY: NSLayoutConstraint!
     
+    @IBOutlet weak var labelShortLogin: UILabel!
+    @IBOutlet weak var buttonShortLogin: UIButton!
     
-//    @IBAction func textFieldDidChanged(_ sender: UITextField) {
+    
+    @IBAction func buttonShortLogin(_ sender: Any) {
+        self.delegate?.buttonShortLogin(self)
+    }
+    //    @IBAction func textFieldDidChanged(_ sender: UITextField) {
 //        delegate?.textViewDidChange(sender.text ?? "")
 //    }
 }
@@ -76,8 +85,6 @@ extension LoginView: LoginViewProtocol {
                 print(delta)
             }
         }
-//        self.groupViewKeyboard.frame.origin.y + self.groupViewKeyboard.frame.height
-        
     }
     
     func keyboardDisappear(_ info: KeyboardManager.Info) {
@@ -85,13 +92,11 @@ extension LoginView: LoginViewProtocol {
             self.groupViewKeyboardAnchorCenterAxisY.constant = 0
             self.layoutIfNeeded()
         }
-        
     }
     
-//    func textFieldDidChangedMethod(_ text: String) {
-//        
-//    }
-    
+    func updateLabels() {
+        self.labelShortLogin.text = "Welcome back to our space!"
+    }
     
     func textFieldLoginUpdate() {
         self.textFieldLogin.font = UIFont(name: "veradna", size: 30)
@@ -101,7 +106,6 @@ extension LoginView: LoginViewProtocol {
         
     }
     
- 
     class YourAppDelegate: UIResponder, UIApplicationDelegate {
         func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
             setupNavigationBarAppearance()
@@ -127,5 +131,12 @@ extension LoginView: LoginViewProtocol {
     }
 
 
+    func updateStyleButtonShortLogin() {
+       
+    //TODO: Configure or update button
+    }
     
+    func shortLoginButtonEmail(_ email: String) {
+        self.buttonShortLogin.setTitle(email, for: .normal)
+    }
 }

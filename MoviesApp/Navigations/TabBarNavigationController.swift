@@ -28,9 +28,31 @@ class TabBarNavigationController: UITabBarController {
         
        viewControllers = [movies, favorites]
         
-        let logoutProfile = UIImage(systemName: "person.circle.fill")
-        let logoutProfileButton = UIBarButtonItem(image: logoutProfile, style: .plain, target: self, action: #selector())
-        self.navigationItem.rightBarButtonItem = [logoutProfile]
+        if let originalImage = UIImage(named: "logout.png") {
+            let targetSize = CGSize(width: 30, height: 30)
+            
+            UIGraphicsBeginImageContextWithOptions(targetSize, false, 0.0)
+            originalImage.draw(in: CGRect(x: 0, y: 0, width: targetSize.width, height: targetSize.height))
+            let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            if let scaledImage = scaledImage {
+                let buttonShortLogin = UIButton(type: .custom)
+                buttonShortLogin.setImage(scaledImage, for: .normal)
+                
+                buttonShortLogin.addTarget(self, action: #selector(logoutUser), for: .touchUpInside)
+                
+                let customBarButtonItem = UIBarButtonItem(customView: buttonShortLogin)
+                
+
+                self.navigationItem.rightBarButtonItem = customBarButtonItem
+            } else {
+                print("Error: No se pudo escalar la imagen")
+            }
+        } else {
+            print("Error: No se pudo cargar la imagen 'logout.png'")
+        }
+
     
      }
     
@@ -42,47 +64,20 @@ class TabBarNavigationController: UITabBarController {
     private func backButtonTapped() {
         navigationController?.popViewController(animated: false)
     }
-    
-//    @objc private func logoutUser() {
-//        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        UserSessionHelper.standard.logoutWithRememberme()
-//        
-//        if UserSessionHelper.standard.isUserRequestedRememberLogin() {
-//            let shortLoginViewController = storyBoard.instantiateViewController(withIdentifier: "ShortLoginViewController") as! ShortLoginViewController
-//            self.navigationController?.present(shortLoginViewController, animated: true)
-//        } else {
-//            let loginViewController = storyBoard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-//            self.navigationController?.present(loginViewController, animated: true)
-//        }
-//    }
-}
-/*
- 
- private func addControllers() {
-     let moviesList = MoviesViewController.buildMoviesList()
-     let favoritesList = MoviesViewController.buildFavoritesList()
-     
-     moviesList.tabBarItem = UITabBarItem(title: "Movies", image: UIImage(systemName: "square.grid.2x2"), selectedImage: UIImage(systemName: "square.grid.2x2.fill"))
-     favoritesList.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(systemName: "star"), selectedImage: UIImage(systemName: "star.fill"))
 
-     self.viewControllers = [moviesList, favoritesList]
-     
-     let logoutImage = UIImage(systemName: "person.fill.badge.minus")
-     let logoutButton = UIBarButtonItem(image: logoutImage, style: .plain, target: self, action: #selector(logoutUser))
-     self.navigationItem.rightBarButtonItems = [logoutButton]
- }
- 
- @objc private func logoutUser() {
-     let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-     UserSessionHelper.standard.logoutWithRememberme()
-     
-     if UserSessionHelper.standard.isUserRequestedRememberLogin() {
-         let shortLoginViewController = storyBoard.instantiateViewController(withIdentifier: "ShortLoginViewController") as! ShortLoginViewController
-         self.navigationController?.present(shortLoginViewController, animated: true)
-     } else {
-         let loginViewController = storyBoard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-         self.navigationController?.present(loginViewController, animated: true)
-     }
- }
+    
+    @objc private func logoutUser() {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        SessionManager.standard.logoutWithRememberme()
+        
+        if SessionManager.standard.isUserRequestedRememberLogin() {
+            let shortLoginViewController = storyBoard.instantiateViewController(withIdentifier: "ShortLoginViewController") as! ShortLoginViewController
+            self.show(shortLoginViewController, sender: self)
+        } else {
+            let loginViewController = storyBoard.instantiateViewController(withIdentifier: "ShortLoginViewController") as! ShortLoginViewController
+            self.show(loginViewController, sender: self)
+        }
+    }
+
 }
- */
+

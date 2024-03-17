@@ -7,24 +7,59 @@
 
 import Foundation
 
+import Foundation
+
+/// Representa un modelo de datos para una película.
 struct Movie {
+    
+    /// Indica si la película es para adultos.
     let adult: Bool
+    
+    /// Ruta de la imagen de fondo de la película.
     let backdrop_path: String
+    
+    /// Identificadores de género asociados con la película.
     let genre_ids: [Int]
+    
+    /// Géneros asociados con la película.
     let genres: [MoviesWebService.GenreDTO]
+    
+    /// Identificador único de la película.
     let id: Int
+    
+    /// Idioma original de la película.
     let original_language: String
+    
+    /// Título original de la película.
     let original_title: String
+    
+    /// Descripción general de la película.
     let overview: String
+    
+    /// Popularidad de la película.
     let popularity: Double
+    
+    /// Ruta del póster de la película.
     let poster_path: String
+    
+    /// Fecha de lanzamiento de la película.
     let release_date: String
+    
+    /// Título de la película.
     let title: String
+    
+    /// Indica si la película tiene video.
     let video: Bool
+    
+    /// Calificación promedio de la película.
     let vote_average: Float
+    
+    /// Número de votos recibidos por la película.
     let vote_count: Int
     
-    
+    /// Inicializa una instancia de Movie a partir de un objeto MovieDTO.
+    ///
+    /// - Parameter dto: Objeto de transferencia de datos de película (MovieDTO).
     init(dto: MoviesWebService.MovieDTO) {
         self.adult = dto.adult ?? false
         self.backdrop_path = dto.backdrop_path ?? ""
@@ -43,6 +78,9 @@ struct Movie {
         self.vote_count = dto.vote_count ?? 0
     }
     
+    /// Inicializa una instancia de Movie a partir de un objeto MovieDetailDTO.
+    ///
+    /// - Parameter detailDto: Objeto de transferencia de datos de detalles de película (MovieDetailDTO).
     init(detailDto: MoviesWebService.MovieDetailDTO) {
         self.adult = detailDto.adult ?? false
         self.backdrop_path = detailDto.backdrop_path ?? ""
@@ -61,6 +99,9 @@ struct Movie {
         self.vote_count = detailDto.vote_count ?? 0
     }
     
+    /// Inicializa una instancia de Movie a partir de un objeto Favorite.
+    ///
+    /// - Parameter favorite: Objeto de película favorita (Favorite).
     init(favorite: Favorite) {
         self.adult = false
         self.backdrop_path = ""
@@ -80,28 +121,45 @@ struct Movie {
     }
 }
 
+/// Representa una película favorita.
 struct Favorite: Codable {
+    /// Identificador único de la película.
     let id: Int
+    
+    /// Ruta del póster de la película.
     let poster_path: String
+    
+    /// Título de la película.
     let title: String
+    
+    /// Fecha de lanzamiento de la película.
     let release_date: String
 }
 
+/// Extensión que proporciona una conversión de una matriz de objetos MovieDTO a una matriz de objetos Movie.
 extension Array where Element == MoviesWebService.MovieDTO {
+    
+    /// Convierte una matriz de objetos MovieDTO a una matriz de objetos Movie.
     var toList: [Movie] {
-        self.map( { Movie(dto: $0) } )
+        self.map({ Movie(dto: $0) })
     }
 }
 
+/// Extensión que proporciona una conversión de una matriz de objetos MovieDetailDTO a una matriz de objetos Movie.
 extension Array where Element == MoviesWebService.MovieDetailDTO {
+    
+    /// Convierte una matriz de objetos MovieDetailDTO a una matriz de objetos Movie.
     var toList: [Movie] {
-        self.map( { Movie(detailDto: $0) } )
+        self.map({ Movie(detailDto: $0) })
     }
 }
 
+/// Extensión que proporciona una conversión de una matriz de objetos Favorite a una matriz de objetos Movie.
 extension Array where Element == Favorite {
+    
+    /// Convierte una matriz de objetos Favorite a una matriz de objetos Movie.
     var toMovies: [Movie] {
-        self.map( { Movie(favorite: $0) } )
+        self.map({ Movie(favorite: $0) })
     }
 }
 

@@ -34,16 +34,13 @@ class DetailView: UIView {
 
 
 extension DetailView {
-    
     func genresList(_ genres: [MoviesWebService.GenreDTO]) -> String {
         var list = ""
-        
+
         genres.forEach({ genre in
             list += "\u{2022} \(genre.name ?? "") "
         })
-        
         return list
-        
     }
     
  func dataInjection(fromModel movie: Movie) {
