@@ -21,7 +21,7 @@ class MoviesCollectionViewCell: UICollectionViewCell {
     fileprivate func updateDataWith(_ movies: Movies) {
 //       self.imageMovie.image = movies.posterPath
         let baseURLImage = "https://image.tmdb.org/t/p/w500"
-        let urlImage = baseURLImage + movies.posterPath
+        let urlImage = baseURLImage + movies.poster_path
 //            print(urlImage)
             if let url = URL(string: urlImage) {
               URLSession.shared.dataTask(with: url) {(data, response, error) in guard let imageData = data else { return }
@@ -33,7 +33,7 @@ class MoviesCollectionViewCell: UICollectionViewCell {
                   
               }.resume()
                 self.labelName.text = movies.title
-                self.labelDescription.text = movies.releaseDate
+                self.labelDescription.text = movies.release_date
                 self.imageMovie.layer.cornerRadius = 20
                 
                 self.viewContainer.layer.borderWidth = 1

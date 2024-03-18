@@ -65,26 +65,7 @@ extension LoginViewController: KeyboardManagerDelegate {
 
 //MARK: - Login View Delegade
 extension LoginViewController: LoginViewDelegade {
-    func buttonShortLogin(_ sender: Any) {
+    func buttonShortLogin(_ loginView: LoginView) {
         
     }
-    
-    
-    
- /*   func tapButtonLoginShowRegisterView(_ loginView: LoginView) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let controller = storyboard.instantiateViewController(withIdentifier: "RegisterViewController") as? RegisterViewController
-        else {
-            return
-        }
-        self.show(controller, sender: self)
-    }
-*//*
-    func tapButtonLoginShowToMoviesCell(_ loginView: LoginView) {
-       let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let controller = storyboard.instantiateViewController(withIdentifier: "AppNavigationController") as? MoviesViewController else { return }
-        self.show(controller, sender: self)
-//        controller.modalTransitionStyle = .coverVertical
-//        self.present(controller, animated: true)
-    }*/
 }

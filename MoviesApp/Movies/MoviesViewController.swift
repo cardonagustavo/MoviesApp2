@@ -19,10 +19,8 @@ class MoviesViewController: UIViewController {
         self.moviesView.delegate = self
         self.moviesView.setupAdapters()
         self.getWebService()
-//        self.updateNavigationBar()
         
     }
-
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -36,16 +34,6 @@ class MoviesViewController: UIViewController {
             self.moviesView.showLoading(false)
         }
     }
-    /*
-    func updateNavigationBar() {
-        let customButtonBack = UIBarButtonItem()
-        navigationItem.leftBarButtonItems = [customButtonBack]
-    }
-    
-    @objc private func backButtonTapped() {
-        navigationController?.popViewController(animated: false)
-    }
-     */
     
     init(moviesView: MoviesView) {
         self.moviesView = moviesView
@@ -55,7 +43,6 @@ class MoviesViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-   
  
     private func navigateToDetailViewWithMovie(_ movie: Movies) {
            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)

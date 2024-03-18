@@ -36,7 +36,7 @@ extension SearchMovieByYearAdapter: UISearchBarDelegate {
             })*/
           
             arrayResult = self.datasource.filter({ movies in
-                movies.title.lowercased().contains(searchText.lowercased()) || movies.releaseDate.contains(searchTextLowercased)
+                movies.title.lowercased().contains(searchText.lowercased()) || movies.release_date.contains(searchTextLowercased)
             })
             
             arrayResult = !arrayResult.isEmpty ? arrayResult : ["""

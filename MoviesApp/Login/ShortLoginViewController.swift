@@ -16,14 +16,18 @@ class ShortLoginViewController: UIViewController {
         super.viewDidLoad()
         self.loginView?.updateStyleButtonShortLogin()
         self.loginView?.shortLoginButtonEmail(self.AuthenticationManager.email)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem()
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem()
+        self.navigationItem.title = "Short Login"
     }
 }
 
 // MARK: - Delegates
 extension ShortLoginViewController: LoginViewDelegade {
-    func buttonShortLogin(_ sender: Any) {
+    func buttonShortLogin(_ loginView: LoginView) {
         self.loginStrategy.login(rememberme: true, userEmail: self.AuthenticationManager.email) {
             self.performSegue(withIdentifier: "MoviesTabBarNavigationController", sender: nil)
         } completionLoginErrorHandler: {}
     }
-}
+    }
+    

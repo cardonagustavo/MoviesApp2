@@ -105,3 +105,7 @@ extension FavoritesListAdapter: UICollectionViewDelegate {
         
     }
 }
+
+extension FavoritesListAdapter {
+    typealias CompletionDidSelectHandler = (_ movie: Movie) -> Void
+}

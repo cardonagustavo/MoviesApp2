@@ -1,5 +1,5 @@
 //
-//  DetailsView.swift
+//  DetailView.swift
 //  MoviesApp
 //
 //  Created by Gustavo Adolfo Cardona Quintero on 28/02/24.
@@ -33,7 +33,7 @@ class DetailView: UIView {
 }
 
 
-extension DetailView {
+extension DetailView: DetailViewProtocol{
     func genresList(_ genres: [MoviesWebService.GenreDTO]) -> String {
         var list = ""
 

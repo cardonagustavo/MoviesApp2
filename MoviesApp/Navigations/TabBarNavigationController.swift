@@ -11,7 +11,6 @@ class TabBarNavigationController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         customTabBarr()
-        updateNavigationBar()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem()
     }
     
@@ -25,8 +24,10 @@ class TabBarNavigationController: UITabBarController {
         
         movies.tabBarItem = UITabBarItem(title: "Movies", image: UIImage(systemName: "square.split.2x2.fill"), tag: 0)
         favorites.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(systemName: "star.fill"), tag: 1)
+        movies.navigationItem.title = "Movies"
+        favorites.navigationItem.title = "Favorites"
         
-       viewControllers = [movies, favorites]
+       viewControllers = [movies, favorites, movies, favorites]
         
         if let originalImage = UIImage(named: "logout.png") {
             let targetSize = CGSize(width: 30, height: 30)
@@ -44,7 +45,6 @@ class TabBarNavigationController: UITabBarController {
                 
                 let customBarButtonItem = UIBarButtonItem(customView: buttonShortLogin)
                 
-
                 self.navigationItem.rightBarButtonItem = customBarButtonItem
             } else {
                 print("Error: No se pudo escalar la imagen")
@@ -55,11 +55,6 @@ class TabBarNavigationController: UITabBarController {
 
     
      }
-    
-    func updateNavigationBar() {
-        let customButtonBack = UIBarButtonItem()
-        navigationItem.leftBarButtonItems = [customButtonBack]
-    }
     
     private func backButtonTapped() {
         navigationController?.popViewController(animated: false)

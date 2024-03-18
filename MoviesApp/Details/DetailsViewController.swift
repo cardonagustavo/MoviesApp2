@@ -1,5 +1,5 @@
 //
-//  DetailsViewController.swift
+//  DetailViewController.swift
 //  MoviesApp
 //
 //  Created by Gustavo Adolfo Cardona Quintero on 28/02/24.
@@ -15,30 +15,31 @@ class DetailViewController: UIViewController {
     
     var movie: Movie?
     var movieId: Int?
-    var movieSelected: Movies?
+    var isFavoriteMovie = false
+    let user = SessionManager.standard.authenticationUserObtained()
     
     private lazy var webServiceDetail = MoviesWebService()
     private let sessionManager = SessionManager.standard // Instancia de SessionManager
     
     override func viewWillAppear(_ animated: Bool) {
         guard let movieToDisplay = self.movie else { return }
-        
-        if self.movie != nil {
-            self.detailView?.dataInjection(fromModel: movieToDisplay)
-        }
+        self.detailView?.dataInjection(fromModel: movieToDisplay)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getWebServiceDetail()
         setupNavigationBar()
+        self.navigationItem.title = "Details"
+        self.isFavoriteMovie = self.validateIfMovieIsFavorite()
     }
    
     private func setupNavigationBar() {
         let customButtonBack = UIBarButtonItem(image: UIImage(systemName: "arrowshape.left.circle.fill"), style: .plain, target: self, action: #selector(backButtonTapped))
         navigationItem.leftBarButtonItems = [customButtonBack]
         
-        let favoritesButton = UIBarButtonItem(image: UIImage(systemName: "star"), style: .plain, target: self, action: #selector(favoritesButtonTapped))
+        let favoritesImage = createFavriteIcon()
+        let favoritesButton = UIBarButtonItem(image: favoritesImage, style: .plain, target: self, action: #selector(favoritesButtonTapped))
         
         let customButton = UIButton(type: .custom)
         customButton.setImage(UIImage(named: "logout.png"), for: .normal)
@@ -57,19 +58,58 @@ class DetailViewController: UIViewController {
         }
         
         navigationItem.rightBarButtonItems = [customBarButtonItem, favoritesButton]
+    
     }
-
+    
+    private func createFavriteIcon() -> UIImage {
+        return UIImage(systemName: self.isFavoriteMovie ? "star.fill" : "star") ?? UIImage()
+    }
+    
     @objc private func backButtonTapped() {
         navigationController?.popViewController(animated: true)
     }
     
     @objc private func favoritesButtonTapped() {
-        //TODO: Add movies to favorites
+        if !self.user.email.isEmpty {
+            var favorites = self.getFavoritesFromKeyChain()
+            
+            if (self.isFavoriteMovie) {
+                favorites = favorites.filter { $0.id != self.movie?.id }
+            } else {
+                favorites.append(
+                    Favorite(
+                        id: self.movie?.id ?? 0,
+                        poster_path: self.movie?.poster_path ?? "",
+                        title: self.movie?.title ?? "",
+                        release_date: self.movie?.release_date ?? ""
+                    )
+                )
+            }
+
+            do {
+                let data = try JSONEncoder().encode(favorites)
+                keyChangeManager.standard.save(data, service: "userTest.com", account: "favorites-\(self.user.email)")
+            } catch {}
+            
+            self.isFavoriteMovie = !self.isFavoriteMovie
+            
+            UIView.transition(with: self.view, duration: 0.5, options: .transitionCrossDissolve, animations: {
+                self.navigationItem.rightBarButtonItems?.last?.image = self.createFavriteIcon()
+            }, completion: nil)
+        }
     }
+    private func getFavoritesFromKeyChain() -> [Favorite] {
+        return SessionManager.standard.retrieveFavoritesByUserLogged()
+    }
+    
+    private func validateIfMovieIsFavorite() -> Bool {
+        return self.getFavoritesFromKeyChain().filter { $0.id == self.movie?.id}.count > 0
+    }
+
     
     @objc private func customButtonTappedLoguot() {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        sessionManager.logoutWithRememberme() // Llama al método de cierre de sesión desde SessionManager
+        sessionManager.logoutWithRememberme()
         
         if sessionManager.isUserRequestedRememberLogin() {
             let shortLoginViewController = storyBoard.instantiateViewController(withIdentifier: "ShortLoginViewController") as! ShortLoginViewController

@@ -7,8 +7,7 @@ import UIKit
 @objc protocol LoginViewDelegade: AnyObject {
 //    func tapButtonLoginShowToMoviesCell(_ loginView: LoginView)
    // func tapButtonLoginShowRegisterView(_ loginView: LoginView)
-    func buttonShortLogin(_ sender: Any)
-    @objc func buttonShortLogin(_ loginView: LoginView)
+    func buttonShortLogin(_ loginView: LoginView)
 }
 
 // MARK: - Protocolos

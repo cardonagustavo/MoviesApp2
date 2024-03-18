@@ -26,10 +26,10 @@ struct Movies {
     let popularity: Float
     
     /// Ruta del póster de la película.
-    let posterPath: String
+    let poster_path: String
     
     /// Fecha de lanzamiento de la película.
-    let releaseDate: String
+    let release_date: String
     
     /// Título de la película.
     let title: String
@@ -60,8 +60,8 @@ struct Movies {
         self.original_title = dto.original_title
         self.overview = dto.overview ?? "Not Available"
         self.popularity = Float(dto.popularity ?? 0.0)
-        self.posterPath = dto.poster_path ?? "Not Available"
-        self.releaseDate = dto.release_date ?? "Not Available"
+        self.poster_path = dto.poster_path ?? "Not Available"
+        self.release_date = dto.release_date ?? "Not Available"
         self.title = dto.title ?? "Not Available"
         self.video = dto.video ?? false
         self.vote_average = Float(dto.vote_average ?? 0)

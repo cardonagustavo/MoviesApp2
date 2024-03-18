@@ -8,11 +8,10 @@
 import UIKit
 
 class FullLoginStrategy: LoginStrategy {
-    let email = "emailTest@test.com"
     var loginAdapter: LoginAdapter = LoginAdapter()
 
     func login(rememberme: Bool, userEmail: String, completionLoginHandler: @escaping CompletionLoginHandler, completionLoginErrorHandler: @escaping CompletionLoginErrorHandler) {
-        if !userEmail.isEmpty && userEmail == self.email {
+        if !userEmail.isEmpty && (SessionManager.standard.isRegisteredUserByEmail(userEmail)) {
             self.loginAdapter.loginUserWithUserEmail(userEmail, andRememberme: rememberme)
             completionLoginHandler()
         } else {

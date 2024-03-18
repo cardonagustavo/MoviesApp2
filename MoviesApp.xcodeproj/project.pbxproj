@@ -50,6 +50,7 @@
 		29C6C0362BA5FFA100182E32 /* keyChangeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C6C0352BA5FFA100182E32 /* keyChangeManager.swift */; };
 		29C6C0382BA6028A00182E32 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C6C0372BA6028A00182E32 /* AuthenticationManager.swift */; };
 		29C6C03A2BA614FE00182E32 /* ShortLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C6C0392BA614FE00182E32 /* ShortLoginViewController.swift */; };
+		29C6C03C2BA775B600182E32 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C6C03B2BA775B600182E32 /* ImageView.swift */; };
 		29CA891F2B92663A0043AF1D /* DetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA891E2B92663A0043AF1D /* DetailsModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +99,7 @@
 		29C6C0352BA5FFA100182E32 /* keyChangeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keyChangeManager.swift; sourceTree = "<group>"; };
 		29C6C0372BA6028A00182E32 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		29C6C0392BA614FE00182E32 /* ShortLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortLoginViewController.swift; sourceTree = "<group>"; };
+		29C6C03B2BA775B600182E32 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		29CA891E2B92663A0043AF1D /* DetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -240,6 +242,7 @@
 				2940BE892BA33B4A009D7FDD /* StarsRank.swift */,
 				29C6C0332BA5FED300182E32 /* SessionManager.swift */,
 				29C6C0352BA5FFA100182E32 /* keyChangeManager.swift */,
+				29C6C03B2BA775B600182E32 /* ImageView.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 				2927DBC12B8D4F2E00C105A1 /* MoviesView.swift in Sources */,
 				291D73F82B9F9C65002B1C8D /* MoviesViewControllerBuilder.swift in Sources */,
 				29C6C0302BA5E73E00182E32 /* FullLoginStrategy.swift in Sources */,
+				29C6C03C2BA775B600182E32 /* ImageView.swift in Sources */,
 				291D74082B9FBBEE002B1C8D /* SearchMovieByYearAdapter.swift in Sources */,
 				29C6C0382BA6028A00182E32 /* AuthenticationManager.swift in Sources */,
 				2940BE8A2BA33B4A009D7FDD /* StarsRank.swift in Sources */,

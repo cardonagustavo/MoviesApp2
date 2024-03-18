@@ -44,16 +44,7 @@ extension GetStartedViewController: GetStartedViewProtocol {
         updateUIForCurrentTraitCollection()
     }
 }
-/*
-extension GetStartedViewController: GetStartedViewDelegate {
-    func tapButtonGetStartedShowToLogin(_ getStartedView: GetStartedView) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let controller = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController else { return }
-//        showDetailViewController(controller, sender: self)
-        self.show(controller, sender: self)
-    }
-}
-*/
+
 
 
 

@@ -14,9 +14,10 @@ extension MoviesViewController {
         let controller = MoviesViewController(moviesView: moviesView)
         return controller
     }
-        class func buildMovies() -> MoviesViewController {
-            let moviesView = MoviesView(listAdapter: MoviesListAdapter(), searchAdapter: SearchMovieByYearAdapter())
-            let controller = MoviesViewController(moviesView: moviesView)
-            return controller
+    
+    class func buildMovies() -> MoviesViewController {
+        let moviesView = MoviesView(listAdapter: MoviesListAdapter(), searchAdapter: SearchMovieByYearAdapter())
+        let controller = MoviesViewController(moviesView: moviesView)
+        return controller
     }
 }
