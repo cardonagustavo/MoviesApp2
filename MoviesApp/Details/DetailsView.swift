@@ -8,11 +8,6 @@
 import UIKit
 
 
-
-protocol DetailViewProtocol {
-    func dataInjection(fromModel movie: Movie)
-}
-
 //MARK: - Class
 class DetailView: UIView {
     
@@ -24,16 +19,13 @@ class DetailView: UIView {
     @IBOutlet weak var imageMovie: UIImageView!
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var labelReleaseDate: UILabel!
-    @IBOutlet weak var labelGeneres: UILabel!
+    @IBOutlet weak var labelGeneresTitle: UILabel!
     @IBOutlet weak var labelListGenere: UILabel!
     @IBOutlet weak var labelDescriptionTitle: UILabel!
     @IBOutlet weak var labelDescriptionText: UILabel!
     
     private let starMaskView = StarsRank(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
-}
 
-
-extension DetailView: DetailViewProtocol{
     func genresList(_ genres: [MoviesWebService.GenreDTO]) -> String {
         var list = ""
 
@@ -43,15 +35,21 @@ extension DetailView: DetailViewProtocol{
         return list
     }
     
- func dataInjection(fromModel movie: Movie) {
-     self.labelTitle.text = movie.title
-     self.labelReleaseDate.text = movie.release_date
-     self.starMaskView.progressView.progress = (movie.vote_average / 10)
-     self.viewContainerStars.addSubview(starMaskView)
-     self.labelListGenere.text = self.genresList(movie.genres)
-     self.labelDescriptionText.text = movie.overview
+    func dataInjection(fromModel movie: MovieDetail) {
+        self.labelTitle.text = movie.title
+        self.labelReleaseDate.text = movie.release_date
+        self.starMaskView.progressView.progress = (movie.vote_average / 10)
+        self.viewContainerStars.addSubview(starMaskView)
+        self.labelListGenere.text = self.genresList(movie.genres)
+        self.labelDescriptionText.text = movie.overview
+        self.imageDetailBackdrop(movie)
+        self.imageDetail(movie)
+        self.labelDescriptionTitleMethod()
+        self.labelGenteresTitleMethod()
         
-        func imageDetailBackdrop(_ movie: Movie) {
+    }
+        
+        func imageDetailBackdrop(_ movie: MovieDetail) {
             let baseURLImage = "https://image.tmdb.org/t/p/w500"
             let urlImage = baseURLImage + movie.backdrop_path
             
@@ -72,10 +70,11 @@ extension DetailView: DetailViewProtocol{
                         self.imageBackdrop.addSubview(blurView)
                     }
                 }.resume()
+                self.imageMovie.layer.cornerRadius = 10
             }
         }
         
-        func imageDetail(_ movie: Movie) {
+        func imageDetail(_ movie: MovieDetail) {
             //        self.imageMovie.image = movies.posterPath
             let baseURLImage = "https://image.tmdb.org/t/p/w500"
             let urlImage = baseURLImage + movie.poster_path
@@ -87,40 +86,47 @@ extension DetailView: DetailViewProtocol{
                         
                     }
                 }.resume()
+                
             }
         }
         
-        func labelTitle(_ movie: Movie) {
+        func labelTitle(_ movies: MovieDetail) {
             self.labelTitle.font = UIFont.boldSystemFont(ofSize: 18)
             self.labelTitle.textColor = UIColor.white
-            self.labelTitle.text = movie.original_title
+            self.labelTitle.text = movies.original_title
         }
-        func labeldDate(_ movie: Movie) {
-            self.labelReleaseDate.text = "Fecha de lanzamiento: \(movie.release_date)"
+        func labeldDate(_ movies: Movies) {
+            self.labelReleaseDate.text = "Fecha de lanzamiento: \(movies.release_date)"
             self.labelReleaseDate.font = UIFont.systemFont(ofSize: 16, weight: .regular)
             self.labelReleaseDate.textColor = UIColor.white
         }
-        
-        func starsView() {
-            
-        }
-        
-        func labelGeneresMovie(_ movie: Movie) {
-            self.labelGeneres.text = self.genresList(movie.genres)
-        }
-        
-        func labelDescriptionTitle(_ movie: Movie) {
-            self.labelDescriptionTitle.text = "Description:"
-            self.labelDescriptionTitle.font = UIFont(name: "Helvetica-Bold", size: 20)
-            self.labelDescriptionTitle.textColor = UIColor.black
-        }
-        func labelDescriptionText(_ movie: Movie) {
-            self.labelDescriptionText.text = movie.overview
-            self.labelDescriptionText.textAlignment = .justified
-            self.labelDescriptionText.font = UIFont(name: "thaoma", size: 16)
-            self.labelDescriptionText.textColor = UIColor.darkGray
-        }
-        
+    func labelDescriptionTitleMethod() {
+        self.labelDescriptionTitle.text = "Description:"
+        self.labelDescriptionTitle.font = UIFont(name: "Helvetica-Bold", size: 20)
+        self.labelDescriptionTitle.textColor = UIColor(named: "PrincipalInvertColorBackground")
     }
+    
+    func labelGenteresTitleMethod() {
+        self.labelGeneresTitle.text = "Generos:"
+        self.labelGeneresTitle.font = UIFont(name: "Helvetica-Bold", size: 20)
+        self.labelGeneresTitle.textColor = UIColor(named: "PrincipalInvertColorBackground")
+    }
+        
+        
+    func labeldDate(_ movie: MovieDetail) {
+        self.labelReleaseDate.text = "Fecha de lanzamiento: \(movie.release_date)"
+        self.labelReleaseDate.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        self.labelReleaseDate.textColor = UIColor.white
+    }
+
+    
+
+    func labelDescriptionText(_ movie: MovieDetail) {
+        self.labelDescriptionText.text = movie.overview
+        self.labelDescriptionText.textAlignment = .justified
+        self.labelDescriptionText.font = UIFont(name: "thaoma", size: 16)
+        self.labelDescriptionText.textColor = UIColor.darkGray
+    }
+
 }
 

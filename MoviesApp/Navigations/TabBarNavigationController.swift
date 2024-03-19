@@ -24,10 +24,11 @@ class TabBarNavigationController: UITabBarController {
         
         movies.tabBarItem = UITabBarItem(title: "Movies", image: UIImage(systemName: "square.split.2x2.fill"), tag: 0)
         favorites.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(systemName: "star.fill"), tag: 1)
-        movies.navigationItem.title = "Movies"
-        favorites.navigationItem.title = "Favorites"
         
-       viewControllers = [movies, favorites, movies, favorites]
+//        movies.navigationItem.title = "Movies"
+//        favorites.navigationItem.title = "Favorites"
+        
+       viewControllers = [movies, favorites]
         
         if let originalImage = UIImage(named: "logout.png") {
             let targetSize = CGSize(width: 30, height: 30)

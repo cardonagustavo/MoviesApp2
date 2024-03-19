@@ -39,7 +39,8 @@ extension SearchMovieByYearAdapter: UISearchBarDelegate {
                 movies.title.lowercased().contains(searchText.lowercased()) || movies.release_date.contains(searchTextLowercased)
             })
             
-            arrayResult = !arrayResult.isEmpty ? arrayResult : ["""
+            arrayResult = !arrayResult.isEmpty ? arrayResult : 
+            ["""
             No se encontraron resultados para la busqueda de:
             \(searchText)
             """]

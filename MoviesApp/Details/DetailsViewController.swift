@@ -13,18 +13,14 @@ class DetailViewController: UIViewController {
     var detailView: DetailView? { self.view as? DetailView }
     lazy var movieWebService = MoviesWebService()
     
-    var movie: Movie?
+    var movie: MovieDetail?
     var movieId: Int?
     var isFavoriteMovie = false
+    
     let user = SessionManager.standard.authenticationUserObtained()
     
     private lazy var webServiceDetail = MoviesWebService()
-    private let sessionManager = SessionManager.standard // Instancia de SessionManager
-    
-    override func viewWillAppear(_ animated: Bool) {
-        guard let movieToDisplay = self.movie else { return }
-        self.detailView?.dataInjection(fromModel: movieToDisplay)
-    }
+    private let sessionManager = SessionManager.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +28,50 @@ class DetailViewController: UIViewController {
         setupNavigationBar()
         self.navigationItem.title = "Details"
         self.isFavoriteMovie = self.validateIfMovieIsFavorite()
+        self.addMovieToFavorites()
     }
-   
+    
+    @objc private func addMovieToFavorites() {
+        guard let movie = self.movie, !self.user.email.isEmpty else { return }
+        
+        var favorites = self.getFavoritesFromKeyChain()
+        
+        if let index = favorites.firstIndex(where: { $0.id == movie.id }) {
+            // La película ya está en favoritos, la eliminamos
+            favorites.remove(at: index)
+        } else {
+            // Añadimos la película a favoritos
+            favorites.append(
+                Favorite(
+                    id: movie.id,
+                    poster_path: movie.poster_path,
+                    title: movie.title,
+                    release_date: movie.release_date
+                )
+            )
+        }
+        
+        // Guardamos la lista actualizada de favoritos en el Keychain
+        do {
+            let data = try JSONEncoder().encode(favorites)
+            KeychainManager.standard.save(data, service: "userTest", account: "favorites-\(self.user.email)")
+        } catch {
+            print("Error saving favorites: \(error)")
+        }
+        
+        // Actualizamos el estado de la película como favorita
+        self.isFavoriteMovie = !self.isFavoriteMovie
+        
+        // Actualizamos la imagen del botón de favoritos en la barra de navegación
+        let newImage = self.isFavoriteMovie ? UIImage(named: "favorite_icon") : UIImage(named: "unfavorite_icon")
+        if let lastBarButtonItem = self.navigationItem.rightBarButtonItems?.last {
+            lastBarButtonItem.image = newImage
+        }
+        
+        // Podemos realizar animaciones u otras actualizaciones de la interfaz aquí si es necesario
+    }
+
+
     private func setupNavigationBar() {
         let customButtonBack = UIBarButtonItem(image: UIImage(systemName: "arrowshape.left.circle.fill"), style: .plain, target: self, action: #selector(backButtonTapped))
         navigationItem.leftBarButtonItems = [customButtonBack]
@@ -58,7 +96,7 @@ class DetailViewController: UIViewController {
         }
         
         navigationItem.rightBarButtonItems = [customBarButtonItem, favoritesButton]
-    
+        
     }
     
     private func createFavriteIcon() -> UIImage {
@@ -85,10 +123,10 @@ class DetailViewController: UIViewController {
                     )
                 )
             }
-
+            
             do {
                 let data = try JSONEncoder().encode(favorites)
-                keyChangeManager.standard.save(data, service: "userTest.com", account: "favorites-\(self.user.email)")
+                KeychainManager.standard.save(data, service: "userTest", account: "favorites-\(self.user.email)")
             } catch {}
             
             self.isFavoriteMovie = !self.isFavoriteMovie
@@ -105,7 +143,7 @@ class DetailViewController: UIViewController {
     private func validateIfMovieIsFavorite() -> Bool {
         return self.getFavoritesFromKeyChain().filter { $0.id == self.movie?.id}.count > 0
     }
-
+    
     
     @objc private func customButtonTappedLoguot() {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -121,11 +159,16 @@ class DetailViewController: UIViewController {
     }
     
     private func getWebServiceDetail() {
-        guard let movieId = movieId else { return }
-        self.webServiceDetail.retriveMovies(idMovie: movieId) { movie in
-            // Actualización de la vista con los detalles de la película
+
+        self.webServiceDetail.retriveMovie(idMovie: movieId!) { [weak self] movieDetailDTO in
+            let movieDetail = MovieDetail(detailDto: movieDetailDTO)
+            
+            self?.movie = movieDetail
+            
+            DispatchQueue.main.async {
+                self?.detailView?.dataInjection(fromModel: movieDetail)
+            }
         }
     }
+    
 }
-
-

@@ -100,12 +100,13 @@ extension FavoritesListAdapter: UICollectionViewDataSource {
 //MARK: - Extension - UICollectionViewDelegate
 extension FavoritesListAdapter: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let movie = self.datasource[indexPath.row] as? Movies else { return }
-        self.didSelect?(movie)
+        
+        guard let movies = self.datasource[indexPath.row] as? Movies else { return }
+        self.didSelect?(movies)
         
     }
 }
 
 extension FavoritesListAdapter {
-    typealias CompletionDidSelectHandler = (_ movie: Movie) -> Void
+    typealias CompletionDidSelectHandler = (_ movies: Movies) -> Void
 }

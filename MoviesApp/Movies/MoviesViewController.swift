@@ -19,11 +19,7 @@ class MoviesViewController: UIViewController {
         self.moviesView.delegate = self
         self.moviesView.setupAdapters()
         self.getWebService()
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        self.parent?.title = NSLocalizedString("MoviesApp", comment: "")
     }
     
     private func getWebService() {
@@ -44,28 +40,28 @@ class MoviesViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
  
-    private func navigateToDetailViewWithMovie(_ movie: Movies) {
+     private func navigateToDetailViewWithMovie(_ movie: Movies) {
            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
            let detailViewController = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+            detailViewController.movieId = movie.id
            self.navigationController?.pushViewController(detailViewController, animated: true)
         
        }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   
-    }
     
 }
   
 //MARK: - Extension
 extension MoviesViewController: MoviesViewDelegate {
 
-    func moviesView(_ homeView: MoviesView, didSelectMovie movie: Movies) {
+    func moviesView(_ initView: MoviesView, didSelectMovie movie: Movies) {
+        print("Navigation")
         self.navigateToDetailViewWithMovie(movie)
+    
     }
     
-    func moviesViewStartPullToRefresh(_ moviesView: MoviesView) {
+    func moviesViewStartPullToRefresh(_ initView: MoviesView) {
         self.getWebService()
+        
     }
     
 }

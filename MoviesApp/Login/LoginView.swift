@@ -15,6 +15,7 @@ protocol LoginViewProtocol {
     func textFieldLoginUpdate()
     func setupNavigationBarAppearance()
     func updateStyleButtonShortLogin()
+    func updateLabels()
     func shortLoginButtonEmail(_ email: String)
 }
 
@@ -29,24 +30,20 @@ class LoginView: UIView {
     }
     @IBOutlet weak var textFieldLogin: UITextField!
     @IBOutlet weak var buttonLogin: UIButton!
-    
+    @IBOutlet weak var labelCreateAccount: UILabel!
     
     @IBAction func buttonRegister(_ sender: UIButton) {
      //   self.delegate?.tapButtonLoginShowRegisterView(self)
     }
-    
     @IBAction func buttonTapLogin(_ sender: UIButton) {
      //   self.delegate?.tapButtonLoginShowToMoviesCell(self)
         
     }
-//    
+    
     @IBOutlet private weak var groupViewKeyboardView: UIView!
     @IBOutlet private weak var groupViewKeyboardAnchorCenterAxisY: NSLayoutConstraint!
-    
     @IBOutlet weak var labelShortLogin: UILabel!
     @IBOutlet weak var buttonShortLogin: UIButton!
-    
-    
     @IBAction func buttonShortLogin(_ sender: Any) {
         self.delegate?.buttonShortLogin(self)
     }
@@ -94,7 +91,13 @@ extension LoginView: LoginViewProtocol {
     }
     
     func updateLabels() {
-        self.labelShortLogin.text = "Welcome back to our space!"
+        if let labelShortLogin = self.labelShortLogin {
+                labelShortLogin.text = "Welcome back to our space!"
+            } else {
+                print("Error: Label 'labelShortLogin' is not initialized correctly.")
+            }
+//        self.labelShortLogin.text = "Welcome back to our space!"
+        self.labelCreateAccount.text = "Create an Account"
     }
     
     func textFieldLoginUpdate() {

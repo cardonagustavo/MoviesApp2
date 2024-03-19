@@ -36,7 +36,7 @@ class MoviesWebService {
     /// - Parameters:
     ///   - idMovie: El ID de la película.
     ///   - completionHandler: El bloque de finalización que se llama cuando se ha completado la solicitud de detalles de la película. Recibe un objeto `MovieDetailDTO` que representa los detalles de la película.
-    func retriveMovies(idMovie: Int, completionHandler: @escaping CompleticionDetailsHandler) {
+    func retriveMovie(idMovie: Int, completionHandler: @escaping CompleticionDetailsHandler) {
         // URL para obtener detalles de la película específica.
         let moviesDetails = "https://api.themoviedb.org/3/movie/\(idMovie)?api_key=752cd23fdb3336557bf3d8724e115570&language=es"
         

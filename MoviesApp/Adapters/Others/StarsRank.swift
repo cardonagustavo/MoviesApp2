@@ -7,7 +7,10 @@
 
 import UIKit
 
+/// Clase personalizada para mostrar un rango de estrellas con una barra de progreso.
 class StarsRank: UIView {
+    
+    /// Barra de progreso utilizada para mostrar el progreso del rango de estrellas.
     let progressView: UIProgressView = {
         let progressView = UIProgressView(progressViewStyle: .default)
         progressView.translatesAutoresizingMaskIntoConstraints = false
@@ -19,20 +22,25 @@ class StarsRank: UIView {
         return progressView
     }()
     
+    /// Inicializador requerido cuando se instancia la vista programáticamente.
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupMask()
         setupProgressView()
     }
     
+    /// Inicializador requerido cuando se instancia la vista desde un archivo de interfaz.
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupMask()
         setupProgressView()
     }
     
+    /// Configura y agrega la barra de progreso a la vista.
     private func setupProgressView() {
         addSubview(progressView)
+        
+        // Establece las restricciones para la barra de progreso
         NSLayoutConstraint.activate([
             progressView.leadingAnchor.constraint(equalTo: leadingAnchor),
             progressView.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -41,15 +49,19 @@ class StarsRank: UIView {
         ])
     }
     
+    /// Configura la máscara de la vista para dibujar un rango de estrellas.
     private func setupMask() {
+    /// Calcula las dimensiones de una estrella en base al tamaño de la vista
         let starWidth = bounds.width / 10
         let starHeight = bounds.height / 10
-
+        
+    /// Crea una capa de forma para la máscara
         let maskLayer = CAShapeLayer()
         for i in 0..<10 {
             let xOffset = CGFloat(i) * starWidth
             let starPath = UIBezierPath()
             
+    /// Define el camino de una estrella dentro de la máscara
             starPath.move(to: CGPoint(x: xOffset + 0.5 * starWidth, y: 0))
             starPath.addLine(to: CGPoint(x: xOffset + 0.65 * starWidth, y: 0.35 * starHeight))
             starPath.addLine(to: CGPoint(x: xOffset + starWidth, y: 0.4 * starHeight))
@@ -62,21 +74,25 @@ class StarsRank: UIView {
             starPath.addLine(to: CGPoint(x: xOffset + 0.35 * starWidth, y: 0.35 * starHeight))
             starPath.close()
             
+    /// Crea una capa de forma para cada estrella y la agrega a la máscara
             let starMaskLayer = CAShapeLayer()
             starMaskLayer.path = starPath.cgPath
-            starMaskLayer.fillColor = UIColor.yellow.cgColor // Color del fondo
+            starMaskLayer.fillColor = UIColor.yellow.cgColor
             maskLayer.addSublayer(starMaskLayer)
             
+    /// Crea una capa de borde para cada estrella y la agrega a la vista
+    /// Crea una capa de borde para cada estrella y la agrega a la vista
             let borderLayer = CAShapeLayer()
             borderLayer.path = starPath.cgPath
             borderLayer.fillColor = nil
-            borderLayer.strokeColor = UIColor.yellow.cgColor
+            borderLayer.strokeColor = UIColor.black.cgColor
             borderLayer.lineWidth = 1.0
             borderLayer.frame = bounds
             layer.insertSublayer(borderLayer, at: 0)
+            
+    /// Aplica la máscara a la vista
+            layer.mask = maskLayer
         }
-        
-        layer.mask = maskLayer
     }
 }
 

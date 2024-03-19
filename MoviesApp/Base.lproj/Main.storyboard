@@ -156,17 +156,6 @@
                                             <segue destination="itT-BC-3WT" kind="show" id="BpC-u5-Ukd"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zW0-dP-xJy">
-                                        <rect key="frame" x="15" y="139" width="165" height="34.333333333333343"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="165" id="nVI-Rf-nuM"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Forgotten User"/>
-                                        <connections>
-                                            <action selector="buttonForgottenUser:" destination="5vn-B6-eVi" eventType="touchUpInside" id="aTA-Ut-MU0"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1JR-Id-eRV">
                                         <rect key="frame" x="240" y="139" width="100" height="34.333333333333343"/>
                                         <constraints>
@@ -179,18 +168,28 @@
                                             <segue destination="bLF-b5-Cfh" kind="show" identifier="RegisterViewController" id="k5A-fo-PE0"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TzM-YU-KKz">
+                                        <rect key="frame" x="15" y="145" width="202" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="TuU-ZX-d4V"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="1JR-Id-eRV" secondAttribute="trailing" constant="31" id="AxF-Qy-FaC"/>
+                                    <constraint firstItem="TzM-YU-KKz" firstAttribute="leading" secondItem="hJx-eL-RIm" secondAttribute="leading" constant="15" id="KDj-2f-xIy"/>
                                     <constraint firstAttribute="height" constant="230" id="QAJ-4Y-lAJ"/>
+                                    <constraint firstItem="1JR-Id-eRV" firstAttribute="leading" secondItem="TzM-YU-KKz" secondAttribute="trailing" constant="23" id="b63-FX-iyV"/>
                                     <constraint firstAttribute="trailing" secondItem="K1P-mx-YwC" secondAttribute="trailing" constant="15" id="fzg-13-8qb"/>
                                     <constraint firstItem="K1P-mx-YwC" firstAttribute="leading" secondItem="hJx-eL-RIm" secondAttribute="leading" constant="15" id="gEZ-gk-Ifh"/>
+                                    <constraint firstItem="TzM-YU-KKz" firstAttribute="top" secondItem="K1P-mx-YwC" secondAttribute="bottom" constant="11" id="hfj-zo-Nsz"/>
                                     <constraint firstItem="AMZ-Pv-WPs" firstAttribute="leading" secondItem="hJx-eL-RIm" secondAttribute="leading" constant="15" id="hzs-Yv-oFk"/>
                                     <constraint firstItem="1JR-Id-eRV" firstAttribute="top" secondItem="K1P-mx-YwC" secondAttribute="bottom" constant="5" id="jED-5a-q47"/>
                                     <constraint firstItem="AMZ-Pv-WPs" firstAttribute="top" secondItem="hJx-eL-RIm" secondAttribute="top" constant="30" id="k9R-Ge-IBY"/>
                                     <constraint firstAttribute="trailing" secondItem="AMZ-Pv-WPs" secondAttribute="trailing" constant="15" id="kWz-9g-8lO"/>
-                                    <constraint firstItem="zW0-dP-xJy" firstAttribute="leading" secondItem="hJx-eL-RIm" secondAttribute="leading" constant="15" id="lHm-07-FV9"/>
-                                    <constraint firstItem="zW0-dP-xJy" firstAttribute="top" secondItem="K1P-mx-YwC" secondAttribute="bottom" constant="5" id="td1-3S-zZe"/>
                                     <constraint firstItem="K1P-mx-YwC" firstAttribute="top" secondItem="AMZ-Pv-WPs" secondAttribute="bottom" constant="20" id="xLj-k8-TK6"/>
                                 </constraints>
                             </view>
@@ -212,6 +211,7 @@
                             <outlet property="delegate" destination="BYZ-38-t0r" id="fkC-Zb-Srd"/>
                             <outlet property="groupViewKeyboardAnchorCenterAxisY" destination="yCs-de-Plz" id="8uk-qs-kV3"/>
                             <outlet property="groupViewKeyboardView" destination="hJx-eL-RIm" id="N4s-8I-8jz"/>
+                            <outlet property="labelCreateAccount" destination="TzM-YU-KKz" id="fAx-bD-sCU"/>
                             <outlet property="textFieldLogin" destination="AMZ-Pv-WPs" id="xSY-RM-dfa"/>
                             <outletCollection property="gestureRecognizers" destination="PBJ-zW-WsY" appends="YES" id="X59-fD-4GA"/>
                         </connections>
@@ -247,7 +247,6 @@
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4Gz-SU-tyr" userLabel="ImgPoster">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="234"/>
-                                                <color key="backgroundColor" systemColor="systemGreenColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="0xr-bV-9Sx"/>
                                                 </constraints>
@@ -275,7 +274,6 @@
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WLp-f0-6U3">
                                                         <rect key="frame" x="5" y="144" width="230" height="37"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="37" id="z0m-zQ-WQa"/>
                                                         </constraints>
@@ -413,7 +411,7 @@ vistas.</string>
                             <outlet property="imageMovie" destination="4Gz-SU-tyr" id="L1t-c4-euB"/>
                             <outlet property="labelDescriptionText" destination="6VE-xV-a3z" id="r44-sF-w2a"/>
                             <outlet property="labelDescriptionTitle" destination="q53-WT-9q5" id="bMp-dd-RpP"/>
-                            <outlet property="labelGeneres" destination="5JS-YP-nB9" id="qMd-Un-X6S"/>
+                            <outlet property="labelGeneresTitle" destination="7Er-oo-DKr" id="ZdI-tM-5M9"/>
                             <outlet property="labelListGenere" destination="5JS-YP-nB9" id="iCy-Wh-2xc"/>
                             <outlet property="labelReleaseDate" destination="Spk-Rf-wlB" id="Ggg-wp-84D"/>
                             <outlet property="labelTitle" destination="cqy-bc-GJn" id="dah-cX-X4Q"/>
@@ -425,7 +423,7 @@ vistas.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zEU-Tm-zrV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3957" y="-181"/>
+            <point key="canvasLocation" x="3997" y="-181"/>
         </scene>
         <!--RegisterViewController-->
         <scene sceneID="bek-1d-a7S">
@@ -687,9 +685,6 @@ membership.</string>
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pngwing.com-8" translatesAutoresizingMaskIntoConstraints="NO" id="Ony-Iu-s42">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3vn-u1-VI9" userLabel="ViewContainerAll">
                                 <rect key="frame" x="12" y="223" width="390" height="450"/>
                                 <subviews>
@@ -758,6 +753,9 @@ membership.</string>
                                     <constraint firstAttribute="height" constant="450" id="zqn-tf-V79"/>
                                 </constraints>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pngwing.com-8" translatesAutoresizingMaskIntoConstraints="NO" id="Ony-Iu-s42">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lHI-rE-vcU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -843,9 +841,6 @@ membership.</string>
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

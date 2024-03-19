@@ -7,10 +7,8 @@
 
 import Foundation
 
-import Foundation
-
 /// Representa un modelo de datos para una película.
-struct Movie {
+struct MovieDetail {
     
     /// Indica si la película es para adultos.
     let adult: Bool
@@ -140,8 +138,8 @@ struct Favorite: Codable {
 extension Array where Element == MoviesWebService.MovieDTO {
     
     /// Convierte una matriz de objetos MovieDTO a una matriz de objetos Movie.
-    var toList: [Movie] {
-        self.map({ Movie(dto: $0) })
+    var toList: [MovieDetail] {
+        self.map({ MovieDetail(dto: $0) })
     }
 }
 
@@ -149,8 +147,8 @@ extension Array where Element == MoviesWebService.MovieDTO {
 extension Array where Element == MoviesWebService.MovieDetailDTO {
     
     /// Convierte una matriz de objetos MovieDetailDTO a una matriz de objetos Movie.
-    var toList: [Movie] {
-        self.map({ Movie(detailDto: $0) })
+    var toList: [MovieDetail] {
+        self.map({ MovieDetail(detailDto: $0) })
     }
 }
 
@@ -158,8 +156,8 @@ extension Array where Element == MoviesWebService.MovieDetailDTO {
 extension Array where Element == Favorite {
     
     /// Convierte una matriz de objetos Favorite a una matriz de objetos Movie.
-    var toMovies: [Movie] {
-        self.map({ Movie(favorite: $0) })
+    var toMovies: [MovieDetail] {
+        self.map({ MovieDetail(favorite: $0) })
     }
 }
 

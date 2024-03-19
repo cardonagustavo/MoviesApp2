@@ -34,7 +34,7 @@ class MoviesCollectionViewCell: UICollectionViewCell {
               }.resume()
                 self.labelName.text = movies.title
                 self.labelDescription.text = movies.release_date
-                self.imageMovie.layer.cornerRadius = 20
+                self.imageMovie.layer.cornerRadius = self.viewContainer.layer.cornerRadius
                 
                 self.viewContainer.layer.borderWidth = 1
                 self.viewContainer.layer.borderColor = UIColor(named: "PrincipalInvertBackground")?.cgColor

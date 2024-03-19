@@ -9,8 +9,8 @@ import UIKit
 
 protocol MoviesViewDelegate: AnyObject {
     //    func moviesView(_ moviesView: MoviesView, didSelectMovies movies: Movies)
-    func moviesViewStartPullToRefresh(_ moviesView: MoviesView)
-    func moviesView(_ homeView: MoviesView, didSelectMovie movie: Movies)
+    func moviesViewStartPullToRefresh(_ initView: MoviesView)
+    func moviesView(_ initView: MoviesView, didSelectMovie movie: Movies)
 }
 
     class MoviesView: UIView {
@@ -63,8 +63,8 @@ protocol MoviesViewDelegate: AnyObject {
             self.searchAdapter?.setSearchBar(self.customSearchBar)
             self.collectionViewMovies.addSubview(self.refreshControl)
             
-            self.listAdapter?.didSelectHandler {movies in
-                self.delegate?.moviesView(self, didSelectMovie: movies)
+            self.listAdapter?.didSelectHandler {movie in
+                self.delegate?.moviesView(self, didSelectMovie: movie)
             }
             self.searchAdapter?.didFilterHandler({ result in
                 self.reloadCollectionView(result)

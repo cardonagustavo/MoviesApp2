@@ -6,42 +6,55 @@
 //
 import Foundation
 
-/// Manages user sessions and authentication.
+// MARK: - Class Definition
+/**
+ Gestiona la sesión de usuario, incluida la autenticación, el inicio de sesión, el cierre de sesión y la gestión de favoritos.
+ */
 class SessionManager {
-    /// The singleton instance of `SessionManager`.
+    /// Propiedad estática que proporciona una instancia única de SessionManager utilizando el patrón Singleton.
     static let standard = SessionManager()
     
-    /// Checks if a user is currently logged in.
-    ///
-    /// - Returns: A boolean value indicating the login status.
+    /**
+     Comprueba si el usuario está actualmente autenticado.
+     
+     - Returns: Un valor booleano que indica si el usuario está autenticado.
+     */
     func isLoggedIn() -> Bool {
         return self.authenticationUserObtained().isLoggedIn
     }
     
-    /// Checks if the user requested to be remembered at login.
-    ///
-    /// - Returns: A boolean value indicating the remember login status.
+    /**
+     Comprueba si el usuario ha solicitado recordar su inicio de sesión.
+     
+     - Returns: Un valor booleano que indica si el usuario ha solicitado recordar su inicio de sesión.
+     */
     func isUserRequestedRememberLogin() -> Bool {
         return self.authenticationUserObtained().rememberme
     }
     
-    /// Logs in the user with the specified parameters.
-    ///
-    /// - Parameters:
-    ///   - rememberme: A boolean value indicating whether to remember the login.
-    ///   - userEmail: The email address of the user.
+    /**
+     Inicia sesión en la aplicación con la opción de recordar el inicio de sesión.
+     
+     - Parameters:
+        - rememberme: Un booleano que indica si se debe recordar el inicio de sesión.
+        - userEmail: La dirección de correo electrónico del usuario que inicia sesión.
+     */
     func login(rememberme: Bool, userEmail: String) {
-        keyChangeManager.standard.save(AuthenticationManager(email: userEmail, isLoggedIn: true, rememberme: rememberme), service: "userTest", account: "user")
+        KeychainManager.standard.save(AuthenticationManager(email: userEmail, isLoggedIn: true, rememberme: rememberme), service: "userTest.com", account: "user")
     }
     
-    /// Logs out the user while maintaining the remember login status.
+    /**
+     Cierra la sesión del usuario y deshabilita la opción de recordar el inicio de sesión.
+     */
     func logoutWithRememberme() {
-        keyChangeManager.standard.save(self.logout(), service: "userTest", account: "user")
+        KeychainManager.standard.save(self.logout(), service: "userTest.com", account: "user")
     }
     
-    /// Logs out the user and returns the updated user information.
-    ///
-    /// - Returns: The updated `AuthenticationManager` after logout.
+    /**
+     Cierra la sesión del usuario.
+     
+     - Returns: Un objeto AuthenticationManager que representa al usuario con la sesión cerrada.
+     */
     func logout() -> AuthenticationManager {
         var user = self.authenticationUserObtained()
         user.isLoggedIn = false
@@ -49,52 +62,63 @@ class SessionManager {
         return user
     }
     
-    /// Checks if a user with the specified email address is registered.
-    ///
-    /// - Parameter email: The email address to check.
-    /// - Returns: A boolean value indicating the registration status.
+    /**
+     Comprueba si un usuario está registrado en la aplicación mediante su dirección de correo electrónico.
+     
+     - Parameter email: La dirección de correo electrónico del usuario a comprobar.
+     - Returns: Un valor booleano que indica si el usuario está registrado.
+     */
     func isRegisteredUserByEmail(_ email: String) -> Bool {
         self.getUsersRegistered().filter { $0.email == email }.count > 0
     }
     
-    /// Retrieves a list of registered users.
-    ///
-    /// - Returns: An array of `AuthenticationManager` instances.
+    /**
+     Obtiene todos los usuarios registrados en la aplicación.
+     
+     - Returns: Un array de AuthenticationManager que contiene todos los usuarios registrados.
+     */
     func getUsersRegistered() -> [AuthenticationManager] {
-        guard let usersRegistered = keyChangeManager.standard.read(service: "userTest", account: "usersRegistered", type: [AuthenticationManager].self) else { return [] }
+        guard let usersRegistered = KeychainManager.standard.read(service: "userTest", account: "usersRegistered", type: [AuthenticationManager].self) else { return [] }
         return usersRegistered
     }
     
-    /// Logs out the user and disables remember login.
+    /**
+     Cierra la sesión del usuario y deshabilita la opción de recordar el inicio de sesión.
+     */
     func logoutAndDisableRememberme() {
         var userToLogout = self.logout()
         userToLogout.rememberme = false
         userToLogout.email = ""
         
-        keyChangeManager.standard.save(userToLogout, service: "userTest", account: "user")
+        KeychainManager.standard.save(userToLogout, service: "userTest", account: "user")
     }
     
-    /// Retrieves the currently authenticated user information.
-    ///
-    /// - Returns: The `AuthenticationManager` representing the authenticated user.
+    /**
+     Obtiene la información de autenticación del usuario actualmente autenticado.
+     
+     - Returns: Un objeto AuthenticationManager que representa la información de autenticación del usuario.
+     */
     func authenticationUserObtained() -> AuthenticationManager {
-        guard let authenticationUserObtained = keyChangeManager.standard.read(service: "userTest", account: "user", type: AuthenticationManager.self) else { return AuthenticationManager(email: "", isLoggedIn: false, rememberme: false) }
+        guard let authenticationUserObtained = KeychainManager.standard.read(service: "userTest", account: "user", type: AuthenticationManager.self) else { return AuthenticationManager(email: "", isLoggedIn: false, rememberme: false) }
         return authenticationUserObtained
     }
     
-    /// Retrieves favorites associated with the currently logged-in user.
-    ///
-    /// - Returns: An array of `Favorite` instances representing the user's favorites.
+    /**
+     Obtiene los favoritos del usuario actualmente autenticado.
+     
+     - Returns: Un array de Favorite que contiene los favoritos del usuario.
+     */
     func retrieveFavoritesByUserLogged() -> [Favorite] {
         let user = self.authenticationUserObtained()
         if !user.email.isEmpty {
-            return keyChangeManager.standard.read(service: "userTest", account: "favorites-\(user.email)", type: [Favorite].self) ?? []
+            return KeychainManager.standard.read(service: "userTest", account: "favorites-\(user.email)", type: [Favorite].self) ?? []
         } else {
             return []
         }
     }
     
-    /// Prevents the creation of a new instance of `SessionManager`.
+    /**
+     Constructor privado que evita la creación de nuevas instancias de esta clase.
+     */
     private init() {}
 }
-
