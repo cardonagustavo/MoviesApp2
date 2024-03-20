@@ -10,7 +10,7 @@ import Foundation
 
 extension MoviesViewController {
     class func buildFavorites() -> MoviesViewController {
-        let moviesView = MoviesView(listAdapter: FavoritesListAdapter(), searchAdapter: SearchMovieByInformationAdapter())
+        let moviesView = MoviesView(listAdapter: FavoritesListAdapter(), searchAdapter: searchMovieByMovieName())
         let controller = MoviesViewController(moviesView: moviesView)
         return controller
     }

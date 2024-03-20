@@ -10,12 +10,13 @@ import UIKit
 class TabBarNavigationController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        customTabBarr()
+        customTabBar()
+        setupCustomBackground()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem()
     }
     
     
-    private func customTabBarr() {
+    private func customTabBar() {
         
         let movies = MoviesViewController.buildMovies()
         let favorites = MoviesViewController.buildFavorites()
@@ -25,10 +26,7 @@ class TabBarNavigationController: UITabBarController {
         movies.tabBarItem = UITabBarItem(title: "Movies", image: UIImage(systemName: "square.split.2x2.fill"), tag: 0)
         favorites.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(systemName: "star.fill"), tag: 1)
         
-//        movies.navigationItem.title = "Movies"
-//        favorites.navigationItem.title = "Favorites"
-        
-       viewControllers = [movies, favorites]
+        viewControllers = [movies, favorites]
         
         if let originalImage = UIImage(named: "logout.png") {
             let targetSize = CGSize(width: 30, height: 30)
@@ -42,7 +40,6 @@ class TabBarNavigationController: UITabBarController {
                 let buttonShortLogin = UIButton(type: .custom)
                 buttonShortLogin.setImage(scaledImage, for: .normal)
                 
-                buttonShortLogin.addTarget(self, action: #selector(logoutUser), for: .touchUpInside)
                 
                 let customBarButtonItem = UIBarButtonItem(customView: buttonShortLogin)
                 
@@ -55,25 +52,51 @@ class TabBarNavigationController: UITabBarController {
         }
 
     
-     }
+    }
     
     private func backButtonTapped() {
         navigationController?.popViewController(animated: false)
     }
-
     
-    @objc private func logoutUser() {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        SessionManager.standard.logoutWithRememberme()
-        
-        if SessionManager.standard.isUserRequestedRememberLogin() {
-            let shortLoginViewController = storyBoard.instantiateViewController(withIdentifier: "ShortLoginViewController") as! ShortLoginViewController
-            self.show(shortLoginViewController, sender: self)
-        } else {
-            let loginViewController = storyBoard.instantiateViewController(withIdentifier: "ShortLoginViewController") as! ShortLoginViewController
-            self.show(loginViewController, sender: self)
+    private func setupCustomBackground() {
+            let customBackgroundView = UIView()
+            customBackgroundView.backgroundColor = determineBackgroundColor()
+
+            // Ajusta el fondo de la vista del tab bar controller
+            tabBar.backgroundImage = UIImage()
+            tabBar.shadowImage = UIImage()
+            tabBar.addSubview(customBackgroundView)
+            tabBar.sendSubviewToBack(customBackgroundView)
+
+            customBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                customBackgroundView.topAnchor.constraint(equalTo: tabBar.topAnchor),
+                customBackgroundView.leadingAnchor.constraint(equalTo: tabBar.leadingAnchor),
+                customBackgroundView.trailingAnchor.constraint(equalTo: tabBar.trailingAnchor),
+                customBackgroundView.bottomAnchor.constraint(equalTo: tabBar.bottomAnchor)
+            ])
         }
-    }
+
+        private func determineBackgroundColor() -> UIColor {
+            if #available(iOS 13.0, *) {
+                if UITraitCollection.current.userInterfaceStyle == .dark {
+                    return UIColor(named: "DarkModeBackgroundColor") ?? .black
+                } else {
+                    return UIColor(named: "LightModeBackgroundColor") ?? .white
+                }
+            } else {
+                return UIColor(named: "FallbackBackgroundColor") ?? .white
+            }
+        }
+
+        override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+            super.traitCollectionDidChange(previousTraitCollection)
+
+            // Actualiza el color de fondo cuando cambie el modo de color del sistema
+            guard UITraitCollection.current.hasDifferentColorAppearance(comparedTo: previousTraitCollection) else {
+                return
+            }
+            tabBar.subviews.first?.backgroundColor = determineBackgroundColor()
+        }
 
 }
-

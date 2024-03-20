@@ -10,14 +10,15 @@ import UIKit
 class ShortLoginViewController: UIViewController {
     var loginView: LoginViewProtocol? { self.view as? LoginViewProtocol }
     var loginStrategy: LoginStrategy = ShortLoginStrategy()
-    var AuthenticationManager = SessionManager.standard.authenticationUserObtained()
+//    var AuthenticationManager = SessionManager.standard.authenticationUserObtained()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loginView?.updateStyleButtonShortLogin()
-        self.loginView?.shortLoginButtonEmail(self.AuthenticationManager.email)
+//        self.loginView?.shortLoginButtonEmail(self.AuthenticationManager.email)
+//       self.navigationItem.hidesBackButton = true
         self.navigationItem.leftBarButtonItem = UIBarButtonItem()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem()
+       self.navigationItem.rightBarButtonItem = UIBarButtonItem()
         self.navigationItem.title = "Short Login"
     }
 }
@@ -25,9 +26,13 @@ class ShortLoginViewController: UIViewController {
 // MARK: - Delegates
 extension ShortLoginViewController: LoginViewDelegade {
     func buttonShortLogin(_ loginView: LoginView) {
-        self.loginStrategy.login(rememberme: true, userEmail: self.AuthenticationManager.email) {
-            self.performSegue(withIdentifier: "MoviesTabBarNavigationController", sender: nil)
-        } completionLoginErrorHandler: {}
+    
     }
+    
+//    func buttonShortLogin(_ loginView: LoginView) {
+//        self.loginStrategy.login(rememberme: true, userEmail: self.AuthenticationManager.email) {
+//            self.performSegue(withIdentifier: "MoviesTabBarNavigationController", sender: nil)
+//        } completionLoginErrorHandler: {}
+//    }
     }
     

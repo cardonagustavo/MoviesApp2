@@ -8,11 +8,11 @@
 import UIKit
 
 class ShortLoginStrategy: LoginStrategy {
+    func login(rememberme: Bool, userEmail: String, completionLoginHandler: @escaping CompletionLoginHandler, completionLoginErrorHandler: @escaping CompletionLoginErrorHandler) {
+    
+    }
+    
     var loginAdapter: LoginAdapter = LoginAdapter()
     
-    func login(rememberme: Bool, userEmail: String, completionLoginHandler: @escaping CompletionLoginHandler, completionLoginErrorHandler: @escaping CompletionLoginErrorHandler) {
-        self.loginAdapter.loginUserWithUserEmail(userEmail, andRememberme: rememberme)
-        completionLoginHandler()
-    }
 }
 

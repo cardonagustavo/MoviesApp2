@@ -24,26 +24,20 @@
                             <constraint firstAttribute="width" secondItem="WQQ-1Y-NJh" secondAttribute="height" multiplier="16:21" id="32l-id-t4C"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qu3-wv-0Zz">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qu3-wv-0Zz">
                         <rect key="frame" x="10" y="383" width="268" height="42"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="42" id="dXj-rt-bYd"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dkV-v0-0YT">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dkV-v0-0YT">
                         <rect key="frame" x="10" y="430" width="268" height="42"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="42" id="i1J-cb-exf"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
+                <color key="backgroundColor" name="PrincipalColorBackground"/>
                 <constraints>
                     <constraint firstItem="Qu3-wv-0Zz" firstAttribute="top" secondItem="WQQ-1Y-NJh" secondAttribute="bottom" constant="5" id="1Zh-fN-BJD"/>
                     <constraint firstItem="dkV-v0-0YT" firstAttribute="leading" secondItem="HhJ-gc-hf5" secondAttribute="leading" constant="10" id="1hk-Cp-EUp"/>
@@ -57,11 +51,12 @@
                     <constraint firstAttribute="bottom" secondItem="dkV-v0-0YT" secondAttribute="bottom" constant="15" id="wmV-Kt-Zjx"/>
                 </constraints>
             </collectionViewCellContentView>
+            <color key="backgroundColor" name="PrincipalColorBackground"/>
             <size key="customSize" width="288" height="487"/>
             <connections>
                 <outlet property="imageMovie" destination="WQQ-1Y-NJh" id="bO7-lm-Sgk"/>
-                <outlet property="labelDescription" destination="dkV-v0-0YT" id="ebW-Jr-SNJ"/>
                 <outlet property="labelName" destination="Qu3-wv-0Zz" id="Djc-PZ-cQO"/>
+                <outlet property="labelReleaseDate" destination="dkV-v0-0YT" id="EeR-L0-JKL"/>
             </connections>
             <point key="canvasLocation" x="-389.3129770992366" y="-32.74647887323944"/>
         </collectionViewCell>
@@ -70,8 +65,5 @@
         <namedColor name="PrincipalColorBackground">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="groupTableViewBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
     </resources>
 </document>

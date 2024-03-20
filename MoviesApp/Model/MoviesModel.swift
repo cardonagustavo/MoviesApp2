@@ -51,6 +51,42 @@ struct Movies {
         return "\(titleUpdate)"
     }
     
+    var formattedReleaseDateForMovies: String {
+        let inputDateFormatter = DateFormatter()
+        inputDateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        guard let inputDate = inputDateFormatter.date(from: self.release_date) else {
+            return ""
+        }
+        
+        let outputDateFormatter = DateFormatter()
+        outputDateFormatter.dateFormat = "EEEE, dd MMMM yyyy"
+        
+        let formattedDate = outputDateFormatter.string(from: inputDate)
+        
+        return """
+        Fecha de lanzamiento:
+        \(formattedDate)
+        """
+    }
+
+    var formattedReleaseDateForFavorite: String {
+        let inputDateFormatter = DateFormatter()
+        inputDateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        guard let inputDate = inputDateFormatter.date(from: self.release_date) else {
+            return ""
+        }
+        
+        let outputDateFormatter = DateFormatter()
+        outputDateFormatter.dateFormat = "dd MMMM yyyy"
+        
+        let formattedDate = outputDateFormatter.string(from: inputDate)
+        
+        return formattedDate
+    }
+
+    
     /// Inicializa una instancia de Movies a partir de un objeto MovieDTO.
     ///
     /// - Parameter dto: Objeto de transferencia de datos de película (MovieDTO).

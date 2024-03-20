@@ -36,18 +36,18 @@ class SessionManager {
      Inicia sesión en la aplicación con la opción de recordar el inicio de sesión.
      
      - Parameters:
-        - rememberme: Un booleano que indica si se debe recordar el inicio de sesión.
-        - userEmail: La dirección de correo electrónico del usuario que inicia sesión.
+     - rememberme: Un booleano que indica si se debe recordar el inicio de sesión.
+     - userEmail: La dirección de correo electrónico del usuario que inicia sesión.
      */
     func login(rememberme: Bool, userEmail: String) {
-        KeychainManager.standard.save(AuthenticationManager(email: userEmail, isLoggedIn: true, rememberme: rememberme), service: "userTest.com", account: "user")
+        KeychainManager.standard.save(AuthenticationManager(email: userEmail, isLoggedIn: true, rememberme: rememberme), service: "userTest", account: "user")
     }
     
     /**
      Cierra la sesión del usuario y deshabilita la opción de recordar el inicio de sesión.
      */
     func logoutWithRememberme() {
-        KeychainManager.standard.save(self.logout(), service: "userTest.com", account: "user")
+        KeychainManager.standard.save(self.logout(), service: "userTest", account: "user")
     }
     
     /**

@@ -11,7 +11,7 @@ class MoviesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var imageMovie: UIImageView!
     @IBOutlet weak var labelName: UILabel!
-    @IBOutlet weak var labelDescription: UILabel!
+    @IBOutlet weak var labelReleaseData: UILabel!
     @IBOutlet weak var viewContainerStars: UIView!
     
     let starkViewMask = StarsRank(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
@@ -19,28 +19,34 @@ class MoviesCollectionViewCell: UICollectionViewCell {
     
     
     fileprivate func updateDataWith(_ movies: Movies) {
-//       self.imageMovie.image = movies.posterPath
+        //       self.imageMovie.image = movies.posterPath
         let baseURLImage = "https://image.tmdb.org/t/p/w500"
         let urlImage = baseURLImage + movies.poster_path
-//            print(urlImage)
-            if let url = URL(string: urlImage) {
-              URLSession.shared.dataTask(with: url) {(data, response, error) in guard let imageData = data else { return }
+        //            print(urlImage)
+        if let url = URL(string: urlImage) {
+            URLSession.shared.dataTask(with: url) {(data, response, error) in guard let imageData = data else { return }
                 DispatchQueue.main.async {
-//                    print("Here")
-                 self.imageMovie.image = UIImage(data: imageData)
+                    //                    print("Here")
+                    self.imageMovie.image = UIImage(data: imageData)
                     
                 }
-                  
-              }.resume()
-                self.labelName.text = movies.title
-                self.labelDescription.text = movies.release_date
-                self.imageMovie.layer.cornerRadius = self.viewContainer.layer.cornerRadius
-                
-                self.viewContainer.layer.borderWidth = 1
-                self.viewContainer.layer.borderColor = UIColor(named: "PrincipalInvertBackground")?.cgColor
-                self.viewContainer.layer.cornerRadius = 10
-                self.viewContainer.clipsToBounds = true
-          }
+            }.resume()
+            self.labelName.text = movies.title
+            self.labelName.textColor = UIColor(named: "PrincipalInvertBackground")
+            
+            self.imageMovie.layer.cornerRadius = self.viewContainer.layer.cornerRadius
+            
+            self.viewContainer.layer.borderWidth = 1
+            self.viewContainer.layer.borderColor = UIColor(named: "PrincipalInvertBackground")?.cgColor
+            self.viewContainer.layer.cornerRadius = 10
+            self.viewContainer.clipsToBounds = true
+            
+            
+            self.labelReleaseData.text = movies.formattedReleaseDateForMovies
+            self.labelReleaseData.font = UIFont.italicSystemFont(ofSize: 16.0)
+            self.labelReleaseData.textColor = UIColor.lightGray
+            //                self.labelReleaseData.textColor = UIColor(named: "PrincipalInvertBackground")
+        }
         self.starkViewMask.progressView.progress = (movies.vote_average / 10)
         self.viewContainerStars.addSubview(starkViewMask)
     }

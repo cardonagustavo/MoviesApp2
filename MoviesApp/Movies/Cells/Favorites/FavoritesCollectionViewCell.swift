@@ -13,7 +13,7 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
  
     @IBOutlet weak var imageMovie: UIImageView!
     @IBOutlet weak var labelName: UILabel!
-    @IBOutlet weak var labelDescription: UILabel!
+    @IBOutlet weak var labelReleaseDate: UILabel!
     
     
     fileprivate func updateDataWith(_ movies: Movies) {
@@ -31,7 +31,13 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
                   
               }.resume()
                 self.labelName.text = movies.title
-                self.labelDescription.text = movies.release_date
+                
+                
+                self.labelReleaseDate.text = movies.formattedReleaseDateForFavorite
+                self.labelReleaseDate.font = UIFont.italicSystemFont(ofSize: 16.0)
+                self.labelReleaseDate.textColor = UIColor.lightGray
+                
+                
                 self.imageMovie.layer.cornerRadius = 20
           }
     }

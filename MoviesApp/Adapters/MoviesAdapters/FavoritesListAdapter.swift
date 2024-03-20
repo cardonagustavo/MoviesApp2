@@ -72,12 +72,11 @@ class FavoritesListAdapter: NSObject, MoviesListAdapterProtocol {
 
 //MARK: - Extension - UICollectionViewDataSource
 extension FavoritesListAdapter: UICollectionViewDataSource {
-  
-   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       self.datasource.count
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        self.datasource.count
         
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -86,7 +85,7 @@ extension FavoritesListAdapter: UICollectionViewDataSource {
         if let message = item as? String {
             return ErrorCollectionViewCell.buildIn(collectionView, in: indexPath, whit: message)
         } else {
-          if  let movie = item as? Movies {
+            if  let movie = item as? Movies {
                 return FavoritesCollectionViewCell.buildIn(collectionView, in: indexPath, whit: movie)
             } else {
                 return UICollectionViewCell()

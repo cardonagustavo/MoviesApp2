@@ -39,26 +39,23 @@ class MoviesViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
- 
-     private func navigateToDetailViewWithMovie(_ movie: Movies) {
-           let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-           let detailViewController = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-            detailViewController.movieId = movie.id
-           self.navigationController?.pushViewController(detailViewController, animated: true)
+    private func navigateToDetailViewWithMovie(_ movie: Movies) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let detailViewController = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        detailViewController.movieId = movie.id
+        self.navigationController?.pushViewController(detailViewController, animated: true)
         
-       }
-    
+    }
 }
-  
+
 //MARK: - Extension
 extension MoviesViewController: MoviesViewDelegate {
-
+    
     func moviesView(_ initView: MoviesView, didSelectMovie movie: Movies) {
         print("Navigation")
         self.navigateToDetailViewWithMovie(movie)
-    
+        
     }
-    
     func moviesViewStartPullToRefresh(_ initView: MoviesView) {
         self.getWebService()
         

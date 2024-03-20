@@ -11,7 +11,7 @@ extension UIImageView {
     
     /// Tipo de cierre utilizado para devolver una imagen descargada junto con su URL.
     typealias CompletionHandler = (_ image: UIImage?, _ urlImage: String) -> Void
-
+    
     /// Descarga una imagen desde una URL y la muestra en la vista de imagen.
     ///
     /// - Parameters:
@@ -40,7 +40,7 @@ extension UIImageView {
             }
         }
     }
-        
+    
     /// Muestra una animación de carga de imagen.
     private func showAnimationPlaceholder() {
         // Configura el color de fondo inicial.

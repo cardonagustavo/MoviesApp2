@@ -29,17 +29,17 @@ extension SearchMovieByYearAdapter: UISearchBarDelegate {
         if searchTextLowercased.isEmpty {
             arrayResult = self.datasource
         } else {  /*
-            arrayResult = self.datasource.filter({ movies in
-                let movieName = movies.title.lowercased()
-                let searchName = searchText.lowercased()
-                return movieName.contains(searchName)
-            })*/
-          
+                   arrayResult = self.datasource.filter({ movies in
+                   let movieName = movies.title.lowercased()
+                   let searchName = searchText.lowercased()
+                   return movieName.contains(searchName)
+                   })*/
+            
             arrayResult = self.datasource.filter({ movies in
                 movies.title.lowercased().contains(searchText.lowercased()) || movies.release_date.contains(searchTextLowercased)
             })
             
-            arrayResult = !arrayResult.isEmpty ? arrayResult : 
+            arrayResult = !arrayResult.isEmpty ? arrayResult :
             ["""
             No se encontraron resultados para la busqueda de:
             \(searchText)

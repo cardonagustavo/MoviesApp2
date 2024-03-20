@@ -55,6 +55,42 @@ struct MovieDetail {
     /// Número de votos recibidos por la película.
     let vote_count: Int
     
+    var formattedReleaseDateForMovies: String {
+        let inputDateFormatter = DateFormatter()
+        inputDateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        guard let inputDate = inputDateFormatter.date(from: self.release_date) else {
+            return ""
+        }
+        
+        let outputDateFormatter = DateFormatter()
+        outputDateFormatter.dateFormat = "EEEE, dd MMMM yyyy"
+        
+        let formattedDate = outputDateFormatter.string(from: inputDate)
+        
+        return ("""
+        Fecha de lanzamiento:
+        \(formattedDate)
+        """)
+    }
+
+    var formattedReleaseDateForFavorite: String {
+        let inputDateFormatter = DateFormatter()
+        inputDateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        guard let inputDate = inputDateFormatter.date(from: self.release_date) else {
+            return ""
+        }
+        
+        let outputDateFormatter = DateFormatter()
+        outputDateFormatter.dateFormat = "dd MMMM yyyy"
+        
+        let formattedDate = outputDateFormatter.string(from: inputDate)
+        
+        return formattedDate
+    }
+
+    
     /// Inicializa una instancia de Movie a partir de un objeto MovieDTO.
     ///
     /// - Parameter dto: Objeto de transferencia de datos de película (MovieDTO).
@@ -118,6 +154,8 @@ struct MovieDetail {
         self.vote_count = 0
     }
 }
+
+
 
 /// Representa una película favorita.
 struct Favorite: Codable {

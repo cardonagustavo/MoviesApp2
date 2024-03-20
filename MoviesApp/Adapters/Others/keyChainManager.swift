@@ -51,12 +51,12 @@ class KeychainManager {
             // Imprime el error si ocurre
             print("Error: \(status)")
         }
-
+        
         if status == errSecDuplicateItem {
             // Si el elemento ya existe, lo actualiza.
             let query = [kSecAttrService: service, kSecAttrAccount: account, kSecClass: kSecClassGenericPassword] as CFDictionary
             let attributesToUpdate = [kSecValueData: data] as CFDictionary
-
+            
             // Actualiza el elemento existente
             SecItemUpdate(query, attributesToUpdate)
         }
@@ -99,7 +99,7 @@ class KeychainManager {
         
         return (result as? Data)
     }
-
+    
     /// Elimina un elemento del llavero del sistema.
     ///
     /// - Parameters:

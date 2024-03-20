@@ -36,7 +36,7 @@ class MoviesListAdapter: NSObject, MoviesListAdapterProtocol {
         self.collectionView?.register(UINib(nibName: "ErrorCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "ErrorCollectionViewCell")
         self.collectionView?.register(UINib(nibName: "MoviesCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "MoviesCollectionViewCell")
     }
-
+    
     
     /// Define el controlador de selección que se activará cuando se seleccione una película.
     ///
@@ -44,7 +44,7 @@ class MoviesListAdapter: NSObject, MoviesListAdapterProtocol {
     func didSelectHandler(_ handler: @escaping (_ movies: Movies) -> Void ) {
         self.didSelect = handler
     }
-
+    
     /// Configura el diseño de la vista cuando se muestran películas.
     func setMoviesLayout() {
         // Se define el tamaño del diseño de la celda en la colección de vista.
@@ -67,7 +67,7 @@ class MoviesListAdapter: NSObject, MoviesListAdapterProtocol {
         let layout = UICollectionViewCompositionalLayout(section: section)
         self.collectionView?.collectionViewLayout = layout
     }
-
+    
     func setErrorLayout() {
         let LayoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: LayoutSize)
@@ -90,7 +90,7 @@ class MoviesListAdapter: NSObject, MoviesListAdapterProtocol {
 //MARK: - Extension - UICollectionViewDataSource
 /// Extensión que adopta el protocolo UICollectionViewDataSource para proporcionar datos a una colección de vista.
 extension MoviesListAdapter: UICollectionViewDataSource {
-  
+    
     /// Devuelve el número de elementos en la fuente de datos.
     ///
     /// - Parameters:

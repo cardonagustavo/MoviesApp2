@@ -1,5 +1,5 @@
 //
-//  searchMovieByInformationAdapter.swift
+//  searchMovieByMovieName.swift
 //  MoviesApp
 //
 //  Created by Gustavo Adolfo Cardona Quintero on 11/03/24.
@@ -8,7 +8,7 @@
 import UIKit
 
 /// Clase que implementa el protocolo `SearchMoviesAdapterProtocol` para buscar películas utilizando información proporcionada.
-class SearchMovieByInformationAdapter: NSObject, SearchMoviesAdapterProtocol {
+class searchMovieByMovieName: NSObject, SearchMoviesAdapterProtocol {
     
     /// Fuente de datos que contiene las películas disponibles para la búsqueda.
     var datasource: [Movies] = []
@@ -32,7 +32,7 @@ class SearchMovieByInformationAdapter: NSObject, SearchMoviesAdapterProtocol {
 }
 
 // MARK: - Extension - UISearchBarDelegate
-extension SearchMovieByInformationAdapter: UISearchBarDelegate {
+extension searchMovieByMovieName: UISearchBarDelegate {
     
     /// Método llamado cuando el texto en la barra de búsqueda cambia.
     ///

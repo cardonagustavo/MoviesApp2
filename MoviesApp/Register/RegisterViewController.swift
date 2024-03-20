@@ -68,7 +68,7 @@ extension RegisterViewController: RegisterViewDelegate {
         }
     
     func loginViewTapButtonRegister(_ registerView: RegisterView) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboardView = UIStoryboard(name: "Main", bundle: nil)
         self.dismiss(animated: true)
         print("Here")
         self.navigationController?.popViewController(animated: true)
