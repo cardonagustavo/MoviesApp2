@@ -31,6 +31,7 @@ class MoviesListAdapter: NSObject, MoviesListAdapterProtocol {
     func setCollectionView(_ collectionView: UICollectionView) {
         self.collectionView = collectionView
         self.collectionView?.dataSource = self
+        self.collectionView?.delegate = self
         self.setMoviesLayout()
         // Se registra el tipo de celda que se utilizará para mostrar películas y errores.
         self.collectionView?.register(UINib(nibName: "ErrorCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "ErrorCollectionViewCell")

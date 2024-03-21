@@ -3,36 +3,46 @@
 //  MoviesApp
 //
 //  Created by Gustavo Adolfo Cardona Quintero on 16/03/24.
-//
+
 
 import UIKit
+
+
+// MARK: - Short Login View Controller
 
 class ShortLoginViewController: UIViewController {
     var loginView: LoginViewProtocol? { self.view as? LoginViewProtocol }
     var loginStrategy: LoginStrategy = ShortLoginStrategy()
-//    var AuthenticationManager = SessionManager.standard.authenticationUserObtained()
+    var authenticationManager = SessionManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loginView?.updateStyleButtonShortLogin()
-//        self.loginView?.shortLoginButtonEmail(self.AuthenticationManager.email)
-//       self.navigationItem.hidesBackButton = true
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem()
-       self.navigationItem.rightBarButtonItem = UIBarButtonItem()
-        self.navigationItem.title = "Short Login"
+        
+        // Configure the view
+        loginView?.textFieldLoginUpdate()
+        loginView?.setupNavigationBarAppearance()
+        loginView?.updateStyleButtonShortLogin()
+        loginView?.updateLabels()
+        
+        // Set username in short login button
+        if let email = authenticationManager.currentUser?.email {
+            loginView?.shortLoginButtonEmail(email)
+        }
     }
 }
 
 // MARK: - Delegates
 extension ShortLoginViewController: LoginViewDelegade {
     func buttonShortLogin(_ loginView: LoginView) {
-    
+        // Implementar lógica para iniciar sesión corto
+        if let email = authenticationManager.currentUser?.email {
+            loginStrategy.login(rememberme: true, userEmail: email) {
+                // Successful login
+                self.performSegue(withIdentifier: "ShortLoguinViewController", sender: nil)
+            } completionLoginErrorHandler: {
+                // Handle login errors
+                print("Error en el inicio de sesión corto")
+            }
+        }
     }
-    
-//    func buttonShortLogin(_ loginView: LoginView) {
-//        self.loginStrategy.login(rememberme: true, userEmail: self.AuthenticationManager.email) {
-//            self.performSegue(withIdentifier: "MoviesTabBarNavigationController", sender: nil)
-//        } completionLoginErrorHandler: {}
-//    }
-    }
-    
+}

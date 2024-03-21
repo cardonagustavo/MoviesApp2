@@ -9,8 +9,7 @@ import UIKit
 class MoviesViewController: UIViewController {
     
     private var moviesView: MoviesView  //? { self.view as? MoviesView }
-    
-    private lazy var webService = MoviesWebService()
+    private var strategy: MoviesStrategy //referencia a la estrategia que posee el contesto
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,20 +17,12 @@ class MoviesViewController: UIViewController {
         self.view = self.moviesView
         self.moviesView.delegate = self
         self.moviesView.setupAdapters()
-        self.getWebService()
         self.parent?.title = NSLocalizedString("MoviesApp", comment: "")
+        self.strategy.getWebServiceStrategy()
     }
     
-    private func getWebService() {
-        self.moviesView.showLoading(true)
-        self.webService.fetch { arrayMoviesDTO in
-            guard let movies = arrayMoviesDTO.results?.toMovies else { return }
-            self.moviesView.reloadData(movies)
-            self.moviesView.showLoading(false)
-        }
-    }
-    
-    init(moviesView: MoviesView) {
+    init(moviesView: MoviesView, strategy: MoviesStrategy) {
+        self.strategy = strategy
         self.moviesView = moviesView
         super.init(nibName: nil, bundle: nil)
     }
@@ -57,7 +48,7 @@ extension MoviesViewController: MoviesViewDelegate {
         
     }
     func moviesViewStartPullToRefresh(_ initView: MoviesView) {
-        self.getWebService()
+        self.strategy.getWebServiceStrategy()
         
     }
     
