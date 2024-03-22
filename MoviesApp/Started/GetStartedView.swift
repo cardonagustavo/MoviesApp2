@@ -9,7 +9,7 @@ import UIKit
 
 
 @objc protocol GetStartedViewDelegate: AnyObject {
- //   func tapButtonGetStartedShowToLogin(_ getStartedView: GetStartedView)
+    //   func tapButtonGetStartedShowToLogin(_ getStartedView: GetStartedView)
 }
 
 protocol GetStartedViewProtocol {
@@ -28,7 +28,7 @@ class GetStartedView: UIView {
     @IBOutlet private weak var buttonUpdate: UIButton!
     
     @IBAction func buttonGetStarted(_ sender: UIButton) {
-//        self.delegate?.tapButtonGetStartedShowToLogin(self)
+//                self.delegate?.tapButtonGetStartedShowToLogin(self)
     }
     
     func updateLabel() {

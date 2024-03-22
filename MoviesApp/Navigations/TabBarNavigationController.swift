@@ -50,8 +50,8 @@ class TabBarNavigationController: UITabBarController {
         } else {
             print("Error: No se pudo cargar la imagen 'logout.png'")
         }
-
-    
+        
+        
     }
     
     private func backButtonTapped() {
@@ -59,44 +59,44 @@ class TabBarNavigationController: UITabBarController {
     }
     
     private func setupCustomBackground() {
-            let customBackgroundView = UIView()
-            customBackgroundView.backgroundColor = determineBackgroundColor()
-
-            // Ajusta el fondo de la vista del tab bar controller
-            tabBar.backgroundImage = UIImage()
-            tabBar.shadowImage = UIImage()
-            tabBar.addSubview(customBackgroundView)
-            tabBar.sendSubviewToBack(customBackgroundView)
-
-            customBackgroundView.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                customBackgroundView.topAnchor.constraint(equalTo: tabBar.topAnchor),
-                customBackgroundView.leadingAnchor.constraint(equalTo: tabBar.leadingAnchor),
-                customBackgroundView.trailingAnchor.constraint(equalTo: tabBar.trailingAnchor),
-                customBackgroundView.bottomAnchor.constraint(equalTo: tabBar.bottomAnchor)
-            ])
-        }
-
-        private func determineBackgroundColor() -> UIColor {
-            if #available(iOS 13.0, *) {
-                if UITraitCollection.current.userInterfaceStyle == .dark {
-                    return UIColor(named: "DarkModeBackgroundColor") ?? .black
-                } else {
-                    return UIColor(named: "LightModeBackgroundColor") ?? .white
-                }
+        let customBackgroundView = UIView()
+        customBackgroundView.backgroundColor = determineBackgroundColor()
+        
+        // Ajusta el fondo de la vista del tab bar controller
+        tabBar.backgroundImage = UIImage()
+        tabBar.shadowImage = UIImage()
+        tabBar.addSubview(customBackgroundView)
+        tabBar.sendSubviewToBack(customBackgroundView)
+        
+        customBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            customBackgroundView.topAnchor.constraint(equalTo: tabBar.topAnchor),
+            customBackgroundView.leadingAnchor.constraint(equalTo: tabBar.leadingAnchor),
+            customBackgroundView.trailingAnchor.constraint(equalTo: tabBar.trailingAnchor),
+            customBackgroundView.bottomAnchor.constraint(equalTo: tabBar.bottomAnchor)
+        ])
+    }
+    
+    private func determineBackgroundColor() -> UIColor {
+        if #available(iOS 13.0, *) {
+            if UITraitCollection.current.userInterfaceStyle == .dark {
+                return UIColor(named: "DarkModeBackgroundColor") ?? .black
             } else {
-                return UIColor(named: "FallbackBackgroundColor") ?? .white
+                return UIColor(named: "LightModeBackgroundColor") ?? .white
             }
+        } else {
+            return UIColor(named: "FallbackBackgroundColor") ?? .white
         }
-
-        override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-            super.traitCollectionDidChange(previousTraitCollection)
-
-            // Actualiza el color de fondo cuando cambie el modo de color del sistema
-            guard UITraitCollection.current.hasDifferentColorAppearance(comparedTo: previousTraitCollection) else {
-                return
-            }
-            tabBar.subviews.first?.backgroundColor = determineBackgroundColor()
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        // Actualiza el color de fondo cuando cambie el modo de color del sistema
+        guard UITraitCollection.current.hasDifferentColorAppearance(comparedTo: previousTraitCollection) else {
+            return
         }
-
+        tabBar.subviews.first?.backgroundColor = determineBackgroundColor()
+    }
+    
 }

@@ -28,7 +28,7 @@ extension GetStartedViewController: GetStartedViewProtocol {
     
     func updateLabel() {
     }
-
+    
     
     func updateUIForCurrentTraitCollection() {
         if traitCollection.userInterfaceStyle == .dark {

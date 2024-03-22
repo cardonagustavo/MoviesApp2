@@ -18,6 +18,10 @@ class MoviesViewController: UIViewController {
         self.moviesView.delegate = self
         self.moviesView.setupAdapters()
         self.parent?.title = NSLocalizedString("MoviesApp", comment: "")
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         self.strategy.getWebServiceStrategy()
     }
     

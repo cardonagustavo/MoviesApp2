@@ -7,9 +7,9 @@ import UIKit
 //MARK: - Delegade
 @objc protocol RegisterViewDelegate: AnyObject {
     @objc optional func loginViewDidTapLoginButtonWith(_ registerView: RegisterView, email: String, andRememberme rememberme: Bool)
-        func loginViewTapButtonRegister(_ registerView:  RegisterView)
-        func switchValueChanged(isOn: Bool)
-
+    func loginViewTapButtonRegister(_ registerView:  RegisterView)
+    func switchValueChanged(isOn: Bool)
+    
 }
 
 //MARK: - protocol
@@ -18,7 +18,7 @@ protocol RegisterViewProtocol {
     func customComponentsTextField()
     func updateButtonCreate()
     
-
+    
 }
 
 //MARK: - Class
@@ -87,20 +87,20 @@ class RegisterView: UIView {
         swithToRememberme.isOn = isOn
         swithToRememberme.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
     }
-
+    
     
     @objc public func switchValueChanged(_ sender: UISwitch) {
         delegate?.switchValueChanged(isOn: sender.isOn)
     }
-
-
+    
+    
 }
 
 //MARK: - Extension
 extension RegisterView: RegisterViewProtocol {
     
     
-
+    
     
     func updateButtonCreate() {
         buttonCreateAccount.setTitle(nil, for: .normal)
@@ -113,16 +113,16 @@ extension RegisterView: RegisterViewProtocol {
         self.labelCreateAccount.font = UIFont(name: "verdana", size: 20)
         self.labelCreateAccount.adjustsFontSizeToFitWidth = false
     }
-     
+    
     
     func customComponentsTextField() {
-  //      textFieldEmail.placeholder = "E-mail"
+        //      textFieldEmail.placeholder = "E-mail"
         textFieldEmail.leftViewMode = .always
         textFieldEmail.textColor = .black
         textFieldEmail.attributedPlaceholder = NSAttributedString(string: "E-mail", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         
         
- //       textFieldNickName.placeholder = "Nick Name"
+        //       textFieldNickName.placeholder = "Nick Name"
         textFieldNickName.leftViewMode = .always
         textFieldNickName.textColor = .black
         textFieldNickName.attributedPlaceholder = NSAttributedString(string: "Nick Name", attributes: [NSAttributedString.Key.foregroundColor:  UIColor.black])

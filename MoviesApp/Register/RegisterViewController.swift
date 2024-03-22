@@ -16,7 +16,7 @@ class RegisterViewController: UIViewController {
         
         registerView?.customComponentsLabel()
         registerView?.customComponentsTextField()
-//        registerView?.setupTransparentBackgroundViews()
+        //        registerView?.setupTransparentBackgroundViews()
         registerView?.updateButtonCreate()
         
         let isRemembering = UserDefaults.standard.bool(forKey: "Rememberme")
@@ -29,7 +29,7 @@ class RegisterViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem()
     }
-
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -50,7 +50,7 @@ class RegisterViewController: UIViewController {
 
 extension RegisterViewController: KeyboardManagerDelegate {
     func keyboardManager(_ keyboardManager: KeyboardManager, keyboardWillShowWith info: KeyboardManager.Info) {
-//        print("Teclado aparece")
+        //        print("Teclado aparece")
         self.registerView?.keyboardAppear(info)
     }
     
@@ -64,20 +64,20 @@ extension RegisterViewController: KeyboardManagerDelegate {
 
 extension RegisterViewController: RegisterViewDelegate {
     func switchValueChanged(isOn: Bool) {
-            UserDefaults.standard.set(isOn, forKey: "Rememberme")
-        }
+        UserDefaults.standard.set(isOn, forKey: "Rememberme")
+    }
     
     func loginViewTapButtonRegister(_ registerView: RegisterView) {
         let storyboardView = UIStoryboard(name: "Main", bundle: nil)
         self.dismiss(animated: true)
         print("Here")
         self.navigationController?.popViewController(animated: true)
-//        guard let controller = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController
-//        else {
-//            return
-//        }
-//        self.show(controller, sender: self)
-//        controller.modalTransitionStyle = .coverVertical
-//        self.present(controller, animated: true)
+        //        guard let controller = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController
+        //        else {
+        //            return
+        //        }
+        //        self.show(controller, sender: self)
+        //        controller.modalTransitionStyle = .coverVertical
+        //        self.present(controller, animated: true)
     }
 }

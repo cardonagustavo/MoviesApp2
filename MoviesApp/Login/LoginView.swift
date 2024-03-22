@@ -5,8 +5,8 @@
 import UIKit
 
 @objc protocol LoginViewDelegade: AnyObject {
-//    func tapButtonLoginShowToMoviesCell(_ loginView: LoginView)
-   // func tapButtonLoginShowRegisterView(_ loginView: LoginView)
+    //    func tapButtonLoginShowToMoviesCell(_ loginView: LoginView)
+    // func tapButtonLoginShowRegisterView(_ loginView: LoginView)
     func buttonShortLogin(_ loginView: LoginView)
 }
 
@@ -21,10 +21,10 @@ protocol LoginViewProtocol {
 
 //MARK: - Class
 class LoginView: UIView {
-
+    
     @IBOutlet weak var delegate: LoginViewDelegade?
     
-   // @IBOutlet private weak var delegade: LoginViewProtocolDelegade?
+    // @IBOutlet private weak var delegade: LoginViewProtocolDelegade?
     @IBAction private func tapToCloseKeyboard(_gesture: UITapGestureRecognizer) {
         self.endEditing(true)
     }
@@ -33,10 +33,10 @@ class LoginView: UIView {
     @IBOutlet weak var labelCreateAccount: UILabel!
     
     @IBAction func buttonRegister(_ sender: UIButton) {
-     //   self.delegate?.tapButtonLoginShowRegisterView(self)
+        //   self.delegate?.tapButtonLoginShowRegisterView(self)
     }
     @IBAction func buttonTapLogin(_ sender: UIButton) {
-     //   self.delegate?.tapButtonLoginShowToMoviesCell(self)
+        //   self.delegate?.tapButtonLoginShowToMoviesCell(self)
         
     }
     
@@ -48,8 +48,8 @@ class LoginView: UIView {
         self.delegate?.buttonShortLogin(self)
     }
     //    @IBAction func textFieldDidChanged(_ sender: UITextField) {
-//        delegate?.textViewDidChange(sender.text ?? "")
-//    }
+    //        delegate?.textViewDidChange(sender.text ?? "")
+    //    }
 }
 
 // MARK: - Extencion
@@ -92,11 +92,11 @@ extension LoginView: LoginViewProtocol {
     
     func updateLabels() {
         if let labelShortLogin = self.labelShortLogin {
-                labelShortLogin.text = "Welcome back to our space!"
-            } else {
-                print("Error: Label 'labelShortLogin' is not initialized correctly.")
-            }
-//        self.labelShortLogin.text = "Welcome back to our space!"
+            labelShortLogin.text = "Welcome back to our space!"
+        } else {
+            print("Error: Label 'labelShortLogin' is not initialized correctly.")
+        }
+        //        self.labelShortLogin.text = "Welcome back to our space!"
         self.labelCreateAccount.text = "Create an Account"
     }
     
@@ -129,13 +129,13 @@ extension LoginView: LoginViewProtocol {
             UINavigationBar.appearance().backgroundColor = UIColor(red: 0.2, green: 0.4, blue: 0.6, alpha: 1.0)
             UINavigationBar.appearance().titleTextAttributes = titleTextAttributes
         }
-
+        
     }
-
-
+    
+    
     func updateStyleButtonShortLogin() {
-       
-    //TODO: Configure or update button
+        
+        //TODO: Configure or update button
     }
     
     func shortLoginButtonEmail(_ email: String) {

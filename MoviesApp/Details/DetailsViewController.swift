@@ -34,7 +34,7 @@ class DetailViewController: UIViewController {
                 return
             }
             
-
+            
             let movieEntity = MoviesEntity(context: context)
             movieEntity.name_movie = movieDetail.title
             movieEntity.id = Int64(movieDetail.id)
@@ -49,7 +49,7 @@ class DetailViewController: UIViewController {
             print("Error al buscar o guardar la película en favoritos: \(error)")
         }
     }
-
+    
     @objc private func removeFromFavorites() {
         guard let movieDetail = movie else { return }
         
@@ -75,8 +75,6 @@ class DetailViewController: UIViewController {
     }
     
     private func setupFavoriteButton() {
-        guard let movieDetail = movie else { return }
-        
         let favoritesButtonImage = createFavoriteIcon()
         let favoritesButton = UIBarButtonItem(image: favoritesButtonImage, style: .plain, target: self, action: isFavoriteMovie ? #selector(removeFromFavorites) : #selector(addToFavorites))
         navigationItem.rightBarButtonItem = favoritesButton
@@ -92,7 +90,7 @@ class DetailViewController: UIViewController {
     private func createFavoriteIcon() -> UIImage {
         return UIImage(systemName: isFavoriteMovie ? "star.fill" : "star") ?? UIImage()
     }
-
+    
     private func updateFavoriteButtonImage() {
         let image = createFavoriteIcon()
         navigationItem.rightBarButtonItem?.image = image

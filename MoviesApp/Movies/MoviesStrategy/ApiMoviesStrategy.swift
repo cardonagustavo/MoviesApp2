@@ -15,7 +15,7 @@ struct ApiMoviesStrategy: MoviesStrategy {
         self.moviesView = moviesView
     }
     
-  mutating  func getWebServiceStrategy() {
+    mutating  func getWebServiceStrategy() {
         self.moviesView.showLoading(true)
         self.webService.fetch { [self] arrayMoviesDTO in
             guard let movies = arrayMoviesDTO.results?.toMovies else { return }

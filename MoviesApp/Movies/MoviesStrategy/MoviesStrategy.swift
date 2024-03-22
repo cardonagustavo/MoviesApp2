@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MoviesStrategy {
- mutating  func getWebServiceStrategy()
+    mutating  func getWebServiceStrategy()
     
 }
 

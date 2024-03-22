@@ -69,7 +69,7 @@ struct Movies {
         \(formattedDate)
         """
     }
-
+    
     var formattedReleaseDateForFavorite: String {
         let inputDateFormatter = DateFormatter()
         inputDateFormatter.dateFormat = "yyyy-MM-dd"
@@ -85,7 +85,7 @@ struct Movies {
         
         return formattedDate
     }
-
+    
     
     /// Inicializa una instancia de Movies a partir de un objeto MovieDTO.
     ///
@@ -119,11 +119,11 @@ extension Array where Element == MoviesWebService.MovieDTO {
     var toMovies: [Movies] {
         self.map({ Movies(dto: $0) })
     }
-
+    
 }
 
 extension Array where Element == MoviesEntity {
-
+    
     /// Convierte una matriz de objetos MovieDTO a una matriz de objetos Movies.
     var toMoviesToFavoritesMovies: [Movies] {
         self.map({ Movies(movies: $0) })

@@ -62,7 +62,7 @@ class KeyboardManager {
         print("El teclado aparece")
         let info = KeyboardManager.Info(userInfo: notification.userInfo)
         self.delegate.keyboardManager(self, keyboardWillShowWith: info)
-
+        
         print(notification.userInfo ?? "Sin datos")
         let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect ?? .zero
         let animationDuration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double ?? 0
@@ -77,7 +77,7 @@ class KeyboardManager {
         print("El teclado se va")
         let info = KeyboardManager.Info(userInfo: notification.userInfo)
         self.delegate.keyboardManager(self, keyboardWillHideWith: info)
-
+        
         print(notification.userInfo ?? "Sin datos")
         let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect ?? .zero
         let animationDuration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double ?? 0

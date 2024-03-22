@@ -73,7 +73,7 @@ struct MovieDetail {
         \(formattedDate)
         """)
     }
-
+    
     var formattedReleaseDateForFavorite: String {
         let inputDateFormatter = DateFormatter()
         inputDateFormatter.dateFormat = "yyyy-MM-dd"
@@ -89,7 +89,7 @@ struct MovieDetail {
         
         return formattedDate
     }
-
+    
     
     /// Inicializa una instancia de Movie a partir de un objeto MovieDTO.
     ///

@@ -7,30 +7,30 @@ import UIKit
 // MARK: - Controller
 class LoginViewController: UIViewController {
     private var loginView: LoginView? { self.view as? LoginView }
-      
+    
     var loginCustom: LoginViewProtocol? {
         self.view as? LoginViewProtocol
     }
-      
+    
     lazy var keyboardManager = KeyboardManager(delegate: self)
-      
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loginView?.textFieldLoginUpdate()
         loginView?.updateLabels()
         loginView?.setupNavigationBarAppearance()
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.keyboardManager.registerKeyboardNotifications()
     }
-      
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.keyboardManager.unregisterKeyboardNotifications()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem()

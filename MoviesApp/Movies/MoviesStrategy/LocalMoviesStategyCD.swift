@@ -24,13 +24,10 @@ struct LocalMoviesStategyCD: MoviesStrategy {
         
         do {
             let favoriteMovies = try context.fetch(fetchRequest)
-            
             // Removes duplicate movies based on their id
             let uniqueMovieOnFavorites = favoriteMovies.removeDuplicates { $0.id }
-            
             // Sorts the favorite movies in ascending order by name
             let sortedFavoriteMovies = uniqueMovieOnFavorites.sorted(by: { $0.name_movie ?? "" < $1.name_movie ?? "" })
-            
             // Updates the moviesView with the sorted favorite movies
             self.moviesView.reloadData(sortedFavoriteMovies.toMoviesToFavoritesMovies)
         } catch {
