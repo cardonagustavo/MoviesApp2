@@ -273,8 +273,7 @@
 		2949A8292B59FE800087FEF1 = {
 			isa = PBXGroup;
 			children = (
-				296384AC2BAC6B7800E75CAD /* MoviesEntity+CoreDataClass.swift */,
-				296384AD2BAC6B7800E75CAD /* MoviesEntity+CoreDataProperties.swift */,
+				296384B02BAC965F00E75CAD /* SubClasesCoreData */,
 				2949A8342B59FE800087FEF1 /* MoviesApp */,
 				2949A8332B59FE800087FEF1 /* Products */,
 			);
@@ -333,6 +332,15 @@
 				296384AA2BAC5A8000E75CAD /* ApiMoviesStrategy.swift */,
 			);
 			path = MoviesStrategy;
+			sourceTree = "<group>";
+		};
+		296384B02BAC965F00E75CAD /* SubClasesCoreData */ = {
+			isa = PBXGroup;
+			children = (
+				296384AD2BAC6B7800E75CAD /* MoviesEntity+CoreDataProperties.swift */,
+				296384AC2BAC6B7800E75CAD /* MoviesEntity+CoreDataClass.swift */,
+			);
+			path = SubClasesCoreData;
 			sourceTree = "<group>";
 		};
 		299550CF2B5FE80A000F1D51 /* Started */ = {
