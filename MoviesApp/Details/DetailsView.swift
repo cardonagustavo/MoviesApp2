@@ -35,8 +35,8 @@ class DetailView: UIView {
     }
     
     func dataInjection(fromModel movie: MovieDetail) {
-        self.labelTitle.text = movie.title
-        self.labelReleaseDate.text = movie.formattedReleaseDateForFavorite
+        self.labelTitle.text = movie.original_title
+        self.labelReleaseDate.text = NSLocalizedString(movie.formattedReleaseDateForFavorite, comment: "Release Date")
         self.starMaskView.progressView.progress = (movie.vote_average / 10)
         self.viewContainerStars.addSubview(starMaskView)
         self.labelListGenere.text = self.genresList(movie.genres)
@@ -101,7 +101,7 @@ class DetailView: UIView {
         self.labelTitle.text = movies.original_title
     }
     func labelDate(_ movie: MovieDetail) {
-        self.labelReleaseDate.text = "Fecha de lanzamiento: \(movie.release_date)"
+        self.labelReleaseDate.text = " \(movie.formattedReleaseDateForFavorite)"
         self.labelReleaseDate.font = UIFont.italicSystemFont(ofSize: 16.0)
         self.labelReleaseDate.textColor = UIColor.lightGray
     }

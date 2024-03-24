@@ -10,7 +10,7 @@ import UIKit
 class MoviesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var imageMovie: UIImageView!
-    @IBOutlet weak var labelName: UILabel!
+    @IBOutlet weak var labelMovieName: UILabel!
     @IBOutlet weak var labelReleaseData: UILabel!
     @IBOutlet weak var viewContainerStars: UIView!
     
@@ -31,8 +31,8 @@ class MoviesCollectionViewCell: UICollectionViewCell {
                     
                 }
             }.resume()
-            self.labelName.text = movies.title
-            self.labelName.textColor = UIColor(named: "PrincipalInvertBackground")
+            self.labelMovieName.text = movies.titleNil
+            self.labelMovieName.textColor = UIColor(named: "PrincipalInvertBackground")
             
             self.imageMovie.layer.cornerRadius = self.viewContainer.layer.cornerRadius
             
@@ -42,7 +42,7 @@ class MoviesCollectionViewCell: UICollectionViewCell {
             self.viewContainer.clipsToBounds = true
             
             
-            self.labelReleaseData.text = movies.formattedReleaseDateForMovies
+            self.labelReleaseData.text = NSLocalizedString(movies.formattedReleaseDateForMovies, comment: "Release Date")
             self.labelReleaseData.font = UIFont.italicSystemFont(ofSize: 16.0)
             self.labelReleaseData.textColor = UIColor.lightGray
             //                self.labelReleaseData.textColor = UIColor(named: "PrincipalInvertBackground")

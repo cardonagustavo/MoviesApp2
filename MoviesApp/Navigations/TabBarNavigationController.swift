@@ -13,11 +13,16 @@ class TabBarNavigationController: UITabBarController {
         customTabBar()
         setupCustomBackground()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem()
+        self.navigationController?.navigationBar.scrollEdgeAppearance = self.navigationController?.navigationBar.standardAppearance
+        self.tabBar.shadowImage = UIImage()
+        self.tabBar.tintColor = UIColor(red: 0.0, green: 0.4, blue: 1.0, alpha: 1.0)
+
+
+
+
     }
     
-    
     private func customTabBar() {
-        
         let movies = MoviesViewController.buildMovies()
         let favorites = MoviesViewController.buildFavorites()
         
@@ -40,7 +45,6 @@ class TabBarNavigationController: UITabBarController {
                 let buttonShortLogin = UIButton(type: .custom)
                 buttonShortLogin.setImage(scaledImage, for: .normal)
                 
-                
                 let customBarButtonItem = UIBarButtonItem(customView: buttonShortLogin)
                 
                 self.navigationItem.rightBarButtonItem = customBarButtonItem
@@ -50,8 +54,6 @@ class TabBarNavigationController: UITabBarController {
         } else {
             print("Error: No se pudo cargar la imagen 'logout.png'")
         }
-        
-        
     }
     
     private func backButtonTapped() {
@@ -80,23 +82,12 @@ class TabBarNavigationController: UITabBarController {
     private func determineBackgroundColor() -> UIColor {
         if #available(iOS 13.0, *) {
             if UITraitCollection.current.userInterfaceStyle == .dark {
-                return UIColor(named: "DarkModeBackgroundColor") ?? .black
+                return UIColor.systemBackground
             } else {
-                return UIColor(named: "LightModeBackgroundColor") ?? .white
+                return UIColor.systemBackground
             }
         } else {
-            return UIColor(named: "FallbackBackgroundColor") ?? .white
+            return UIColor.white
         }
     }
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        
-        // Actualiza el color de fondo cuando cambie el modo de color del sistema
-        guard UITraitCollection.current.hasDifferentColorAppearance(comparedTo: previousTraitCollection) else {
-            return
-        }
-        tabBar.subviews.first?.backgroundColor = determineBackgroundColor()
-    }
-    
 }

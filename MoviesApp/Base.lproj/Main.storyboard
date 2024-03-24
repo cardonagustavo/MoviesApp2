@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3T1-iW-r9l">
-    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="dark"/>
     <accessibilityOverrides dynamicTypePreference="2"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
@@ -817,9 +817,8 @@ membership.</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="BpC-u5-Ukd"/>
+        <segue reference="Jer-lQ-CDB"/>
     </inferredMetricsTieBreakers>
-    <color key="tintColor" name="PrincipalInvertBackground"/>
     <resources>
         <image name="1200x675" width="1200" height="675"/>
         <image name="Movies" width="2500" height="1956"/>

@@ -18,7 +18,7 @@ class MoviesView: UIView {
     // Elementos de la vista
     private lazy var collectionViewMovies: UICollectionView = {
         let codeClvMovies = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
-        codeClvMovies.backgroundColor = .white
+        codeClvMovies.backgroundColor = .principalColorBackground
         codeClvMovies.showsVerticalScrollIndicator = false
         codeClvMovies.translatesAutoresizingMaskIntoConstraints = false
         codeClvMovies.keyboardDismissMode = .onDrag
