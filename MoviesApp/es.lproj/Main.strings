@@ -1,6 +1,6 @@
 
 /* Class = "UIButton"; configuration.title = "Register"; ObjectID = "1JR-Id-eRV"; */
-"1JR-Id-eRV.configuration.title" = "Register";
+"1JR-Id-eRV.configuration.title" = "Registrase";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "1JR-Id-eRV"; */
 "1JR-Id-eRV.normalTitle" = "Button";
@@ -9,13 +9,13 @@
 "5JS-YP-nB9.text" = "Label";
 
 /* Class = "UINavigationItem"; title = "Login"; ObjectID = "5qp-j1-Ueb"; */
-"5qp-j1-Ueb.title" = "Login";
+"5qp-j1-Ueb.title" = "Iniciar";
 
 /* Class = "UILabel"; text = "● Se deberá respetar el layout propuesto.\n● La vista contendrá en como navigation button un botón\nen forma de estrella para agregar a favorito. Este botón\nse muestra con relleno si es un favorito y sólo con\nborde en caso no lo sea.\n● El detalle de la película será el mismo para ambas\nvistas."; ObjectID = "6VE-xV-a3z"; */
 "6VE-xV-a3z.text" = "● Se deberá respetar el layout propuesto.\n● La vista contendrá en como navigation button un botón\nen forma de estrella para agregar a favorito. Este botón\nse muestra con relleno si es un favorito y sólo con\nborde en caso no lo sea.\n● El detalle de la película será el mismo para ambas\nvistas.";
 
 /* Class = "UINavigationItem"; title = "Register"; ObjectID = "6pU-eh-oIV"; */
-"6pU-eh-oIV.title" = "Register";
+"6pU-eh-oIV.title" = "Registro";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "7Er-oo-DKr"; */
 "7Er-oo-DKr.text" = "Label";

@@ -57,6 +57,3 @@ extension MoviesViewController: MoviesViewDelegate {
     }
     
 }
-
-
-

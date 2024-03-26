@@ -68,8 +68,7 @@ struct MovieDetail {
         
         let formattedDate = outputDateFormatter.string(from: inputDate)
         
-        let localizedTitle = NSLocalizedString(LocalizedStrings.releaseDateTitle, comment: "Release Date")
-        return "\(localizedTitle):\n\(formattedDate)"
+        return "Release Date:\n\(formattedDate)"
     }
 
     var formattedReleaseDateForFavorite: String {
@@ -85,9 +84,10 @@ struct MovieDetail {
         
         let formattedDate = outputDateFormatter.string(from: inputDate)
         
-        let localizedTitle = NSLocalizedString(LocalizedStrings.releaseDateTitle, comment: "Release Date")
-        return "\(localizedTitle):\n\(formattedDate)"
+        return "Release Date:\n\(formattedDate)"
     }
+
+
     /// Inicializa una instancia de Movie a partir de un objeto MovieDTO.
     ///
     /// - Parameter dto: Objeto de transferencia de datos de película (MovieDTO).

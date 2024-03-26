@@ -1,0 +1,30 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "BhL-Qu-iPI.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Label\"; ObjectID = \"BhL-Qu-iPI\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Label"
+          }
+        }
+      }
+    },
+    "SGf-6W-cRc.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Label\"; ObjectID = \"SGf-6W-cRc\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Label"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

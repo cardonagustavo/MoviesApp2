@@ -8,52 +8,60 @@ import Alamofire
 // MARK: - Web Service
 
 /// Clase para interactuar con un servicio web de películas.
-class MoviesWebService {
+struct MoviesWebService {
+    /// Variable calculada que obtiene el idioma preferido del dispositivo.
+    var language: String {
+        return Locale.preferredLanguages.first ?? "en"
+    }
+
+    /// URL base del servicio web de películas.
+    let baseURL = "https://api.themoviedb.org/3/movie/"
+
+    /// Clave de API para acceder al servicio web de películas.
+    let apiKey = "176de15e8c8523a92ff640f432966c9c"
     
-    /// URL base para el servicio de películas populares.
-    let urlString = "https://api.themoviedb.org/3/movie/popular?api_key=176de15e8c8523a92ff640f432966c9c&language=es"
-    
-    /// Método para obtener una lista de películas populares.
+    /// Método para realizar una solicitud y obtener una lista de películas populares.
     ///
-    /// - Parameter completionHandler: El bloque de finalización que se llama cuando se ha completado la solicitud de películas. Recibe un array de películas (`MoviesDTO`).
+    /// - Parameter completionHandler: El bloque de finalización que se ejecutará cuando se complete la solicitud.
     func fetch(completionHandler: @escaping CompletionHandler) {
+        let urlString = "\(baseURL)popular?api_key=\(apiKey)&language=\(language)"
         
-        // Realiza una solicitud GET a la URL especificada para obtener datos sobre películas populares.
-        AF.request(urlString, method: .get).response {  dataResponse in
-            // Verifica si hay datos válidos en la respuesta.
+        // Se utiliza Alamofire (AF) para realizar una solicitud HTTP GET al urlString.
+        // El bloque de finalización se ejecutará cuando se obtenga una respuesta.
+        AF.request(urlString, method: .get).response { dataResponse in
             guard let data = dataResponse.data else { return }
             
-            // Intenta decodificar los datos recibidos en un objeto `MoviesDTO`.
+            // Se intenta decodificar los datos de la respuesta en un objeto MoviesDTO.
+            // Si la decodificación tiene éxito, se llama al bloque de finalización con el objeto MoviesDTO.
+            // Si la decodificación falla, se llama al bloque de finalización con un objeto MoviesDTO vacío.
             let arrayResponse = try? JSONDecoder().decode(MoviesDTO.self, from: data)
             
-            // Llama al completionHandler pasándole el objeto `MoviesDTO` decodificado o un objeto `MoviesDTO` vacío si la decodificación falla.
             completionHandler(arrayResponse ?? MoviesDTO())
         }
     }
     
-    /// Método para obtener detalles de una película específica.
+    /// Método para obtener los detalles de una película específica.
     ///
     /// - Parameters:
     ///   - idMovie: El ID de la película.
-    ///   - completionHandler: El bloque de finalización que se llama cuando se ha completado la solicitud de detalles de la película. Recibe un objeto `MovieDetailDTO` que representa los detalles de la película.
-    func retriveMovie(idMovie: Int, completionHandler: @escaping CompleticionDetailsHandler) {
-        // URL para obtener detalles de la película específica.
-        let moviesDetails = "https://api.themoviedb.org/3/movie/\(idMovie)?api_key=752cd23fdb3336557bf3d8724e115570&language=es"
+    ///   - completionHandler: El bloque de finalización que se ejecutará cuando se complete la solicitud.
+    func retrieveMovie(idMovie: Int, completionHandler: @escaping CompletionDetailsHandler) {
+        let urlString = "\(baseURL)\(idMovie)?api_key=\(apiKey)&language=\(language)"
         
-        // Realiza una solicitud GET a la URL especificada para obtener detalles de la película.
-        AF.request(moviesDetails, method: .get).response { dataResponse in
-            // Verifica si hay datos válidos en la respuesta.
+        // Se utiliza Alamofire (AF) para realizar una solicitud HTTP GET al urlString.
+        // El bloque de finalización se ejecutará cuando se obtenga una respuesta.
+        AF.request(urlString, method: .get).response { dataResponse in
             guard let data = dataResponse.data else { return }
             
-            // Intenta decodificar los datos recibidos en un objeto `MovieDetailDTO`.
+            // Se intenta decodificar los datos de la respuesta en un objeto MovieDetailDTO.
+            // Si la decodificación tiene éxito, se llama al bloque de finalización con el objeto MovieDetailDTO.
+            // Si la decodificación falla, se llama al bloque de finalización con un objeto MovieDetailDTO vacío.
             let response = try? JSONDecoder().decode(MovieDetailDTO.self, from: data)
             
-            // Llama al completionHandler pasándole el objeto `MovieDetailDTO` decodificado o un objeto `MovieDetailDTO` vacío si la decodificación falla.
             completionHandler(response ?? MovieDetailDTO())
         }
     }
 }
-
 
 // MARK: - Clousures
 
@@ -62,8 +70,10 @@ extension MoviesWebService {
     typealias CompletionHandler = (_ arrayMoviesDTO: MoviesDTO) -> Void
     
     /// Definición de un bloque de finalización para la solicitud de detalles de película.
-    typealias CompleticionDetailsHandler = (_ arrayMovies: MovieDetailDTO) -> Void
+    typealias CompletionDetailsHandler = (_ arrayMovies: MovieDetailDTO) -> Void
 }
+
+// Resto del código...
 
 // MARK: - DTO
 

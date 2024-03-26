@@ -15,8 +15,7 @@ class MoviesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var viewContainerStars: UIView!
     
     let starkViewMask = StarsRank(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
-    
-    
+
     
     fileprivate func updateDataWith(_ movies: Movies) {
         //       self.imageMovie.image = movies.posterPath

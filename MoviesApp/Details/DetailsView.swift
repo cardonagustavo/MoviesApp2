@@ -36,7 +36,7 @@ class DetailView: UIView {
     
     func dataInjection(fromModel movie: MovieDetail) {
         self.labelTitle.text = movie.original_title
-        self.labelReleaseDate.text = NSLocalizedString(movie.formattedReleaseDateForFavorite, comment: "Release Date")
+        self.labelReleaseDate.text = NSLocalizedString(movie.formattedReleaseDateForFavorite, comment: "")
         self.starMaskView.progressView.progress = (movie.vote_average / 10)
         self.viewContainerStars.addSubview(starMaskView)
         self.labelListGenere.text = self.genresList(movie.genres)

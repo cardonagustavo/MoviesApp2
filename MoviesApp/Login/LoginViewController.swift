@@ -19,6 +19,7 @@ class LoginViewController: UIViewController {
         loginView?.textFieldLoginUpdate()
         loginView?.updateLabels()
         loginView?.setupNavigationBarAppearance()
+        loginView?.buttonsUpdate()
     }
     
     override func viewDidAppear(_ animated: Bool) {

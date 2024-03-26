@@ -1,10 +1,6 @@
-//
 //  MoviesCollectionViewController.swift
 //  MoviesApp
-//
 //  Created by Gustavo Adolfo Cardona Quintero on 26/02/24.
-//
-
 
 import UIKit
 

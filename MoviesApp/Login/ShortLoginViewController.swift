@@ -21,13 +21,8 @@ class ShortLoginViewController: UIViewController {
         // Configure the view
         loginView?.textFieldLoginUpdate()
         loginView?.setupNavigationBarAppearance()
-        loginView?.updateStyleButtonShortLogin()
         loginView?.updateLabels()
-        
-        // Set username in short login button
-        if let email = authenticationManager.currentUser?.email {
-            loginView?.shortLoginButtonEmail(email)
-        }
+        loginView?.buttonsUpdate()
     }
 }
 

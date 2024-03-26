@@ -70,8 +70,8 @@ class MoviesView: UIView {
         self.listAdapter?.didSelectHandler { movie in
             self.delegate?.moviesView(self, didSelectMovie: movie)
         }
-        self.searchAdapter?.didFilterHandler { result in
-            self.reloadCollectionView(result)
+        self.searchAdapter?.didFilterHandler { result, message in
+            self.reloadCollectionView(result, message: message)
         }
         
         if self.needsUsePullToRefresh {
@@ -92,15 +92,15 @@ class MoviesView: UIView {
     }
     
     // Recargar la colección de películas
-    private func reloadCollectionView(_ datasource: [Any]) {
-        self.listAdapter?.datasource = datasource
+    private func reloadCollectionView(_ datasource: [Any], message: String) {
+        self.listAdapter?.datasource = datasource.count == 0 ? [message] : datasource
         self.collectionViewMovies.reloadData()
     }
     
     // Actualizar la vista con nuevos datos
-    func reloadData(_ datasource: [Movies]) {
+    func reloadData(_ datasource: [Movies], message: String) {
         self.searchAdapter?.datasource = datasource
-        self.reloadCollectionView(datasource)
+        self.reloadCollectionView(datasource, message: "Aun no agregas peliculas a favoritos")
     }
     
     // Agregar elementos a la vista

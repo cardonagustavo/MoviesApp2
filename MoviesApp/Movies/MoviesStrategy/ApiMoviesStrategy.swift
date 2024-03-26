@@ -18,8 +18,10 @@ struct ApiMoviesStrategy: MoviesStrategy {
     mutating  func getWebServiceStrategy() {
         self.moviesView.showLoading(true)
         self.webService.fetch { [self] arrayMoviesDTO in
-            guard let movies = arrayMoviesDTO.results?.toMovies else { return }
-            self.moviesView.reloadData(movies)
+            print(arrayMoviesDTO)
+            let movies = arrayMoviesDTO.results?.toMovies
+            print("here")
+            self.moviesView.reloadData(movies ?? [], message: "servicio no disponible")
             self.moviesView.showLoading(false)
         }
     }

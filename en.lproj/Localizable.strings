@@ -1,8 +1,23 @@
-/* 
-  LocalizableTitlesScenes.strings
-  MoviesApp
+/*GetStartView*/
+labelWelcomeTitle = "Welcome to MoviesApp";
+labelWelcomeText = "The best movie streaming app of the century to make your days great!";
+buttonGetStarted = "Get Started";
+textFieldLogin = "E-mail";
 
-  Created by Gustavo Adolfo Cardona Quintero on 18/03/24.
-  
-*/
+/*LoginView*/
+buttonLogin = "Login";
+buttonShortLoginOutlet = "Login";
+labelCreateAccount = "Create an Account";
+buttonRegister = "Register";
 
+/*RegisterView*/
+labelCreateAccount = "Create your Account";
+secondLabel = "Unlimited movies TV shows and more";
+textFieldEmail = "E-mail";
+textFieldNickName = "Nick Name";
+labelRememberme = "Remember me";
+buttonCreateAccount = "Create an account";
+labelTextBottom = "Watch anywhere, anytime
+
+Ready to watch? Enter your Email to create your
+membership.";

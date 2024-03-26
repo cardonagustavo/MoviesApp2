@@ -1,0 +1,23 @@
+/*GetStartView*/
+labelWelcomeTitle = "Bienvenido a peliculas App";
+labelWelcomeText = "¡La mejor aplicación de transmisión de películas del siglo para hacer que tus días sean geniales!";
+buttonGetStarted = "Empezar";
+textFieldLogin = "Coreo electronico";
+
+/*LoginView*/
+buttonLogin = "Iniciar";
+buttonShortLoginOutlet = "Iniciar";
+labelCreateAccount = "Crear Cuenta";
+buttonRegister = "Registro";
+
+/*RegisterView*/
+labelCreateAccount = "Crea tu cuenta";
+secondLabel = "Peliculas y programas de tv ilimitados";
+textFieldEmail = "Correo electonico";
+textFieldNickName = "Nombre Corto";
+labelRememberme = "Recordar usuario";
+buttonCreateAccount = "Crear Cuenta";
+labelTextBottom = "Mira en cualquier lugar y en cualquier momento.
+
+¿Listo para ver? Ingresa tu Email para crear tu
+afiliación.";

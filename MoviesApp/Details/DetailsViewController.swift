@@ -115,7 +115,7 @@ class DetailViewController: UIViewController {
     private func getWebServiceDetail() {
         guard let movieId = movieId else { return }
         
-        webServiceDetail.retriveMovie(idMovie: movieId) { [weak self] movieDetailDTO in
+        webServiceDetail.retrieveMovie(idMovie: movieId) { [weak self] movieDetailDTO in
             let movieDetail = MovieDetail(detailDto: movieDetailDTO)
             self?.movie = movieDetail
             DispatchQueue.main.async {

@@ -13,9 +13,10 @@ class ErrorCollectionViewCell: UICollectionViewCell {
     
     fileprivate func updateDataWith(_ text: String) {
         self.labelMessage.text = text
+        self.labelMessage.font = UIFont.italicSystemFont(ofSize: 18.0)
+        self.labelMessage.textColor = UIColor.lightGray
     }
 }
-
 
 extension ErrorCollectionViewCell {
     

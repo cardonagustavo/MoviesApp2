@@ -20,6 +20,6 @@ protocol SearchMoviesAdapterProtocol {
     /// Define el controlador de filtrado que se activará cuando se realice una búsqueda.
     ///
     /// - Parameter handler: El controlador de filtrado que manejará los resultados de la búsqueda.
-    func didFilterHandler(_ handler: @escaping (_ result: [Any]) -> Void )
+    func didFilterHandler(_ handler: @escaping (_ result: [Any], _ message: String) -> Void )
 }
 

@@ -11,7 +11,7 @@ class GetStartedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        (self.view as? GetStartedView)?.updateLabel()
+        (self.view as? GetStartedView)?.updateComponents()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -21,13 +21,6 @@ class GetStartedViewController: UIViewController {
     }
 }
 
-extension GetStartedViewController: GetStartedViewProtocol {
-    func updateButton() {
-    }
-    
-    func updateLabel() {
-    }
-}
 
 
 

@@ -38,7 +38,7 @@ class RegisterView: UIView {
     @IBOutlet weak var swithToRememberme: UISwitch!
     @IBOutlet weak var labelRememberme: UILabel!
     @IBOutlet weak var buttonCreateAccount: UIButton!
-    
+    @IBOutlet weak var labelTextBottom: UILabel!
     
     @IBAction func buttonCreateAccount(_ sender: UIButton) {
         self.delegate?.loginViewTapButtonRegister(self)
@@ -104,14 +104,28 @@ extension RegisterView: RegisterViewProtocol {
     
     func updateButtonCreate() {
         buttonCreateAccount.setTitle(nil, for: .normal)
-        buttonCreateAccount.setTitle("Create Account", for: .normal)
+        buttonCreateAccount.setTitle(NSLocalizedString("buttonCreateAccount", comment: ""), for: .normal)
         buttonCreateAccount.setTitleColor(UIColor.black, for: .normal)
         buttonCreateAccount.layer.cornerRadius = 19
     }
     
     func customComponentsLabel() {
+        self.labelCreateAccount.text = NSLocalizedString("labelCreateAccount", comment: "")
         self.labelCreateAccount.font = UIFont(name: "verdana", size: 20)
         self.labelCreateAccount.adjustsFontSizeToFitWidth = false
+        
+        self.secondLabel.text = NSLocalizedString("secondLabel", comment: "")
+        self.secondLabel.font = UIFont(name: "verdana", size: 20)
+        self.secondLabel.adjustsFontSizeToFitWidth = false
+        
+        
+        self.labelRememberme.text = NSLocalizedString("labelRememberme", comment: "")
+        self.labelRememberme.font = UIFont(name: "verdana", size: 20)
+        self.labelRememberme.adjustsFontSizeToFitWidth = false
+        
+        self.labelTextBottom.text = NSLocalizedString("labelTextBottom", comment: "")
+        self.labelTextBottom.font = UIFont(name: "verdana", size: 20)
+        self.labelTextBottom.adjustsFontSizeToFitWidth = false
     }
     
     
@@ -119,12 +133,12 @@ extension RegisterView: RegisterViewProtocol {
         //      textFieldEmail.placeholder = "E-mail"
         textFieldEmail.leftViewMode = .always
         textFieldEmail.textColor = .black
-        textFieldEmail.attributedPlaceholder = NSAttributedString(string: "E-mail", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        textFieldEmail.placeholder = NSLocalizedString("textFieldEmail", tableName: "", comment: "")
         
         
         //       textFieldNickName.placeholder = "Nick Name"
         textFieldNickName.leftViewMode = .always
         textFieldNickName.textColor = .black
-        textFieldNickName.attributedPlaceholder = NSAttributedString(string: "Nick Name", attributes: [NSAttributedString.Key.foregroundColor:  UIColor.black])
+        textFieldNickName.placeholder = NSLocalizedString("textFieldNickName", tableName: "", comment: "")
     }
 }

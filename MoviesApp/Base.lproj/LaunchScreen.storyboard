@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,11 +19,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0z3-Qg-ywH">
                                 <rect key="frame" x="0.0" y="338.66666666666669" width="393" height="200.00000000000006"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="MoviesLogo" translatesAutoresizingMaskIntoConstraints="NO" id="EIo-w4-FnX">
-                                        <rect key="frame" x="14" y="55" width="365" height="90"/>
+                                    <imageView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="MoviesLogo" translatesAutoresizingMaskIntoConstraints="NO" id="EIo-w4-FnX">
+                                        <rect key="frame" x="14" y="50" width="365" height="100"/>
                                         <color key="backgroundColor" name="ColorLogo"/>
+                                        <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.94999999999999996"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="90" id="6p2-Jj-s4W"/>
+                                            <constraint firstAttribute="height" constant="100" id="6p2-Jj-s4W"/>
                                             <constraint firstAttribute="width" constant="365" id="Z63-RA-FKw"/>
                                         </constraints>
                                     </imageView>

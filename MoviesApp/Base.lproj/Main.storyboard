@@ -28,7 +28,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="43" translatesAutoresizingMaskIntoConstraints="NO" id="yez-ek-8AC">
                                 <rect key="frame" x="0.0" y="552" width="414" height="210"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome To MoviesApp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mhH-X2-7z7">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mhH-X2-7z7">
                                         <rect key="frame" x="30" y="0.0" width="354" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="41" id="x3C-67-q54"/>
@@ -37,7 +37,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The best movie streaming app of the century to make your days great!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdE-bN-raE">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdE-bN-raE">
                                         <rect key="frame" x="11" y="84" width="392" height="46"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="46" id="WxS-i5-eES"/>
@@ -50,7 +50,7 @@
                                         <rect key="frame" x="50" y="173" width="314" height="37"/>
                                         <color key="tintColor" systemColor="systemRedColor"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Get Started" cornerStyle="capsule" titleAlignment="center">
+                                        <buttonConfiguration key="configuration" style="filled" title="Button" cornerStyle="capsule" titleAlignment="center">
                                             <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="baseBackgroundColor" systemColor="systemRedColor"/>
                                         </buttonConfiguration>
@@ -93,7 +93,8 @@
                         <connections>
                             <outlet property="buttonUpdate" destination="SKL-Cz-tiF" id="KDe-7V-bFs"/>
                             <outlet property="delegate" destination="fqI-ME-3wl" id="7dB-5v-nBY"/>
-                            <outlet property="labelWelcome" destination="mhH-X2-7z7" id="NfJ-4Q-s1x"/>
+                            <outlet property="labelWelcomeText" destination="kdE-bN-raE" id="4RS-Se-IWU"/>
+                            <outlet property="labelWelcomeTitle" destination="mhH-X2-7z7" id="Rtq-Bk-rm1"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Get Started" id="ael-UT-S68"/>
@@ -145,7 +146,7 @@
                                         <state key="normal" title="Login">
                                             <color key="titleColor" systemColor="tableCellGroupedBackgroundColor"/>
                                         </state>
-                                        <buttonConfiguration key="configuration" style="filled" title="Login" cornerStyle="capsule">
+                                        <buttonConfiguration key="configuration" style="filled" title="Button" cornerStyle="capsule">
                                             <color key="baseForegroundColor" systemColor="labelColor"/>
                                             <color key="baseBackgroundColor" systemColor="systemPinkColor"/>
                                         </buttonConfiguration>
@@ -157,12 +158,12 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1JR-Id-eRV">
-                                        <rect key="frame" x="240" y="139" width="100" height="34.333333333333343"/>
+                                        <rect key="frame" x="240" y="139" width="100" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="cTh-7A-lsZ"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Register"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                         <connections>
                                             <action selector="buttonRegister:" destination="8bC-Xf-vdC" eventType="touchUpInside" id="vS4-hm-0ic"/>
                                             <segue destination="bLF-b5-Cfh" kind="show" identifier="RegisterViewController" id="k5A-fo-PE0"/>
@@ -208,6 +209,7 @@
                         </constraints>
                         <connections>
                             <outlet property="buttonLogin" destination="K1P-mx-YwC" id="ATv-jb-gSb"/>
+                            <outlet property="buttonRegister" destination="1JR-Id-eRV" id="dFd-da-N4C"/>
                             <outlet property="delegate" destination="BYZ-38-t0r" id="fkC-Zb-Srd"/>
                             <outlet property="groupViewKeyboardAnchorCenterAxisY" destination="yCs-de-Plz" id="8uk-qs-kV3"/>
                             <outlet property="groupViewKeyboardView" destination="hJx-eL-RIm" id="N4s-8I-8jz"/>
@@ -460,7 +462,7 @@ vistas.</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NJe-sG-6T7" userLabel="ViewContainerTop">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="299"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create your Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="byz-XK-E0U">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="byz-XK-E0U">
                                                 <rect key="frame" x="50" y="248" width="314" height="30"/>
                                                 <color key="tintColor" name="PrincipalInvertBackground"/>
                                                 <constraints>
@@ -502,14 +504,12 @@ vistas.</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bPM-IA-VGb" userLabel="ViewContainerBottom">
                                         <rect key="frame" x="0.0" y="299" width="414" height="598"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R2f-0w-YVV">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R2f-0w-YVV">
                                                 <rect key="frame" x="50" y="30" width="344" height="55"/>
                                                 <color key="tintColor" name="PrincipalInvertBackground"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="55" id="ZTB-Qg-1AM"/>
                                                 </constraints>
-                                                <string key="text">Unlimited movies TV
-shows and more</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                                 <color key="textColor" name="PrincipalInvertBackground"/>
                                                 <nil key="highlightedColor"/>
@@ -523,8 +523,8 @@ shows and more</string>
                                                             <constraint firstAttribute="width" constant="48.670000000000002" id="wGK-Za-0Xs"/>
                                                         </constraints>
                                                     </switch>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remember me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvx-Qb-Ckn">
-                                                        <rect key="frame" x="242.66666666666671" y="0.0" width="111.33333333333334" height="31"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvx-Qb-Ckn">
+                                                        <rect key="frame" x="312.66666666666669" y="0.0" width="41.333333333333314" height="31"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" name="PrincipalInvertBackground"/>
                                                         <nil key="highlightedColor"/>
@@ -551,9 +551,9 @@ shows and more</string>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YOv-RG-lsP">
-                                                <rect key="frame" x="30" y="366" width="354" height="114"/>
+                                                <rect key="frame" x="30" y="366" width="354" height="150"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="114" id="Wth-vG-xpd"/>
+                                                    <constraint firstAttribute="height" constant="150" id="Wth-vG-xpd"/>
                                                 </constraints>
                                                 <string key="text">Watch anywhere, anytime
 
@@ -652,6 +652,7 @@ membership.</string>
                             <outlet property="imageProfile" destination="hji-oR-9dE" id="YM8-Lg-n4E"/>
                             <outlet property="labelCreateAccount" destination="byz-XK-E0U" id="M8O-gj-ALl"/>
                             <outlet property="labelRememberme" destination="qvx-Qb-Ckn" id="7zT-xb-4pD"/>
+                            <outlet property="labelTextBottom" destination="YOv-RG-lsP" id="Shg-WS-cIw"/>
                             <outlet property="logoMovies" destination="apR-95-H0I" id="3Ek-Bj-fjo"/>
                             <outlet property="scrollViewContainer" destination="TbZ-P1-WVx" id="6ov-hP-fjJ"/>
                             <outlet property="secondLabel" destination="R2f-0w-YVV" id="C4B-tb-c63"/>
@@ -685,6 +686,9 @@ membership.</string>
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pngwing.com-8" translatesAutoresizingMaskIntoConstraints="NO" id="Ony-Iu-s42">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3vn-u1-VI9" userLabel="ViewContainerAll">
                                 <rect key="frame" x="12" y="223" width="390" height="450"/>
                                 <subviews>
@@ -756,9 +760,6 @@ membership.</string>
                                     <constraint firstAttribute="height" constant="450" id="zqn-tf-V79"/>
                                 </constraints>
                             </view>
-                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pngwing.com-8" translatesAutoresizingMaskIntoConstraints="NO" id="Ony-Iu-s42">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lHI-rE-vcU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -772,14 +773,14 @@ membership.</string>
                             <constraint firstItem="Ony-Iu-s42" firstAttribute="trailing" secondItem="lHI-rE-vcU" secondAttribute="trailing" id="sqV-13-fD6"/>
                         </constraints>
                         <connections>
-                            <outlet property="buttonShortLogin" destination="Dqi-s4-5X1" id="NER-pn-aJV"/>
+                            <outlet property="buttonShortLoginOutlet" destination="Dqi-s4-5X1" id="SVP-t3-q5x"/>
                             <outlet property="labelShortLogin" destination="xd4-Cs-9Zo" id="z2u-QM-cm4"/>
                         </connections>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cjb-O0-Sna" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2284" y="717"/>
+            <point key="canvasLocation" x="2645" y="717"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4CA-hq-WUT">

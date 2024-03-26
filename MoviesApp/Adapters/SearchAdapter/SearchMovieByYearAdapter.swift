@@ -9,15 +9,16 @@ import UIKit
 
 class SearchMovieByYearAdapter: NSObject, SearchMoviesAdapterProtocol {
     var datasource: [Movies] = []
-    private var didFilter: ((_ result: [Any]) -> Void)?
+    private var didFilter: ((_ result: [Any],_ message: String ) -> Void)?
     
     func setSearchBar(_ searchBar: UISearchBar) {
         searchBar.delegate = self
     }
     
-    func didFilterHandler(_ handler: @escaping ([Any]) -> Void) {
+    func didFilterHandler(_ handler: @escaping ([Any], _ message: String) -> Void) {
         self.didFilter = handler
     }
+
 }
 
 extension SearchMovieByYearAdapter: UISearchBarDelegate {
@@ -45,6 +46,6 @@ extension SearchMovieByYearAdapter: UISearchBarDelegate {
             \(searchText)
             """]
         }
-        self.didFilter?(arrayResult)
+        self.didFilter?(arrayResult, "no hay Favoritos")
     }
 }

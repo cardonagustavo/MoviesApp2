@@ -29,7 +29,7 @@ struct LocalMoviesStategyCD: MoviesStrategy {
             // Sorts the favorite movies in ascending order by name
             let sortedFavoriteMovies = uniqueMovieOnFavorites.sorted(by: { $0.name_movie ?? "" < $1.name_movie ?? "" })
             // Updates the moviesView with the sorted favorite movies
-            self.moviesView.reloadData(sortedFavoriteMovies.toMoviesToFavoritesMovies)
+            self.moviesView.reloadData(sortedFavoriteMovies.toMoviesToFavoritesMovies, message: "String")
         } catch {
             print("Error al recuperar películas: \(error)")
         }

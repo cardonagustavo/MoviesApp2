@@ -14,9 +14,9 @@ import UIKit
 protocol LoginViewProtocol {
     func textFieldLoginUpdate()
     func setupNavigationBarAppearance()
-    func updateStyleButtonShortLogin()
     func updateLabels()
-    func shortLoginButtonEmail(_ email: String)
+    func buttonsUpdate()
+   
 }
 
 //MARK: - Class
@@ -32,6 +32,10 @@ class LoginView: UIView {
     @IBOutlet weak var buttonLogin: UIButton!
     @IBOutlet weak var labelCreateAccount: UILabel!
     
+    @IBOutlet weak var buttonRegister: UIButton!
+    
+    
+    
     @IBAction func buttonRegister(_ sender: UIButton) {
         //   self.delegate?.tapButtonLoginShowRegisterView(self)
     }
@@ -43,13 +47,14 @@ class LoginView: UIView {
     @IBOutlet private weak var groupViewKeyboardView: UIView!
     @IBOutlet private weak var groupViewKeyboardAnchorCenterAxisY: NSLayoutConstraint!
     @IBOutlet weak var labelShortLogin: UILabel!
-    @IBOutlet weak var buttonShortLogin: UIButton!
+    @IBOutlet weak var buttonShortLoginOutlet: UIButton!
     @IBAction func buttonShortLogin(_ sender: Any) {
         self.delegate?.buttonShortLogin(self)
     }
     //    @IBAction func textFieldDidChanged(_ sender: UITextField) {
     //        delegate?.textViewDidChange(sender.text ?? "")
     //    }
+
 }
 
 // MARK: - Extencion
@@ -97,12 +102,19 @@ extension LoginView: LoginViewProtocol {
             print("Error: Label 'labelShortLogin' is not initialized correctly.")
         }
         //        self.labelShortLogin.text = "Welcome back to our space!"
-        self.labelCreateAccount.text = "Create an Account"
+        self.labelCreateAccount.text = NSLocalizedString("labelCreateAccount", comment: "")
+    }
+    
+    func buttonsUpdate() {
+        self.buttonLogin.setTitle(NSLocalizedString("buttonLogin", tableName: "", comment: ""), for: .normal)
+//        self.buttonShortLoginOutlet.setTitle(NSLocalizedString("buttonShortLogin", tableName: "", comment: ""), for: .normal)
+        
+        self.buttonRegister.setTitle(NSLocalizedString("buttonRegister", tableName: "", comment: ""), for: .normal)
     }
     
     func textFieldLoginUpdate() {
         self.textFieldLogin.font = UIFont(name: "veradna", size: 30)
-        self.textFieldLogin.placeholder = "E-mail or Number Phone"
+        self.textFieldLogin.placeholder = NSLocalizedString("textFieldLogin", comment: "")
         self.textFieldLogin.textColor = UIColor.principalInvertBackground
         self.textFieldLogin.layer.cornerRadius = 20.0
         
@@ -129,16 +141,6 @@ extension LoginView: LoginViewProtocol {
             UINavigationBar.appearance().backgroundColor = UIColor(red: 0.2, green: 0.4, blue: 0.6, alpha: 1.0)
             UINavigationBar.appearance().titleTextAttributes = titleTextAttributes
         }
-        
     }
     
-    
-    func updateStyleButtonShortLogin() {
-        
-        //TODO: Configure or update button
-    }
-    
-    func shortLoginButtonEmail(_ email: String) {
-        self.buttonShortLogin.setTitle(email, for: .normal)
-    }
 }

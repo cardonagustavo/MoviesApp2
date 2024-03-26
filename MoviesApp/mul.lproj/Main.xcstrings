@@ -1,0 +1,330 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "1JR-Id-eRV.configuration.title" : {
+      "comment" : "Class = \"UIButton\"; configuration.title = \"Register\"; ObjectID = \"1JR-Id-eRV\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Register"
+          }
+        }
+      }
+    },
+    "1JR-Id-eRV.normalTitle" : {
+      "comment" : "Class = \"UIButton\"; normalTitle = \"Button\"; ObjectID = \"1JR-Id-eRV\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Button"
+          }
+        }
+      }
+    },
+    "5JS-YP-nB9.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Label\"; ObjectID = \"5JS-YP-nB9\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Label"
+          }
+        }
+      }
+    },
+    "5qp-j1-Ueb.title" : {
+      "comment" : "Class = \"UINavigationItem\"; title = \"Login\"; ObjectID = \"5qp-j1-Ueb\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Login"
+          }
+        }
+      }
+    },
+    "6pU-eh-oIV.title" : {
+      "comment" : "Class = \"UINavigationItem\"; title = \"Register\"; ObjectID = \"6pU-eh-oIV\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Register"
+          }
+        }
+      }
+    },
+    "6VE-xV-a3z.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"● Se deberá respetar el layout propuesto.\\n● La vista contendrá en como navigation button un botón\\nen forma de estrella para agregar a favorito. Este botón\\nse muestra con relleno si es un favorito y sólo con\\nborde en caso no lo sea.\\n● El detalle de la película será el mismo para ambas\\nvistas.\"; ObjectID = \"6VE-xV-a3z\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "● Se deberá respetar el layout propuesto.\n● La vista contendrá en como navigation button un botón\nen forma de estrella para agregar a favorito. Este botón\nse muestra con relleno si es un favorito y sólo con\nborde en caso no lo sea.\n● El detalle de la película será el mismo para ambas\nvistas."
+          }
+        }
+      }
+    },
+    "7Er-oo-DKr.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Label\"; ObjectID = \"7Er-oo-DKr\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Label"
+          }
+        }
+      }
+    },
+    "ael-UT-S68.title" : {
+      "comment" : "Class = \"UINavigationItem\"; title = \"Get Started\"; ObjectID = \"ael-UT-S68\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Get Started"
+          }
+        }
+      }
+    },
+    "byz-XK-E0U.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Create your Account\"; ObjectID = \"byz-XK-E0U\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Create your Account"
+          }
+        }
+      }
+    },
+    "cqy-bc-GJn.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Label Label Label Label Label Label Label Label\"; ObjectID = \"cqy-bc-GJn\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Label Label Label Label Label Label Label Label"
+          }
+        }
+      }
+    },
+    "Dqi-s4-5X1.configuration.title" : {
+      "comment" : "Class = \"UIButton\"; configuration.title = \"Button\"; ObjectID = \"Dqi-s4-5X1\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Button"
+          }
+        }
+      }
+    },
+    "Dqi-s4-5X1.normalTitle" : {
+      "comment" : "Class = \"UIButton\"; normalTitle = \"Button\"; ObjectID = \"Dqi-s4-5X1\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Button"
+          }
+        }
+      }
+    },
+    "Fz0-pJ-ewx.configuration.title" : {
+      "comment" : "Class = \"UIButton\"; configuration.title = \"Button\"; ObjectID = \"Fz0-pJ-ewx\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Button"
+          }
+        }
+      }
+    },
+    "Fz0-pJ-ewx.normalTitle" : {
+      "comment" : "Class = \"UIButton\"; normalTitle = \"Button\"; ObjectID = \"Fz0-pJ-ewx\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Button"
+          }
+        }
+      }
+    },
+    "K1P-mx-YwC.configuration.title" : {
+      "comment" : "Class = \"UIButton\"; configuration.title = \"Login\"; ObjectID = \"K1P-mx-YwC\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Login"
+          }
+        }
+      }
+    },
+    "K1P-mx-YwC.normalTitle" : {
+      "comment" : "Class = \"UIButton\"; normalTitle = \"Login\"; ObjectID = \"K1P-mx-YwC\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Login"
+          }
+        }
+      }
+    },
+    "kdE-bN-raE.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"The best movie streaming app of the century to make your days great!\"; ObjectID = \"kdE-bN-raE\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The best movie streaming app of the century to make your days great!"
+          }
+        }
+      }
+    },
+    "mhH-X2-7z7.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Welcome To MoviesApp\"; ObjectID = \"mhH-X2-7z7\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Welcome To MoviesApp"
+          }
+        }
+      }
+    },
+    "q53-WT-9q5.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Label\"; ObjectID = \"q53-WT-9q5\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Label"
+          }
+        }
+      }
+    },
+    "qvx-Qb-Ckn.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Remember me\"; ObjectID = \"qvx-Qb-Ckn\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Remember me"
+          }
+        }
+      }
+    },
+    "R2f-0w-YVV.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Unlimited movies TV\\nshows and more\"; ObjectID = \"R2f-0w-YVV\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Unlimited movies TV\nshows and more"
+          }
+        }
+      }
+    },
+    "SKL-Cz-tiF.configuration.title" : {
+      "comment" : "Class = \"UIButton\"; configuration.title = \"Get Started\"; ObjectID = \"SKL-Cz-tiF\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Get Started"
+          }
+        }
+      }
+    },
+    "SKL-Cz-tiF.normalTitle" : {
+      "comment" : "Class = \"UIButton\"; normalTitle = \"Button\"; ObjectID = \"SKL-Cz-tiF\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Button"
+          }
+        }
+      }
+    },
+    "Spk-Rf-wlB.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Label LabelLabelLabelLabelLabelLabelLabelLabelLabel\"; ObjectID = \"Spk-Rf-wlB\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Label LabelLabelLabelLabelLabelLabelLabelLabelLabel"
+          }
+        }
+      }
+    },
+    "TzM-YU-KKz.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Label\"; ObjectID = \"TzM-YU-KKz\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Label"
+          }
+        }
+      }
+    },
+    "xd4-Cs-9Zo.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Label\"; ObjectID = \"xd4-Cs-9Zo\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Label"
+          }
+        }
+      }
+    },
+    "YOv-RG-lsP.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Watch anywhere, anytime\\n\\nReady to watch? Enter your Email to create your\\nmembership.\"; ObjectID = \"YOv-RG-lsP\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Watch anywhere, anytime\n\nReady to watch? Enter your Email to create your\nmembership."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

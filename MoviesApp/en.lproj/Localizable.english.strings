@@ -1,0 +1,16 @@
+/* 
+  Localizable.english.strings
+  MoviesApp
+
+  Created by Gustavo Adolfo Cardona Quintero on 25/03/24.
+  
+*/
+"welcome_message" = "Welcome to MoviesApp!";
+"login_button_title" = "Login";
+"register_button_title" = "Register";
+"label_text" = "Label";
+"remember_me" = "Remember me";
+"release_date_title" = "Release Date";
+"label_short_login" = "Welcome back to our space!";
+"label_create_account" = "Create an Account";
+"placeholder_email_phone" = "E-mail or Number Phone";

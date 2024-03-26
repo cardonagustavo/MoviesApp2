@@ -10,11 +10,12 @@ import UIKit
 /// Clase que implementa el protocolo `SearchMoviesAdapterProtocol` para buscar películas utilizando información proporcionada.
 class searchMovieByMovieName: NSObject, SearchMoviesAdapterProtocol {
     
+    
     /// Fuente de datos que contiene las películas disponibles para la búsqueda.
     var datasource: [Movies] = []
     
     /// Controlador de filtrado que maneja los resultados de la búsqueda.
-    private var didFilter: ((_ result: [Any]) -> Void)?
+    private var didFilter: ((_ result: [Any], _ message: String) -> Void)?
     
     /// Configura la barra de búsqueda para realizar búsquedas de películas.
     ///
@@ -26,7 +27,7 @@ class searchMovieByMovieName: NSObject, SearchMoviesAdapterProtocol {
     /// Define el controlador de filtrado que se activará cuando se realice una búsqueda.
     ///
     /// - Parameter handler: El controlador de filtrado que manejará los resultados de la búsqueda.
-    func didFilterHandler(_ handler: @escaping ([Any]) -> Void) {
+    func didFilterHandler(_ handler: @escaping ([Any], _ message: String) -> Void) {
         self.didFilter = handler
     }
 }
@@ -58,6 +59,6 @@ extension searchMovieByMovieName: UISearchBarDelegate {
         }
         
         // Se llama al controlador de filtrado para enviar los resultados de la búsqueda.
-        self.didFilter?(arrayResult)
+        self.didFilter?(arrayResult, "searchMovieByMovieName")
     }
 }
