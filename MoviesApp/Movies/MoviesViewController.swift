@@ -4,7 +4,6 @@
 
 import UIKit
 
-
 // MARK: - Class
 class MoviesViewController: UIViewController {
     

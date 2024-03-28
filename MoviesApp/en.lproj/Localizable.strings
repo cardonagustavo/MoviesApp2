@@ -21,3 +21,13 @@ labelTextBottom = "Watch anywhere, anytime
 
 Ready to watch? Enter your Email to create your
 membership.";
+
+/*LoginView*/
+labelGeneresTitle = "Generes:";
+labelDescriptionTitle = "Description";
+labelPlayTeaser = "Watch trailer";
+
+labelMessage = "text";
+labelReleaseData = "Release Date";
+moviesTitle = "Movies";
+favoritesTitle = "Favorites";

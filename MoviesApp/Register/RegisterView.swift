@@ -9,7 +9,6 @@ import UIKit
     @objc optional func loginViewDidTapLoginButtonWith(_ registerView: RegisterView, email: String, andRememberme rememberme: Bool)
     func loginViewTapButtonRegister(_ registerView:  RegisterView)
     func switchValueChanged(isOn: Bool)
-    
 }
 
 //MARK: - protocol
@@ -17,8 +16,6 @@ protocol RegisterViewProtocol {
     func customComponentsLabel()
     func customComponentsTextField()
     func updateButtonCreate()
-    
-    
 }
 
 //MARK: - Class
@@ -47,8 +44,9 @@ class RegisterView: UIView {
     
     @IBOutlet weak var textBottom: UILabel!
     @IBAction private func taptoCloseKeyBoard(_ gesture: UITapGestureRecognizer) {
-        self.endEditing(true)
+    self.endEditing(true)
     }
+    
     @IBOutlet private weak var viewKeyboard: UIView!
     @IBOutlet private weak var viewKeyBoardGroupAnchor: NSLayoutConstraint!
     
@@ -79,7 +77,7 @@ class RegisterView: UIView {
     }
     
     func keyboardDisappear(_ info: KeyboardManager.Info) {
-        self.viewKeyBoardGroupAnchor.constant = 0
+    self.viewKeyBoardGroupAnchor.constant = 0
         
     }
     
@@ -98,28 +96,24 @@ class RegisterView: UIView {
 
 //MARK: - Extension
 extension RegisterView: RegisterViewProtocol {
-    
-    
-    
-    
     func updateButtonCreate() {
         buttonCreateAccount.setTitle(nil, for: .normal)
-        buttonCreateAccount.setTitle(NSLocalizedString("buttonCreateAccount", comment: ""), for: .normal)
+        buttonCreateAccount.setTitle(StringsLocalizable.RegisterView.buttonCreateAccount.localized(), for: .normal)
         buttonCreateAccount.setTitleColor(UIColor.black, for: .normal)
         buttonCreateAccount.layer.cornerRadius = 19
     }
     
     func customComponentsLabel() {
-        self.labelCreateAccount.text = NSLocalizedString("labelCreateAccount", comment: "")
+        self.labelCreateAccount.text = StringsLocalizable.RegisterView.buttonCreateAccount.localized()
         self.labelCreateAccount.font = UIFont(name: "verdana", size: 20)
         self.labelCreateAccount.adjustsFontSizeToFitWidth = false
         
-        self.secondLabel.text = NSLocalizedString("secondLabel", comment: "")
+        self.secondLabel.text = StringsLocalizable.RegisterView.secondLabel.localized()
         self.secondLabel.font = UIFont(name: "verdana", size: 20)
         self.secondLabel.adjustsFontSizeToFitWidth = false
         
         
-        self.labelRememberme.text = NSLocalizedString("labelRememberme", comment: "")
+        self.labelRememberme.text = StringsLocalizable.RegisterView.labelRememberme.localized()
         self.labelRememberme.font = UIFont(name: "verdana", size: 20)
         self.labelRememberme.adjustsFontSizeToFitWidth = false
         
@@ -133,12 +127,12 @@ extension RegisterView: RegisterViewProtocol {
         //      textFieldEmail.placeholder = "E-mail"
         textFieldEmail.leftViewMode = .always
         textFieldEmail.textColor = .black
-        textFieldEmail.placeholder = NSLocalizedString("textFieldEmail", tableName: "", comment: "")
+        textFieldEmail.placeholder = StringsLocalizable.RegisterView.textFieldEmail.localized()
         
         
         //       textFieldNickName.placeholder = "Nick Name"
         textFieldNickName.leftViewMode = .always
         textFieldNickName.textColor = .black
-        textFieldNickName.placeholder = NSLocalizedString("textFieldNickName", tableName: "", comment: "")
+        textFieldNickName.placeholder = StringsLocalizable.RegisterView.textFieldNickName.localized()
     }
 }

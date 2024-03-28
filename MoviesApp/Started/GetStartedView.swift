@@ -30,14 +30,15 @@ class GetStartedView: UIView {
     }
     
     func updateComponents() {
-        self.labelWelcomeTitle.text = NSLocalizedString("labelWelcomeTitle", comment: "")
+        self.labelWelcomeTitle.text = StringsLocalizable.GetStartView.labelWelcomeTitle.localized()
         self.labelWelcomeTitle.font = UIFont(name: "verdana", size: 25)
         self.labelWelcomeTitle.textAlignment = .center
         
-        self.labelWelcomeText.text = NSLocalizedString("labelWelcomeText", comment: "")
+        self.labelWelcomeText.text = StringsLocalizable.GetStartView.labelWelcomeText.localized()
         
         self.buttonUpdate.backgroundColor? = UIColor.black
-        self.buttonUpdate.setTitle(NSLocalizedString("buttonGetStarted", tableName: "", comment: ""), for: .normal)
+        self.buttonUpdate.setTitle(StringsLocalizable.GetStartView.buttonGetStarted.localized(), for: .normal)
+
     }
     
 }

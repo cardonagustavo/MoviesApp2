@@ -102,19 +102,19 @@ extension LoginView: LoginViewProtocol {
             print("Error: Label 'labelShortLogin' is not initialized correctly.")
         }
         //        self.labelShortLogin.text = "Welcome back to our space!"
-        self.labelCreateAccount.text = NSLocalizedString("labelCreateAccount", comment: "")
+        self.labelCreateAccount.text = StringsLocalizable.RegisterView.labelCreateAccount.localized()
     }
     
     func buttonsUpdate() {
-        self.buttonLogin.setTitle(NSLocalizedString("buttonLogin", tableName: "", comment: ""), for: .normal)
+        self.buttonLogin.setTitle(StringsLocalizable.LoginView.buttonLogin.localized(), for: .normal)
 //        self.buttonShortLoginOutlet.setTitle(NSLocalizedString("buttonShortLogin", tableName: "", comment: ""), for: .normal)
         
-        self.buttonRegister.setTitle(NSLocalizedString("buttonRegister", tableName: "", comment: ""), for: .normal)
+        self.buttonRegister.setTitle(StringsLocalizable.LoginView.buttonRegister.localized(), for: .normal)
     }
     
     func textFieldLoginUpdate() {
         self.textFieldLogin.font = UIFont(name: "veradna", size: 30)
-        self.textFieldLogin.placeholder = NSLocalizedString("textFieldLogin", comment: "")
+        self.textFieldLogin.placeholder = StringsLocalizable.LoginView .textFieldLogin.localized()
         self.textFieldLogin.textColor = UIColor.principalInvertBackground
         self.textFieldLogin.layer.cornerRadius = 20.0
         
@@ -144,3 +144,5 @@ extension LoginView: LoginViewProtocol {
     }
     
 }
+
+

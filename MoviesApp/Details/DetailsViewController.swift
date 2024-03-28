@@ -3,10 +3,14 @@
 //  Created by Gustavo Adolfo Cardona Quintero on 28/02/24.
 import UIKit
 import CoreData
+import AVKit
+
+
 class DetailViewController: UIViewController {
     
     var detailView: DetailView? { self.view as? DetailView }
     var movie: MovieDetail?
+    var videoKey: String?
     var movieId: Int?
     var isFavoriteMovie = false
     
@@ -17,6 +21,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getWebServiceDetail()
+        detailView?.delegate = self
         self.navigationItem.title = "Details"
     }
     
@@ -113,15 +118,41 @@ class DetailViewController: UIViewController {
     }
     
     private func getWebServiceDetail() {
-        guard let movieId = movieId else { return }
-        
-        webServiceDetail.retrieveMovie(idMovie: movieId) { [weak self] movieDetailDTO in
-            let movieDetail = MovieDetail(detailDto: movieDetailDTO)
-            self?.movie = movieDetail
-            DispatchQueue.main.async {
-                self?.detailView?.dataInjection(fromModel: movieDetail)
-                self?.checkFavoriteStatusAndUpdateButton()
+            guard let movieId = movieId else { return }
+            
+            webServiceDetail.retrieveMovie(idMovie: movieId) { [weak self] movieDetailDTO in
+                let movieDetail = MovieDetail(detailDto: movieDetailDTO)
+                self?.movie = movieDetail
+                DispatchQueue.main.async {
+                    self?.detailView?.dataInjection(fromModel: movieDetail)
+                    self?.checkFavoriteStatusAndUpdateButton()
+                    
+                    self?.webServiceDetail.fetchVideos(for: movieId) { videoModel in
+                        // Verifica si hay resultados de video en el modelo
+                        if !videoModel.results.isEmpty {
+                            // Accede al primer resultado de video y obtén su key
+                            let videoResult = videoModel.results[0]
+                            // Crea un objeto de tipo MoviesWebService.VideoResult
+                            let webServiceVideoResult = MoviesWebService.VideoResult(key: videoResult.key)
+                            // Luego puedes usar este objeto para reproducir el video
+                            self?.videoKey = webServiceVideoResult.key
+                        } else {
+                            print("No se encontraron videos de la película.")
+                        }
+                    }
+                }
             }
         }
+}
+
+extension DetailViewController: DetailViewDelegate {
+    func didTapWatchVideoButton() {
+        guard let key = videoKey else {
+            print("Error: No hay una clave de video disponible.")
+            return
+        }
+        
+        let youtubeURL = URL(string: "https://www.youtube.com/watch?v=\(key)")!
+        UIApplication.shared.open(youtubeURL, options: [:], completionHandler: nil)
     }
 }

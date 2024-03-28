@@ -1,9 +1,7 @@
-//
 //  MoviesCollectionViewCell.swift
 //  MoviesApp
-//
 //  Created by Gustavo Adolfo Cardona Quintero on 11/03/24.
-//
+
 import UIKit
 
 // MARK: - Class
@@ -18,14 +16,11 @@ class MoviesCollectionViewCell: UICollectionViewCell {
 
     
     fileprivate func updateDataWith(_ movies: Movies) {
-        //       self.imageMovie.image = movies.posterPath
         let baseURLImage = "https://image.tmdb.org/t/p/w500"
         let urlImage = baseURLImage + movies.poster_path
-        //            print(urlImage)
         if let url = URL(string: urlImage) {
             URLSession.shared.dataTask(with: url) {(data, response, error) in guard let imageData = data else { return }
                 DispatchQueue.main.async {
-                    //                    print("Here")
                     self.imageMovie.image = UIImage(data: imageData)
                     
                 }
@@ -41,10 +36,9 @@ class MoviesCollectionViewCell: UICollectionViewCell {
             self.viewContainer.clipsToBounds = true
             
             
-            self.labelReleaseData.text = NSLocalizedString(movies.formattedReleaseDateForMovies, comment: "Release Date")
+            self.labelReleaseData.text = NSLocalizedString(movies.formattedReleaseDateForMovies, comment: "")
             self.labelReleaseData.font = UIFont.italicSystemFont(ofSize: 16.0)
             self.labelReleaseData.textColor = UIColor.lightGray
-            //                self.labelReleaseData.textColor = UIColor(named: "PrincipalInvertBackground")
         }
         self.starkViewMask.progressView.progress = (movies.vote_average / 10)
         self.viewContainerStars.addSubview(starkViewMask)
@@ -56,7 +50,6 @@ class MoviesCollectionViewCell: UICollectionViewCell {
 extension MoviesCollectionViewCell {
     
     class var identifier: String { "MoviesCollectionViewCell" }
-    
     class func buildIn(_ collectionView: UICollectionView, in indexPath: IndexPath, whit movies: Movies) -> Self {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.identifier, for: indexPath) as? Self

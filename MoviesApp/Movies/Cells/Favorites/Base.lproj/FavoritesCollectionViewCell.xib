@@ -11,10 +11,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FavoritesCollectionViewCell" id="6Yx-rE-Wk3" customClass="FavoritesCollectionViewCell" customModule="MoviesApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="288" height="487"/>
+            <rect key="frame" x="0.0" y="0.0" width="288" height="476"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="HhJ-gc-hf5">
-                <rect key="frame" x="0.0" y="0.0" width="288" height="487"/>
+                <rect key="frame" x="0.0" y="0.0" width="288" height="476"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WQQ-1Y-NJh">
@@ -52,13 +52,13 @@
                 </constraints>
             </collectionViewCellContentView>
             <color key="backgroundColor" name="PrincipalColorBackground"/>
-            <size key="customSize" width="288" height="487"/>
+            <size key="customSize" width="288" height="476"/>
             <connections>
                 <outlet property="imageMovie" destination="WQQ-1Y-NJh" id="bO7-lm-Sgk"/>
                 <outlet property="labelName" destination="Qu3-wv-0Zz" id="Djc-PZ-cQO"/>
                 <outlet property="labelReleaseDate" destination="dkV-v0-0YT" id="EeR-L0-JKL"/>
             </connections>
-            <point key="canvasLocation" x="-389.3129770992366" y="-32.74647887323944"/>
+            <point key="canvasLocation" x="-389.3129770992366" y="-36.619718309859159"/>
         </collectionViewCell>
     </objects>
     <resources>

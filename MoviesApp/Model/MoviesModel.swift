@@ -52,36 +52,41 @@ struct Movies {
     }
     
     var formattedReleaseDateForMovies: String {
-        let inputDateFormatter = DateFormatter()
-        inputDateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        guard let inputDate = inputDateFormatter.date(from: self.release_date) else {
-            return ""
-        }
-        
-        let outputDateFormatter = DateFormatter()
-        outputDateFormatter.dateFormat = "EEEE, dd MMMM yyyy"
-        
-        let formattedDate = outputDateFormatter.string(from: inputDate)
-        
-        return "Release Date:\n\(formattedDate)"
-    }
+           let inputDateFormatter = DateFormatter()
+           inputDateFormatter.dateFormat = "yyyy-MM-dd"
+           
+           guard let inputDate = inputDateFormatter.date(from: self.release_date) else {
+               return ""
+           }
+           
+           let outputDateFormatter = DateFormatter()
+           outputDateFormatter.dateFormat = "EEEE, dd MMMM yyyy"
+           outputDateFormatter.locale = Locale.current
+           
+           let formattedDate = outputDateFormatter.string(from: inputDate)
+           
+        let releaseDateLabelText = StringsLocalizable.ErrorView.labelReleaseData.localized()
+           return "\(releaseDateLabelText)\n\(formattedDate)"
+       }
+       
+       var formattedReleaseDateForFavorite: String {
+           let inputDateFormatter = DateFormatter()
+           inputDateFormatter.dateFormat = "yyyy-MM-dd"
+           
+           guard let inputDate = inputDateFormatter.date(from: self.release_date) else {
+               return ""
+           }
+           
+           let outputDateFormatter = DateFormatter()
+           outputDateFormatter.dateFormat = "dd MMMM yyyy"
+           outputDateFormatter.locale = Locale.current
+           
+           let formattedDate = outputDateFormatter.string(from: inputDate)
+           
+           let releaseDateLabelText = StringsLocalizable.ErrorView.labelReleaseData.localized()
+           return "\(releaseDateLabelText)\n\(formattedDate)"
+       }
 
-    var formattedReleaseDateForFavorite: String {
-        let inputDateFormatter = DateFormatter()
-        inputDateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        guard let inputDate = inputDateFormatter.date(from: self.release_date) else {
-            return ""
-        }
-        
-        let outputDateFormatter = DateFormatter()
-        outputDateFormatter.dateFormat = "dd MMMM yyyy"
-        
-        let formattedDate = outputDateFormatter.string(from: inputDate)
-        
-        return "Release Date:\n\(formattedDate)"
-    }
 
     /// Inicializa una instancia de Movies a partir de un objeto MovieDTO.
     ///
@@ -125,3 +130,4 @@ extension Array where Element == MoviesEntity {
         self.map({ Movies(movies: $0) })
     }
 }
+

@@ -23,15 +23,17 @@ class TabBarNavigationController: UITabBarController {
     }
     
     private func customTabBar() {
-        let movies = MoviesViewController.buildMovies()
-        let favorites = MoviesViewController.buildFavorites()
+        let moviesTitle = MoviesViewController.buildMovies()
+        let favoritesTitle = MoviesViewController.buildFavorites()
         
         UINavigationBar.appearance().prefersLargeTitles = true
         
-        movies.tabBarItem = UITabBarItem(title: "Movies", image: UIImage(systemName: "square.split.2x2.fill"), tag: 0)
-        favorites.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(systemName: "star.fill"), tag: 1)
+        moviesTitle.tabBarItem = UITabBarItem(title: StringsLocalizable.ErrorView.moviesTitle.localized(), image: UIImage(systemName: "square.split.2x2.fill"), tag: 0)
+        favoritesTitle.tabBarItem = UITabBarItem(title: StringsLocalizable.ErrorView.favoritesTitle.localized(), image: UIImage(systemName: "star.fill"), tag: 1)
+
+
         
-        viewControllers = [movies, favorites]
+        viewControllers = [moviesTitle, favoritesTitle]
         
         if let originalImage = UIImage(named: "logout.png") {
             let targetSize = CGSize(width: 30, height: 30)

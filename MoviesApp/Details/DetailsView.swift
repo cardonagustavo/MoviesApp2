@@ -8,9 +8,14 @@
 import UIKit
 
 
+protocol DetailViewDelegate: AnyObject {
+    func didTapWatchVideoButton()
+}
+
 //MARK: - Class
 class DetailView: UIView {
     
+    weak var delegate: DetailViewDelegate?
     
     @IBOutlet weak var viewContainerTop: UIView!
     @IBOutlet weak var viewContainerStars: UIView!
@@ -23,7 +28,15 @@ class DetailView: UIView {
     @IBOutlet weak var labelListGenere: UILabel!
     @IBOutlet weak var labelDescriptionTitle: UILabel!
     @IBOutlet weak var labelDescriptionText: UILabel!
+    @IBOutlet weak var labelPlayTeaser: UILabel!
+    @IBOutlet weak var buttonTeaserMovie: UIButton!
     
+    
+    @IBAction func buttonWhatchVideo(_ sender: Any) {
+        delegate?.didTapWatchVideoButton()
+    }
+    
+
     private let starMaskView = StarsRank(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
     
     func genresList(_ genres: [MoviesWebService.GenreDTO]) -> String {
@@ -51,6 +64,8 @@ class DetailView: UIView {
         self.labelGenteresTitleMethod()
         self.labelListGeneresUpdate()
         self.updateViewContainerStars()
+        self.labelPlayTeaserUpdate()
+        self.stylesTeaserButton()
         
     }
     
@@ -134,5 +149,31 @@ class DetailView: UIView {
         self.labelListGenere.textColor = UIColor.lightGray
     }
     
+    func labelPlayTeaserUpdate() {
+        self.labelPlayTeaser.text = StringsLocalizable.DetailsView.labelPlayTeaser.localized()
+        self.labelPlayTeaser.font = UIFont(name: "Helvetica-Bold", size: 20)
+        self.labelPlayTeaser.textColor = UIColor.lightGray
+    }
+    
+    func stylesTeaserButton() {
+        buttonTeaserMovie.translatesAutoresizingMaskIntoConstraints = false
+
+        // Configurar el tamaño del botón
+        let buttonSize: CGFloat = 100
+        NSLayoutConstraint.activate([
+            buttonTeaserMovie.widthAnchor.constraint(equalToConstant: buttonSize),
+            buttonTeaserMovie.heightAnchor.constraint(equalToConstant: buttonSize)
+        ])
+
+        // Establecer el ícono del botón
+        if let iconImage = UIImage(named: "PlayIcon.png") {
+            buttonTeaserMovie.setImage(iconImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+
+        buttonTeaserMovie.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+
+        // Ajustar el modo de contenido del imageView del botón para que el ícono se ajuste al tamaño del botón
+        buttonTeaserMovie.imageView?.contentMode = .scaleAspectFill
+    }
 }
 

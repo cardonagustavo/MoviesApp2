@@ -13,10 +13,10 @@ struct MoviesWebService {
     var language: String {
         return Locale.preferredLanguages.first ?? "en"
     }
-
+    
     /// URL base del servicio web de películas.
     let baseURL = "https://api.themoviedb.org/3/movie/"
-
+    
     /// Clave de API para acceder al servicio web de películas.
     let apiKey = "176de15e8c8523a92ff640f432966c9c"
     
@@ -61,6 +61,22 @@ struct MoviesWebService {
             completionHandler(response ?? MovieDetailDTO())
         }
     }
+    
+    /// Método para obtener los videos de una película específica.
+    ///
+    /// - Parameters:
+    ///   - movieId: El ID de la película.
+    ///   - completionHandler: El bloque de finalización que se ejecutará cuando se complete la solicitud.
+    func fetchVideos(for movieId: Int, completionHandler: @escaping CompletionVideosHandler) {
+        let urlString = "\(baseURL)\(movieId)/videos?api_key=\(apiKey)&language=\(language)"
+        
+        AF.request(urlString, method: .get).response { dataResponse in
+            guard let data = dataResponse.data else { return }
+            
+            let videoResponse = try? JSONDecoder().decode(VideoModel.self, from: data)
+            completionHandler(videoResponse ?? VideoModel(results: []))
+        }
+    }
 }
 
 // MARK: - Clousures
@@ -71,9 +87,11 @@ extension MoviesWebService {
     
     /// Definición de un bloque de finalización para la solicitud de detalles de película.
     typealias CompletionDetailsHandler = (_ arrayMovies: MovieDetailDTO) -> Void
+    
+    /// Definición de un bloque de finalización para la solicitud de videos.
+    typealias CompletionVideosHandler = (_ videoModel: VideoModel) -> Void
 }
 
-// Resto del código...
 
 // MARK: - DTO
 
@@ -122,7 +140,7 @@ extension MoviesWebService {
             self.poster_path = ""
             self.release_date = ""
             self.title = ""
-            self.video = false
+            self.video = true
             self.vote_average = 0.0
             self.vote_count = 0
         }
@@ -171,11 +189,29 @@ extension MoviesWebService {
             self.status = ""
             self.tagline = ""
             self.title = ""
-            self.video = false
+            self.video = true
             self.vote_average = 0.0
             self.vote_count = 0
         }
     }
+    
+    /// Estructura para representar los detalles de un video.
+    struct VideoResult: Decodable {
+        let key: String?
+        
+        init(key: String) {
+            self.key = key
+        }
+    }
+    
+    struct VideoDTO: Decodable {
+        let keys: [String]
+        
+        init(keys: [String]) {
+            self.keys = keys
+        }
+    }
+    
     
     // MARK: - Genre
     
@@ -224,3 +260,4 @@ extension MoviesWebService {
         let name: String?
     }
 }
+

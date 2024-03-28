@@ -56,36 +56,40 @@ struct MovieDetail {
     let vote_count: Int
     
     var formattedReleaseDateForMovies: String {
-        let inputDateFormatter = DateFormatter()
-        inputDateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        guard let inputDate = inputDateFormatter.date(from: self.release_date) else {
-            return ""
-        }
-        
-        let outputDateFormatter = DateFormatter()
-        outputDateFormatter.dateFormat = "EEEE, dd MMMM yyyy"
-        
-        let formattedDate = outputDateFormatter.string(from: inputDate)
-        
-        return "Release Date:\n\(formattedDate)"
-    }
-
-    var formattedReleaseDateForFavorite: String {
-        let inputDateFormatter = DateFormatter()
-        inputDateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        guard let inputDate = inputDateFormatter.date(from: self.release_date) else {
-            return ""
-        }
-        
-        let outputDateFormatter = DateFormatter()
-        outputDateFormatter.dateFormat = "dd MMMM yyyy"
-        
-        let formattedDate = outputDateFormatter.string(from: inputDate)
-        
-        return "Release Date:\n\(formattedDate)"
-    }
+           let inputDateFormatter = DateFormatter()
+           inputDateFormatter.dateFormat = "yyyy-MM-dd"
+           
+           guard let inputDate = inputDateFormatter.date(from: self.release_date) else {
+               return ""
+           }
+           
+           let outputDateFormatter = DateFormatter()
+           outputDateFormatter.dateFormat = "EEEE, dd MMMM yyyy"
+           outputDateFormatter.locale = Locale.current
+           
+           let formattedDate = outputDateFormatter.string(from: inputDate)
+           
+           let releaseDateLabelText = StringsLocalizable.ErrorView.labelReleaseData.localized()
+           return "\(releaseDateLabelText)\n\(formattedDate)"
+       }
+       
+       var formattedReleaseDateForFavorite: String {
+           let inputDateFormatter = DateFormatter()
+           inputDateFormatter.dateFormat = "yyyy-MM-dd"
+           
+           guard let inputDate = inputDateFormatter.date(from: self.release_date) else {
+               return ""
+           }
+           
+           let outputDateFormatter = DateFormatter()
+           outputDateFormatter.dateFormat = "dd MMMM yyyy"
+           outputDateFormatter.locale = Locale.current
+           
+           let formattedDate = outputDateFormatter.string(from: inputDate)
+           
+           let releaseDateLabelText = StringsLocalizable.ErrorView.labelReleaseData.localized()
+           return "\(releaseDateLabelText)\n\(formattedDate)"
+       }
 
 
     /// Inicializa una instancia de Movie a partir de un objeto MovieDTO.
@@ -151,8 +155,6 @@ struct MovieDetail {
         self.vote_count = 0
     }
 }
-
-
 
 /// Representa una película favorita.
 struct Favorite: Codable {
