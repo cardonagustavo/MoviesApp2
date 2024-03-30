@@ -8,7 +8,7 @@
 import UIKit
 
 class LoginAdapter {
-//    func loginUserWithUserEmail(_ userEmail: String, andRememberme rememberme: Bool) {
-//        SessionManager.standard.login(rememberme: rememberme, userEmail: userEmail)
-//    }
+    func loginUserWithUserEmail(_ userEmail: String, andRememberme rememberme: Bool) {
+        UserManager.shared.loginUser(rememberMe: rememberme, userEmail: userEmail, nickname: nil)
+    }
 }

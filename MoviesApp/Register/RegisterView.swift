@@ -6,8 +6,8 @@ import UIKit
 
 //MARK: - Delegade
 @objc protocol RegisterViewDelegate: AnyObject {
-    @objc optional func loginViewDidTapLoginButtonWith(_ registerView: RegisterView, email: String, andRememberme rememberme: Bool)
-    func loginViewTapButtonRegister(_ registerView:  RegisterView)
+    @objc optional func loginViewDidTapLoginButtonWith(_ registerView: RegisterView, email: String, nickname: String, andRememberme rememberme: Bool)
+    func buttonCreateAccount(_ sender: UIButton)
     func switchValueChanged(isOn: Bool)
 }
 
@@ -37,9 +37,9 @@ class RegisterView: UIView {
     @IBOutlet weak var buttonCreateAccount: UIButton!
     @IBOutlet weak var labelTextBottom: UILabel!
     
+    
     @IBAction func buttonCreateAccount(_ sender: UIButton) {
-        self.delegate?.loginViewTapButtonRegister(self)
-        self.delegate?.loginViewDidTapLoginButtonWith?(self, email: self.textFieldEmail.text ?? "", andRememberme: self.labelRememberme.tag == 1 ? true : false)
+        self.delegate?.buttonCreateAccount(sender)
     }
     
     @IBOutlet weak var textBottom: UILabel!
@@ -83,6 +83,7 @@ class RegisterView: UIView {
     
     func configureSwitch(isOn: Bool) {
         swithToRememberme.isOn = isOn
+        swithToRememberme.isEnabled = true
         swithToRememberme.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
     }
     
@@ -91,7 +92,9 @@ class RegisterView: UIView {
         delegate?.switchValueChanged(isOn: sender.isOn)
     }
     
-    
+    func getCredentialText() -> String? {
+        return textFieldEmail.text
+    }
 }
 
 //MARK: - Extension
@@ -124,15 +127,13 @@ extension RegisterView: RegisterViewProtocol {
     
     
     func customComponentsTextField() {
-        //      textFieldEmail.placeholder = "E-mail"
         textFieldEmail.leftViewMode = .always
         textFieldEmail.textColor = .black
         textFieldEmail.placeholder = StringsLocalizable.RegisterView.textFieldEmail.localized()
         
-        
-        //       textFieldNickName.placeholder = "Nick Name"
         textFieldNickName.leftViewMode = .always
         textFieldNickName.textColor = .black
         textFieldNickName.placeholder = StringsLocalizable.RegisterView.textFieldNickName.localized()
     }
+    
 }

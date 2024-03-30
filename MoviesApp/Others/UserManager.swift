@@ -3,66 +3,50 @@
 //  MoviesApp
 //
 //  Created by Gustavo Adolfo Cardona Quintero on 20/03/24.
-//
+
+
 import Foundation
 
-// MARK: - Class Definition
-class UserSessionManager {
-    static let standard = SessionManager()
+class UserManager {
+    static let shared = UserManager()
     
-    func isLoggedIn() -> Bool {
-        return self.getUser().isLoggedIn
+    func registerUser(email: String, nickname: String?) {
+        let safeNickname = nickname ?? ""
+        let userInfo = UserTest(email: email, nickname: safeNickname, isLoggedIn: true, rememberMe: true, rememberedUser: email)
+        KeyChainManager.standard.save(userInfo, service: "com.yourapp.service", account: "userAccount")
     }
     
-    func isUserRequestedRememberLogin() -> Bool {
-        return self.getUser().rememberme
-    }
-    
-    func login(rememberme: Bool, userEmail: String) {
-        KeyChainManager.standard.save(UserTest(email: userEmail, isLoggedIn: true, rememberme: rememberme), service: "userTest", account: "user")
-    }
-    
-    func logoutWithRememberme() {
-        KeyChainManager.standard.save(self.logout(), service: "userTest, account: ", account: "user")
-    }
-    
-    func logout() -> UserTest {
-        var user = self.getUser()
-        user.isLoggedIn = false
-        return user
-    }
-    
-    func logoutAndDisableRememberme() {
-        var userToLogout = self.logout()
-        userToLogout.rememberme = false
-        userToLogout.email = ""
-        
-            KeyChainManager.standard.save(userToLogout, service: "userTest", account: "user")
-    }
-    
-    func getUser() -> UserTest {
-        guard let UserUser = KeyChainManager.standard.read(service: "userTest", account: "user", type: UserTest.self) else { return UserTest(email: "", isLoggedIn: false, rememberme: false) }
-        return UserUser
-    }
-    
-    func isRegisteredUserByEmail(_ email: String) -> Bool {
-        self.getUsersRegistered().filter { $0.email == email }.count > 0
-    }
-    
-    func getUsersRegistered() -> [UserTest] {
-        guard let usersRegistered = KeyChainManager.standard.read(service: "userTest", account: "usersRegistered", type: [UserTest].self) else { return [] }
-        return usersRegistered
-    }
-    
-    func retrieveFavoritesByUserLogged() -> [Favorite] {
-        let user = self.getUser()
-        if !user.email.isEmpty {
-            return KeyChainManager.standard.read(service: "userTest", account: "favorites-\(user.email)", type: [Favorite].self) ?? []
+    func loginUser(rememberMe: Bool, userEmail: String, nickname: String?) {
+        let safeNickname = nickname ?? ""
+        if rememberMe {
+            let userInfo = UserTest(email: userEmail, nickname: safeNickname, isLoggedIn: true, rememberMe: rememberMe, rememberedUser: userEmail)
+            KeyChainManager.standard.save(userInfo, service: "com.yourapp.service", account: "userAccount")
         } else {
-            return []
+            // Aquí deberías llamar al método logoutUser de la clase UserManager
+            self.logoutUser()
         }
     }
+    func isUserRegistered() -> Bool {
+        // Aquí implementa la lógica para verificar si el usuario está registrado.
+        // Por ejemplo, puedes comprobar si existe alguna información de usuario en el Keychain.
+        // Si el usuario está registrado, devuelve true, de lo contrario, devuelve false.
+        return retrieveUserDetails() != nil
+    }
+
     
-    // Whit this line, we prevent that we can't create a new instance of this class
-    private init() {}
+    func isValidCredential(_ credential: String) -> Bool {
+        // Aquí implementa la lógica para verificar si el credential es válido.
+        // Por ejemplo, podrías comprobar si el credential está en tu base de datos de usuarios.
+        // Si el credential es válido, devuelve true, de lo contrario, devuelve false.
+        return true // Aquí devuelves true temporalmente, deberás implementar la lógica real.
+    }
+    
+    func retrieveUserDetails() -> UserTest? {
+        return KeyChainManager.standard.read(service: "com.yourapp.service", account: "userAccount", type: UserTest.self)
+    }
+    
+    func logoutUser() {
+        // Elimina la información del usuario de Keychain al cerrar la sesión
+        KeyChainManager.standard.delete(service: "com.yourapp.service", account: "userAccount")
+    }
 }

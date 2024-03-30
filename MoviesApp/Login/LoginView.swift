@@ -5,8 +5,8 @@
 import UIKit
 
 @objc protocol LoginViewDelegade: AnyObject {
-    //    func tapButtonLoginShowToMoviesCell(_ loginView: LoginView)
-    // func tapButtonLoginShowRegisterView(_ loginView: LoginView)
+    func tapButtonLoginShowToMoviesCell(_ loginView: LoginView)
+//    func tapButtonLoginShowRegisterView(_ loginView: LoginView)
     func buttonShortLogin(_ loginView: LoginView)
 }
 
@@ -31,16 +31,13 @@ class LoginView: UIView {
     @IBOutlet weak var textFieldLogin: UITextField!
     @IBOutlet weak var buttonLogin: UIButton!
     @IBOutlet weak var labelCreateAccount: UILabel!
-    
     @IBOutlet weak var buttonRegister: UIButton!
-    
-    
-    
+        
     @IBAction func buttonRegister(_ sender: UIButton) {
-        //   self.delegate?.tapButtonLoginShowRegisterView(self)
+//        self.delegate?.tapButtonLoginShowRegisterView(self)
     }
     @IBAction func buttonTapLogin(_ sender: UIButton) {
-        //   self.delegate?.tapButtonLoginShowToMoviesCell(self)
+        self.delegate?.tapButtonLoginShowToMoviesCell(self)
         
     }
     
@@ -51,9 +48,9 @@ class LoginView: UIView {
     @IBAction func buttonShortLogin(_ sender: Any) {
         self.delegate?.buttonShortLogin(self)
     }
-    //    @IBAction func textFieldDidChanged(_ sender: UITextField) {
-    //        delegate?.textViewDidChange(sender.text ?? "")
-    //    }
+//        @IBAction func textFieldDidChanged(_ sender: UITextField) {
+//            delegate?.textViewDidChange(sender.text ?? "")
+//        }
 
 }
 
@@ -96,21 +93,27 @@ extension LoginView: LoginViewProtocol {
     }
     
     func updateLabels() {
-        if let labelShortLogin = self.labelShortLogin {
-            labelShortLogin.text = "Welcome back to our space!"
-        } else {
-            print("Error: Label 'labelShortLogin' is not initialized correctly.")
-        }
-        //        self.labelShortLogin.text = "Welcome back to our space!"
+        guard let label = labelShortLogin else {
+                    print("Error: labelShortLogin is nil.")
+                    return
+                }
+
+        label.text = StringsLocalizable.ShortLogin.labelShortLogin.localized()
+    
         self.labelCreateAccount.text = StringsLocalizable.RegisterView.labelCreateAccount.localized()
     }
     
     func buttonsUpdate() {
         self.buttonLogin.setTitle(StringsLocalizable.LoginView.buttonLogin.localized(), for: .normal)
-//        self.buttonShortLoginOutlet.setTitle(NSLocalizedString("buttonShortLogin", tableName: "", comment: ""), for: .normal)
+//        self.buttonShortLoginOutlet.setTitle(StringsLocalizable.LoginView.buttonShortLoginOutlet.localized(), for: .normal)
         
         self.buttonRegister.setTitle(StringsLocalizable.LoginView.buttonRegister.localized(), for: .normal)
     }
+    
+    func getEmailOrNickname() -> String? {
+            return textFieldLogin.text
+        }
+
     
     func textFieldLoginUpdate() {
         self.textFieldLogin.font = UIFont(name: "veradna", size: 30)

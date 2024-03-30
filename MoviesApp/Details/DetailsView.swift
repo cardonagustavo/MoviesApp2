@@ -133,13 +133,13 @@ class DetailView: UIView {
     }
     
     func labelDescriptionTitleMethod() {
-        self.labelDescriptionTitle.text = "Description:"
+        self.labelDescriptionTitle.text = StringsLocalizable.DetailsView.labelDescriptionTitle.localized()
         self.labelDescriptionTitle.font = UIFont(name: "Helvetica-Bold", size: 20)
         self.labelDescriptionTitle.textColor = UIColor(named: "PrincipalInvertColorBackground")
     }
     
     func labelGenteresTitleMethod() {
-        self.labelGeneresTitle.text = "Generos:"
+        self.labelGeneresTitle.text = StringsLocalizable.DetailsView.labelGeneresTitle.localized()
         self.labelGeneresTitle.font = UIFont(name: "Helvetica-Bold", size: 20)
         self.labelGeneresTitle.textColor = UIColor(named: "PrincipalInvertColorBackground")
     }
@@ -151,28 +151,24 @@ class DetailView: UIView {
     
     func labelPlayTeaserUpdate() {
         self.labelPlayTeaser.text = StringsLocalizable.DetailsView.labelPlayTeaser.localized()
-        self.labelPlayTeaser.font = UIFont(name: "Helvetica-Bold", size: 20)
+        self.labelPlayTeaser.font = UIFont(name: "Helvetica-Bold", size: 15)
         self.labelPlayTeaser.textColor = UIColor.lightGray
     }
     
     func stylesTeaserButton() {
         buttonTeaserMovie.translatesAutoresizingMaskIntoConstraints = false
 
-        // Configurar el tamaño del botón
         let buttonSize: CGFloat = 100
         NSLayoutConstraint.activate([
             buttonTeaserMovie.widthAnchor.constraint(equalToConstant: buttonSize),
             buttonTeaserMovie.heightAnchor.constraint(equalToConstant: buttonSize)
         ])
 
-        // Establecer el ícono del botón
         if let iconImage = UIImage(named: "PlayIcon.png") {
             buttonTeaserMovie.setImage(iconImage.withRenderingMode(.alwaysOriginal), for: .normal)
         }
 
         buttonTeaserMovie.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-
-        // Ajustar el modo de contenido del imageView del botón para que el ícono se ajuste al tamaño del botón
         buttonTeaserMovie.imageView?.contentMode = .scaleAspectFill
     }
 }

@@ -27,7 +27,11 @@ labelGeneresTitle = "Generes:";
 labelDescriptionTitle = "Description";
 labelPlayTeaser = "Watch trailer";
 
+/*ErrorView*/
 labelMessage = "text";
 labelReleaseData = "Release Date";
 moviesTitle = "Movies";
 favoritesTitle = "Favorites";
+
+/*ShortLoguinView*/
+labelShortLogin = "Welcome Again";

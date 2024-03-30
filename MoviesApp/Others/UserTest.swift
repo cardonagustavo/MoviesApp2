@@ -8,9 +8,11 @@
 import Foundation
 
 
-// MARK: - User Definition
 struct UserTest: Codable {
     var email: String
+    var nickname: String
     var isLoggedIn: Bool
-    var rememberme: Bool
+    var rememberMe: Bool
+    var rememberedUser: String?
 }
+

@@ -28,7 +28,7 @@ struct StringsLocalizable {
     struct DetailsView {
         static let labelGeneresTitle = "labelGeneresTitle"
         static let labelDescriptionTitle = "labelDescriptionTitle"
-        static let labelPlayTeaser = "labelGeneresTitle"
+        static let labelPlayTeaser = "labelPlayTeaser"
     }
     
     struct RegisterView {
@@ -48,7 +48,9 @@ struct StringsLocalizable {
         static let favoritesTitle = "favoritesTitle"
     }
     
-   
+    struct ShortLogin {
+        static let labelShortLogin = "labelShortLogin"
+    }
 }
 
 extension String {

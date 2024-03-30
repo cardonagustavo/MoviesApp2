@@ -1,5 +1,5 @@
 //
-//  ShortLoginViewController.swift
+//  ShortLoguinViewController.swift
 //  MoviesApp
 //
 //  Created by Gustavo Adolfo Cardona Quintero on 16/03/24.
@@ -7,13 +7,10 @@
 
 import UIKit
 
-
-// MARK: - Short Login View Controller
-
-class ShortLoginViewController: UIViewController {
+class ShortLoguinViewController: UIViewController {
     var loginView: LoginViewProtocol? { self.view as? LoginViewProtocol }
     var loginStrategy: LoginStrategy = ShortLoginStrategy()
-    var authenticationManager = SessionManager.shared
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,17 +24,33 @@ class ShortLoginViewController: UIViewController {
 }
 
 // MARK: - Delegates
-extension ShortLoginViewController: LoginViewDelegade {
+extension ShortLoguinViewController: LoginViewDelegade {
+    func tapButtonLoginShowToMoviesCell(_ loginView: LoginView) {
+        // Implementación según sea necesario
+    }
+    
+    func tapButtonLoginShowRegisterView(_ loginView: LoginView) {
+        // Implementación según sea necesario
+    }
+    
     func buttonShortLogin(_ loginView: LoginView) {
-        // Implementar lógica para iniciar sesión corto
-        if let email = authenticationManager.currentUser?.email {
-            loginStrategy.login(rememberme: true, userEmail: email) {
-                // Successful login
-                self.performSegue(withIdentifier: "ShortLoguinViewController", sender: nil)
-            } completionLoginErrorHandler: {
-                // Handle login errors
-                print("Error en el inicio de sesión corto")
-            }
-        }
+//        // Obtener el usuario actual del UserManager
+//        let currentUser = UserManager.getUser()
+//
+//        // Verificar si el usuario está autenticado
+//        guard currentUser.isLoggedIn else {
+//            print("Error: El usuario no está autenticado")
+//            return
+//        }
+//        let email = currentUser.email
+//
+//        // Lógica para iniciar sesión corto
+//        loginStrategy.login(rememberme: true, userEmail: email) {
+//            // Inicio de sesión exitoso
+//            self.performSegue(withIdentifier: "ShortLoguinViewController", sender: nil)
+//        } completionLoginErrorHandler: {
+//            // Manejar errores de inicio de sesión
+//            print("Error en el inicio de sesión corto")
+//        }
     }
 }

@@ -45,6 +45,7 @@
 		29A8BA262B6017F700238C97 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A8BA252B6017F700238C97 /* RegisterView.swift */; };
 		29A8BA282B60180A00238C97 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A8BA272B60180A00238C97 /* RegisterViewController.swift */; };
 		29B02D932B71652B000DA55C /* KeyboardManager(facade).swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B02D922B71652B000DA55C /* KeyboardManager(facade).swift */; };
+		29BE4C9D2BB87BE400FCE31C /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BE4C9C2BB87BE400FCE31C /* LoginManager.swift */; };
 		29C6C02C2BA5E6F100182E32 /* LoginStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C6C02B2BA5E6F100182E32 /* LoginStrategy.swift */; };
 		29C6C02E2BA5E72400182E32 /* ShortLoginStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C6C02D2BA5E72400182E32 /* ShortLoginStrategy.swift */; };
 		29C6C0302BA5E73E00182E32 /* FullLoginStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C6C02F2BA5E73E00182E32 /* FullLoginStrategy.swift */; };
@@ -61,7 +62,6 @@
 		29DB04772BAB3845009D1F8E /* ErrorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DB04752BAB3845009D1F8E /* ErrorCollectionViewCell.swift */; };
 		29DB047B2BAB3EE4009D1F8E /* ModelDataMovies.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 29DB04792BAB3EE4009D1F8E /* ModelDataMovies.xcdatamodeld */; };
 		29DB04812BAB62FA009D1F8E /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DB04802BAB62FA009D1F8E /* KeyChainManager.swift */; };
-		29DB04852BAB6374009D1F8E /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DB04842BAB6374009D1F8E /* SessionManager.swift */; };
 		29DB04872BAB651A009D1F8E /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DB04862BAB651A009D1F8E /* UserManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -106,6 +106,7 @@
 		29A8BA252B6017F700238C97 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		29A8BA272B60180A00238C97 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		29B02D922B71652B000DA55C /* KeyboardManager(facade).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardManager(facade).swift"; sourceTree = "<group>"; };
+		29BE4C9C2BB87BE400FCE31C /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		29C6C02B2BA5E6F100182E32 /* LoginStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStrategy.swift; sourceTree = "<group>"; };
 		29C6C02D2BA5E72400182E32 /* ShortLoginStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortLoginStrategy.swift; sourceTree = "<group>"; };
 		29C6C02F2BA5E73E00182E32 /* FullLoginStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullLoginStrategy.swift; sourceTree = "<group>"; };
@@ -122,7 +123,6 @@
 		29DB04752BAB3845009D1F8E /* ErrorCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorCollectionViewCell.swift; sourceTree = "<group>"; };
 		29DB047A2BAB3EE4009D1F8E /* ModelDataMovies.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ModelDataMovies.xcdatamodel; sourceTree = "<group>"; };
 		29DB04802BAB62FA009D1F8E /* KeyChainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManager.swift; sourceTree = "<group>"; };
-		29DB04842BAB6374009D1F8E /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		29DB04862BAB651A009D1F8E /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -266,10 +266,10 @@
 				2940BE892BA33B4A009D7FDD /* StarsRank.swift */,
 				29C6C03B2BA775B600182E32 /* ImageView.swift */,
 				29DB04802BAB62FA009D1F8E /* KeyChainManager.swift */,
-				29DB04842BAB6374009D1F8E /* SessionManager.swift */,
 				29DB04862BAB651A009D1F8E /* UserManager.swift */,
 				296384A32BAB8EC400E75CAD /* UserTest.swift */,
 				296299B22BB471B6002A6804 /* StringsLocalizable.swift */,
+				29BE4C9C2BB87BE400FCE31C /* LoginManager.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -484,6 +484,7 @@
 				299550D32B5FE845000F1D51 /* GetStartedViewController.swift in Sources */,
 				296299B32BB471B6002A6804 /* StringsLocalizable.swift in Sources */,
 				2949A8552B5AB9BD0087FEF1 /* LoginViewController.swift in Sources */,
+				29BE4C9D2BB87BE400FCE31C /* LoginManager.swift in Sources */,
 				2949A8532B5AB9AA0087FEF1 /* LoginView.swift in Sources */,
 				291D73F12B9F938F002B1C8D /* MoviesViewRepresentable.swift in Sources */,
 				29B02D932B71652B000DA55C /* KeyboardManager(facade).swift in Sources */,
@@ -491,7 +492,6 @@
 				29DB04732BAB382F009D1F8E /* FavoritesCollectionViewCell.swift in Sources */,
 				29DB04682BAB379D009D1F8E /* MoviesView.swift in Sources */,
 				29C6C0302BA5E73E00182E32 /* FullLoginStrategy.swift in Sources */,
-				29DB04852BAB6374009D1F8E /* SessionManager.swift in Sources */,
 				29C6C03C2BA775B600182E32 /* ImageView.swift in Sources */,
 				291D74082B9FBBEE002B1C8D /* SearchMovieByYearAdapter.swift in Sources */,
 				29C6C0382BA6028A00182E32 /* AuthenticationManager.swift in Sources */,

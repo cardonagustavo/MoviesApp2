@@ -4,7 +4,7 @@ labelWelcomeText = "¡La mejor aplicación de transmisión de películas del sig
 buttonGetStarted = "Empezar";
 textFieldLogin = "Coreo electronico";
 
-
+/*LoginView*/
 buttonLogin = "Iniciar";
 buttonShortLoginOutlet = "Iniciar";
 labelCreateAccount = "Crear Cuenta";
@@ -25,7 +25,7 @@ afiliación.";
 /*LoginView*/
 labelGeneresTitle = "Generos:";
 labelDescriptionTitle = "Descripcion";
-labelGeneresTitle = "Ver trailer";
+labelPlayTeaser = "Ver trailer";
 
 
 /*ErrorView*/
@@ -33,3 +33,6 @@ labelMessage = "Error";
 labelReleaseData = "Fecha Lanzamiento";
 moviesTitle = "Peliculas";
 favoritesTitle = "Favoritos";
+
+/*ShortLoguinView*/
+labelShortLogin = "Bienvenido de nuevo";
