@@ -29,23 +29,20 @@ extension SearchMovieByYearAdapter: UISearchBarDelegate {
         
         if searchTextLowercased.isEmpty {
             arrayResult = self.datasource
-        } else {  /*
-                   arrayResult = self.datasource.filter({ movies in
-                   let movieName = movies.title.lowercased()
-                   let searchName = searchText.lowercased()
-                   return movieName.contains(searchName)
-                   })*/
-            
+        } else {
             arrayResult = self.datasource.filter({ movies in
-                movies.title.lowercased().contains(searchText.lowercased()) || movies.release_date.contains(searchTextLowercased)
+                movies.title.lowercased().contains(searchTextLowercased) || movies.release_date.contains(searchTextLowercased)
             })
             
-            arrayResult = !arrayResult.isEmpty ? arrayResult :
-            ["""
-            No se encontraron resultados para la busqueda de:
-            \(searchText)
-            """]
+            if arrayResult.isEmpty {
+                let noResultsMessage = StringsLocalizable.ErrorView.noResultsMessage.localized() + "\n\(searchText)"
+                arrayResult = [noResultsMessage]
+            }
         }
-        self.didFilter?(arrayResult, "no hay Favoritos")
+        
+        let noFavoritesMessage = StringsLocalizable.ErrorView.noFavoritesMessage.localized()
+        self.didFilter?(arrayResult, noFavoritesMessage)
     }
+
+
 }

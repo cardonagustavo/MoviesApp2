@@ -9,9 +9,7 @@ class LoginViewController: UIViewController {
     private var hasPerformedSegue: Bool = false
     private var loginView: LoginView? { self.view as? LoginView }
     
-    var loginCustom: LoginViewProtocol? {
-        self.view as? LoginViewProtocol
-    }
+    let loginManager = LoginManager()
     
     lazy var keyboardManager = KeyboardManager(delegate: self)
     
@@ -20,7 +18,21 @@ class LoginViewController: UIViewController {
         loginView?.textFieldLoginUpdate()
         loginView?.updateLabels()
         loginView?.setupNavigationBarAppearance()
+        imprimirDatosDeUsuarioGuardados()
         loginView?.buttonsUpdate()
+    }
+    
+    func imprimirDatosDeUsuarioGuardados() {
+        if let detallesDeUsuario = UserManager.shared.retrieveUserDetails() {
+            print("Detalles de usuario guardados:")
+            print("Email: \(detallesDeUsuario.email)")
+            print("Nickname: \(detallesDeUsuario.nickname)")
+            print("IsLoggedIn: \(detallesDeUsuario.isLoggedIn)")
+            print("RememberMe: \(detallesDeUsuario.rememberMe)")
+            print("RememberedUser: \(String(describing: detallesDeUsuario.rememberedUser))")
+        } else {
+            print("No se encontraron detalles de usuario guardados.")
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -53,71 +65,49 @@ extension LoginViewController: KeyboardManagerDelegate {
 }
 
 // MARK: - LoginViewDelegade
-extension LoginViewController: LoginViewDelegade {
+extension LoginViewController: LoginViewDelegate {
+    
     func tapButtonLoginShowToMoviesCell(_ loginView: LoginView) {
-            guard !hasPerformedSegue else {
-                return
-            }
-            
-            // Obtén el correo electrónico o nickname del campo de texto de la vista de login
-            if let inputText = loginView.getEmailOrNickname(), !inputText.isEmpty {
-                // Verifica si la credencial es válida con UserManager
-                if UserManager.shared.isValidCredential(inputText) {
-                    // Aquí el usuario existe y puedes proceder con el flujo normal de inicio de sesión
-                    let loginStrategy = ShortLoginStrategy()
-                    loginStrategy.login(rememberme: true, userEmail: inputText) {
-                        self.performSegue(withIdentifier: "TabBarNavigationController", sender: nil)
-                        self.hasPerformedSegue = true
-                    } completionLoginErrorHandler: {
-                        // Manejar el error de inicio de sesión aquí
-                        print("Error en el inicio de sesión")
-                    }
-                } else {
-                    // El usuario no está registrado, muestra la alerta personalizada
-                    showAlertToRegister()
-                }
-            } else {
-                // El campo está vacío, muestra una alerta indicando que se necesita llenar el campo de texto
-                showAlertForEmptyField()
-            }
-        }
-        
-        // Método para mostrar una alerta cuando el campo de texto está vacío.
-        private func showAlertForEmptyField() {
-            let alert = UIAlertController(
-                title: "Campo Vacío",
-                message: "Por favor, ingrese su correo electrónico o nickname para iniciar sesión.",
-                preferredStyle: .alert
-            )
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(alert, animated: true)
-        }
-    
-    private func showAlertToRegister() {
-            let alert = UIAlertController(
-                title: "No estás registrado",
-                message: "Aún no estás registrado, te invitamos a realizar tu registro.",
-                preferredStyle: .alert
-            )
-            
-            alert.addAction(UIAlertAction(title: "Registrar", style: .default) { _ in
-                // Aquí puedes manejar el flujo para llevar al usuario a la pantalla de registro.
-                // Por ejemplo, si tienes un segue definido hacia el registro:
-                self.performSegue(withIdentifier: "RegisterViewController", sender: nil)
-            })
-            
-            alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
-            
-            present(alert, animated: true)
-        }
-    
-    
-//    func tapButtonLoginShowRegisterView(_ loginView: LoginView) {
-//        self.performSegue(withIdentifier: "RegisterViewController", sender: nil)
-//    }
+           guard !hasPerformedSegue else {
+               return
+           }
+           if let inputText = loginView.getEmailOrNickname(), !inputText.isEmpty {
+               if UserManager.shared.isUserRegistered(withCredential: inputText) {
+                   // El usuario está registrado, ahora intenta iniciar sesión
+                   loginManager.loginUser(withCredential: inputText, rememberMe: true)
+               } else {
+                   showAlertForRegistrationRequired(from: self)
+               }
+           } else {
+               showAlertForEmptyField(from: self)
+           }
+       }
     
     func buttonShortLogin(_ loginView: LoginView) {
-        // Handle short login button tap if needed
     }
+    
+    private func showAlertForEmptyField(from viewController: UIViewController) {
+        let alert = UIAlertController(
+            title: "Login Error",
+            message: "Por favor, ingrese su correo electrónico o nickname valido para iniciar sesión.",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        viewController.present(alert, animated: true)
+    }
+    
+    private func showAlertForRegistrationRequired(from viewController: UIViewController) {
+        let alert = UIAlertController(
+            title: "No estás registrado",
+            message: "Aún no estás registrado, te invitamos a realizar tu registro.",
+            preferredStyle: .alert
+        )
+        
+        alert.addAction(UIAlertAction(title: "Registrar", style: .default) { _ in
+            viewController.performSegue(withIdentifier: "RegisterViewController", sender: nil)
+        })
+        alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
+        viewController.present(alert, animated: true)
+    }
+    
 }
-

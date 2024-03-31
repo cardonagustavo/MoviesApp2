@@ -4,19 +4,26 @@
 //
 //  Created by Gustavo Adolfo Cardona Quintero on 16/03/24.
 //
-
+import Foundation
 import UIKit
 
 class ShortLoginStrategy: LoginStrategy {
-    var loginAdapter: LoginAdapter = LoginAdapter()
-    func login(rememberme: Bool, userEmail: String, completionLoginHandler: () -> Void, completionLoginErrorHandler: () -> Void) {
-        self.loginAdapter.loginUserWithUserEmail(userEmail, andRememberme: rememberme)
-        // Aquí iría la lógica para iniciar sesión con el correo electrónico del usuario
-        // Si el inicio de sesión es exitoso, llamas completionLoginHandler()
-        // Si hay un error, llamas completionLoginErrorHandler()
+    weak var viewController: UIViewController?
+
+        init(viewController: UIViewController) {
+            self.viewController = viewController
+        }
+    
+    func login(rememberme: Bool, userEmail: String, completionLoginHandler: @escaping CompletionLoginHandler, completionLoginErrorHandler: @escaping CompletionLoginErrorHandler) {
+        // Implementación de inicio de sesión...
+
+        // Luego del inicio de sesión exitoso:
+        completionLoginHandler()
+        // Por ejemplo, si quieres navegar a otra pantalla después del inicio de sesión:
+        viewController?.performSegue(withIdentifier: "TabBarNavigationController", sender: nil)
     }
-  
-       
-    }
+}
+
+
 
 

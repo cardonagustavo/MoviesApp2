@@ -165,7 +165,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                         <connections>
-                                            <action selector="buttonRegister:" destination="8bC-Xf-vdC" eventType="touchUpInside" id="vS4-hm-0ic"/>
+                                            <action selector="buttonRegister:" destination="8bC-Xf-vdC" eventType="touchUpInside" id="6Gv-Z5-6Yg"/>
                                             <segue destination="bLF-b5-Cfh" kind="show" identifier="RegisterViewController" id="k5A-fo-PE0"/>
                                         </connections>
                                     </button>
@@ -210,7 +210,7 @@
                         <connections>
                             <outlet property="buttonLogin" destination="K1P-mx-YwC" id="ATv-jb-gSb"/>
                             <outlet property="buttonRegister" destination="1JR-Id-eRV" id="dFd-da-N4C"/>
-                            <outlet property="delegate" destination="BYZ-38-t0r" id="fkC-Zb-Srd"/>
+                            <outlet property="delegate" destination="BYZ-38-t0r" id="7Tq-B9-CvM"/>
                             <outlet property="groupViewKeyboardAnchorCenterAxisY" destination="yCs-de-Plz" id="8uk-qs-kV3"/>
                             <outlet property="groupViewKeyboardView" destination="hJx-eL-RIm" id="N4s-8I-8jz"/>
                             <outlet property="labelCreateAccount" destination="TzM-YU-KKz" id="fAx-bD-sCU"/>
@@ -224,7 +224,7 @@
                 <exit id="5vn-B6-eVi" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="PBJ-zW-WsY">
                     <connections>
-                        <action selector="tapToCloseKeyboardWith_gesture:" destination="8bC-Xf-vdC" id="zyk-JU-Suy"/>
+                        <action selector="tapToCloseKeyboardWith_gesture:" destination="8bC-Xf-vdC" id="dld-oX-VO3"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -707,7 +707,7 @@ membership.</string>
         <!--ShortLoguinViewController-->
         <scene sceneID="YXV-1v-daZ">
             <objects>
-                <viewController storyboardIdentifier="ShortLoguinViewController" id="DOo-UO-HUB" userLabel="ShortLoguinViewController" customClass="ShortLoguinViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShortLoginViewController" id="DOo-UO-HUB" userLabel="ShortLoguinViewController" customClass="ShortLoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lQP-cM-cHb" customClass="LoginView" customModule="MoviesApp" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -747,8 +747,19 @@ membership.</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WFK-2Y-17I" userLabel="ViewContainerButton">
                                         <rect key="frame" x="10" y="295" width="370" height="75"/>
                                         <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kBy-Xn-yjA">
+                                                <rect key="frame" x="5" y="104.33333333333337" width="360" height="34.333333333333343"/>
+                                                <color key="backgroundColor" systemColor="systemPinkColor"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="tinted" title="Button">
+                                                    <color key="baseBackgroundColor" systemColor="systemRedColor"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="buttonShortLogin:" destination="lQP-cM-cHb" eventType="touchUpInside" id="MNH-fH-iwE"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dqi-s4-5X1">
-                                                <rect key="frame" x="5" y="15" width="360" height="45"/>
+                                                <rect key="frame" x="5" y="39" width="360" height="34.333333333333343"/>
                                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="tinted" title="Button">
@@ -756,16 +767,19 @@ membership.</string>
                                                 </buttonConfiguration>
                                                 <connections>
                                                     <action selector="buttonShortLogin:" destination="lQP-cM-cHb" eventType="touchUpInside" id="5An-gI-Hv3"/>
-                                                    <segue destination="itT-BC-3WT" kind="show" identifier="ShortLoguinViewController" id="Jer-lQ-CDB"/>
+                                                    <segue destination="itT-BC-3WT" kind="show" identifier="ShortLoginViewController" id="Jer-lQ-CDB"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstItem="Dqi-s4-5X1" firstAttribute="top" secondItem="WFK-2Y-17I" secondAttribute="top" constant="15" id="5T7-bq-vXy"/>
+                                            <constraint firstItem="Dqi-s4-5X1" firstAttribute="top" secondItem="WFK-2Y-17I" secondAttribute="top" constant="39" id="5T7-bq-vXy"/>
+                                            <constraint firstAttribute="trailing" secondItem="kBy-Xn-yjA" secondAttribute="trailing" constant="5" id="Myp-Vo-YFg"/>
+                                            <constraint firstItem="kBy-Xn-yjA" firstAttribute="leading" secondItem="WFK-2Y-17I" secondAttribute="leading" constant="5" id="Qld-ne-mlu"/>
                                             <constraint firstItem="Dqi-s4-5X1" firstAttribute="leading" secondItem="WFK-2Y-17I" secondAttribute="leading" constant="5" id="VnY-af-ATh"/>
-                                            <constraint firstAttribute="bottom" secondItem="Dqi-s4-5X1" secondAttribute="bottom" constant="15" id="Xv8-CZ-7RN"/>
+                                            <constraint firstItem="kBy-Xn-yjA" firstAttribute="top" secondItem="Dqi-s4-5X1" secondAttribute="bottom" constant="31" id="beQ-wL-o2m"/>
                                             <constraint firstItem="Dqi-s4-5X1" firstAttribute="centerX" secondItem="WFK-2Y-17I" secondAttribute="centerX" id="f25-mT-zeK"/>
+                                            <constraint firstAttribute="bottom" secondItem="kBy-Xn-yjA" secondAttribute="bottom" constant="37" id="f9h-Xb-ha9"/>
                                             <constraint firstAttribute="height" constant="75" id="fJO-hH-HWY"/>
                                             <constraint firstAttribute="trailing" secondItem="Dqi-s4-5X1" secondAttribute="trailing" constant="5" id="yX1-Dy-QN5"/>
                                         </constraints>
@@ -806,7 +820,7 @@ membership.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cjb-O0-Sna" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2283" y="717"/>
+            <point key="canvasLocation" x="2282.608695652174" y="716.51785714285711"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4CA-hq-WUT">

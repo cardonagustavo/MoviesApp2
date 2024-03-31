@@ -4,7 +4,7 @@
 
 import UIKit
 
-@objc protocol LoginViewDelegade: AnyObject {
+@objc protocol LoginViewDelegate: AnyObject {
     func tapButtonLoginShowToMoviesCell(_ loginView: LoginView)
 //    func tapButtonLoginShowRegisterView(_ loginView: LoginView)
     func buttonShortLogin(_ loginView: LoginView)
@@ -21,8 +21,8 @@ protocol LoginViewProtocol {
 
 //MARK: - Class
 class LoginView: UIView {
-    
-    @IBOutlet weak var delegate: LoginViewDelegade?
+
+    @IBOutlet weak var delegate: LoginViewDelegate?
     
     // @IBOutlet private weak var delegade: LoginViewProtocolDelegade?
     @IBAction private func tapToCloseKeyboard(_gesture: UITapGestureRecognizer) {
@@ -48,10 +48,6 @@ class LoginView: UIView {
     @IBAction func buttonShortLogin(_ sender: Any) {
         self.delegate?.buttonShortLogin(self)
     }
-//        @IBAction func textFieldDidChanged(_ sender: UITextField) {
-//            delegate?.textViewDidChange(sender.text ?? "")
-//        }
-
 }
 
 // MARK: - Extencion
@@ -93,23 +89,18 @@ extension LoginView: LoginViewProtocol {
     }
     
     func updateLabels() {
-        guard let label = labelShortLogin else {
-                    print("Error: labelShortLogin is nil.")
-                    return
-                }
-
-        label.text = StringsLocalizable.ShortLogin.labelShortLogin.localized()
-    
-        self.labelCreateAccount.text = StringsLocalizable.RegisterView.labelCreateAccount.localized()
+        self.labelCreateAccount.font = UIFont(name: "veradna", size: 30)
+        self.labelCreateAccount.textColor = UIColor.principalInvertBackground
+        self.labelCreateAccount.layer.cornerRadius = 20.0
+        self.labelCreateAccount.text = StringsLocalizable.LoginView.labelCreateAccount.localized()
+        
     }
     
     func buttonsUpdate() {
         self.buttonLogin.setTitle(StringsLocalizable.LoginView.buttonLogin.localized(), for: .normal)
-//        self.buttonShortLoginOutlet.setTitle(StringsLocalizable.LoginView.buttonShortLoginOutlet.localized(), for: .normal)
-        
         self.buttonRegister.setTitle(StringsLocalizable.LoginView.buttonRegister.localized(), for: .normal)
     }
-    
+
     func getEmailOrNickname() -> String? {
             return textFieldLogin.text
         }
@@ -117,7 +108,7 @@ extension LoginView: LoginViewProtocol {
     
     func textFieldLoginUpdate() {
         self.textFieldLogin.font = UIFont(name: "veradna", size: 30)
-        self.textFieldLogin.placeholder = StringsLocalizable.LoginView .textFieldLogin.localized()
+        self.textFieldLogin.placeholder = StringsLocalizable.LoginView.textFieldLogin.localized()
         self.textFieldLogin.textColor = UIColor.principalInvertBackground
         self.textFieldLogin.layer.cornerRadius = 20.0
         
@@ -147,5 +138,3 @@ extension LoginView: LoginViewProtocol {
     }
     
 }
-
-

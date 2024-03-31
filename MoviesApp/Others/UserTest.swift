@@ -7,12 +7,12 @@
 
 import Foundation
 
-
 struct UserTest: Codable {
-    var email: String
-    var nickname: String
-    var isLoggedIn: Bool
-    var rememberMe: Bool
-    var rememberedUser: String?
+    let email: String
+    let nickname: String
+    let isLoggedIn: Bool
+    let rememberMe: Bool
+    let rememberedUser: String
 }
+
 

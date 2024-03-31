@@ -36,8 +36,6 @@ class RegisterView: UIView {
     @IBOutlet weak var labelRememberme: UILabel!
     @IBOutlet weak var buttonCreateAccount: UIButton!
     @IBOutlet weak var labelTextBottom: UILabel!
-    
-    
     @IBAction func buttonCreateAccount(_ sender: UIButton) {
         self.delegate?.buttonCreateAccount(sender)
     }
@@ -92,9 +90,10 @@ class RegisterView: UIView {
         delegate?.switchValueChanged(isOn: sender.isOn)
     }
     
+
     func getCredentialText() -> String? {
-        return textFieldEmail.text
-    }
+           return textFieldEmail.text
+       }
 }
 
 //MARK: - Extension

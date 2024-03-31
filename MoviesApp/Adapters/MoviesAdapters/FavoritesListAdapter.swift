@@ -83,7 +83,7 @@ extension FavoritesListAdapter: UICollectionViewDataSource {
         let item = self.datasource[indexPath.row]
         
         if let message = item as? String {
-            return ErrorCollectionViewCell.buildIn(collectionView, in: indexPath, whit: message)
+            return ErrorCollectionViewCell.buildIn(collectionView, para: indexPath, conTexto: message)
         } else {
             if  let movie = item as? Movies {
                 return FavoritesCollectionViewCell.buildIn(collectionView, in: indexPath, whit: movie)

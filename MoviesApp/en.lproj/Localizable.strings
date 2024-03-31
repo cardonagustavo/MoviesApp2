@@ -32,6 +32,8 @@ labelMessage = "text";
 labelReleaseData = "Release Date";
 moviesTitle = "Movies";
 favoritesTitle = "Favorites";
+noResultsMessage = "No hay resultados para la busqueda de:";
+noFavoritesMessage = "No has añadido peliculas a favoritos";
 
 /*ShortLoguinView*/
 labelShortLogin = "Welcome Again";

@@ -9,6 +9,7 @@ import UIKit
 
 class LoginAdapter {
     func loginUserWithUserEmail(_ userEmail: String, andRememberme rememberme: Bool) {
-        UserManager.shared.loginUser(rememberMe: rememberme, userEmail: userEmail, nickname: nil)
+        UserManager.shared.loginUser(withCredential: userEmail, rememberme: rememberme)
     }
 }
+

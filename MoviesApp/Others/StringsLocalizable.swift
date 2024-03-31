@@ -32,7 +32,6 @@ struct StringsLocalizable {
     }
     
     struct RegisterView {
-        static let labelCreateAccount = "labelCreateAccount"
         static let secondLabel = "secondLabel"
         static let textFieldEmail = "textFieldEmail"
         static let textFieldNickName = "textFieldNickName"
@@ -46,6 +45,8 @@ struct StringsLocalizable {
         static let labelReleaseData = "labelReleaseData"
         static let moviesTitle = "moviesTitle"
         static let favoritesTitle = "favoritesTitle"
+        static let noResultsMessage = "noResultsMessage"
+        static let noFavoritesMessage = "noFavoritesMessage"
     }
     
     struct ShortLogin {

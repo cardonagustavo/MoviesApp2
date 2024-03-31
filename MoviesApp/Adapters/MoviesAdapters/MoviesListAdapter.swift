@@ -114,7 +114,7 @@ extension MoviesListAdapter: UICollectionViewDataSource {
         
         // Verifica si el elemento es un mensaje de error o una película y devuelve la celda correspondiente.
         if let message = item as? String {
-            return ErrorCollectionViewCell.buildIn(collectionView, in: indexPath, whit: message) // Devuelve una celda de mensaje de error.
+            return ErrorCollectionViewCell.buildIn(collectionView, para: indexPath, conTexto: message) // Devuelve una celda de mensaje de error.
         } else {
             if  let movie = item as? Movies {
                 return MoviesCollectionViewCell.buildIn(collectionView, in: indexPath, whit: movie) // Devuelve una celda de película.

@@ -10,17 +10,19 @@ import UIKit
 /// Clase personalizada para mostrar un rango de estrellas con una barra de progreso.
 class StarsRank: UIView {
     
+    // MARK: - Properties
+    
     /// Barra de progreso utilizada para mostrar el progreso del rango de estrellas.
     let progressView: UIProgressView = {
         let progressView = UIProgressView(progressViewStyle: .default)
         progressView.translatesAutoresizingMaskIntoConstraints = false
-        progressView.tintColor = .yellow
         progressView.progress = 0.0
-        progressView.progressTintColor = .yellow
+        progressView.progressTintColor = .orange
         progressView.trackTintColor = UIColor(white: 0, alpha: 0)
-        
         return progressView
     }()
+    
+    // MARK: - Initialization
     
     /// Inicializador requerido cuando se instancia la vista programáticamente.
     override init(frame: CGRect) {
@@ -35,6 +37,8 @@ class StarsRank: UIView {
         setupMask()
         setupProgressView()
     }
+    
+    // MARK: - Private Methods
     
     /// Configura y agrega la barra de progreso a la vista.
     private func setupProgressView() {
@@ -57,6 +61,7 @@ class StarsRank: UIView {
         
         /// Crea una capa de forma para la máscara
         let maskLayer = CAShapeLayer()
+        
         for i in 0..<10 {
             let xOffset = CGFloat(i) * starWidth
             let starPath = UIBezierPath()
@@ -74,28 +79,26 @@ class StarsRank: UIView {
             starPath.addLine(to: CGPoint(x: xOffset + 0.35 * starWidth, y: 0.35 * starHeight))
             starPath.close()
             
-            /// Crea una capa de forma para cada estrella y la agrega a la máscara
-            let starMaskLayer = CAShapeLayer()
-            starMaskLayer.path = starPath.cgPath
-            starMaskLayer.fillColor = UIColor.yellow.cgColor
-            maskLayer.addSublayer(starMaskLayer)
-            
-            /// Crea una capa de borde para cada estrella y la agrega a la vista
             /// Crea una capa de borde para cada estrella y la agrega a la vista
             let customBorderLayer = CAShapeLayer()
             customBorderLayer.path = starPath.cgPath
             customBorderLayer.fillColor = nil
-            
-            if let borderColor = UIColor(named: "PrincipalInvertBackground") {
-                customBorderLayer.strokeColor = borderColor.cgColor
-            } else {
-                customBorderLayer.strokeColor = UIColor.black.cgColor
-            }
-            
+            customBorderLayer.strokeColor = UIColor(named: "PrincipalInvertBackground")?.cgColor // Color personalizado para la línea
             customBorderLayer.lineWidth = 1.0
             customBorderLayer.frame = bounds
             layer.insertSublayer(customBorderLayer, at: 0)
             
+            /// Crea una capa de forma para cada estrella y la agrega a la máscara
+            let starMaskLayer = CAShapeLayer()
+            starMaskLayer.path = starPath.cgPath
+            starMaskLayer.fillColor = UIColor.orange.cgColor
+            maskLayer.insertSublayer(starMaskLayer, at: 0) // Insertar detrás de las capas de borde
+            
+            /// Aplica un sombreado a la estrella para un efecto tridimensional
+            starMaskLayer.shadowColor = UIColor.darkGray.cgColor
+            starMaskLayer.shadowOffset = CGSize(width: 0, height: 1)
+            starMaskLayer.shadowOpacity = 0.5
+            starMaskLayer.shadowRadius = 2
             
             /// Aplica la máscara a la vista
             layer.mask = maskLayer

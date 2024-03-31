@@ -6,47 +6,116 @@
 
 
 import Foundation
+import UIKit
+
+import Foundation
 
 class UserManager {
     static let shared = UserManager()
     
-    func registerUser(email: String, nickname: String?) {
+    // Agrega el nuevo método 'registerUser'.
+    func registerUser(email: String, nickname: String?, rememberMe: Bool) {
         let safeNickname = nickname ?? ""
-        let userInfo = UserTest(email: email, nickname: safeNickname, isLoggedIn: true, rememberMe: true, rememberedUser: email)
-        KeyChainManager.standard.save(userInfo, service: "com.yourapp.service", account: "userAccount")
-    }
-    
-    func loginUser(rememberMe: Bool, userEmail: String, nickname: String?) {
-        let safeNickname = nickname ?? ""
-        if rememberMe {
-            let userInfo = UserTest(email: userEmail, nickname: safeNickname, isLoggedIn: true, rememberMe: rememberMe, rememberedUser: userEmail)
-            KeyChainManager.standard.save(userInfo, service: "com.yourapp.service", account: "userAccount")
-        } else {
-            // Aquí deberías llamar al método logoutUser de la clase UserManager
-            self.logoutUser()
+        
+        // Verificar si ya se debe registrar al usuario.
+        guard shouldRegister(email: email, nickname: safeNickname) else {
+            print("El usuario ya está registrado.")
+            return
         }
-    }
-    func isUserRegistered() -> Bool {
-        // Aquí implementa la lógica para verificar si el usuario está registrado.
-        // Por ejemplo, puedes comprobar si existe alguna información de usuario en el Keychain.
-        // Si el usuario está registrado, devuelve true, de lo contrario, devuelve false.
-        return retrieveUserDetails() != nil
-    }
+        
+        // Crear un objeto UserTest con los datos del usuario.
+        let userInfo = UserTest(email: email, nickname: safeNickname, isLoggedIn: false, rememberMe: rememberMe, rememberedUser: email)
 
-    
-    func isValidCredential(_ credential: String) -> Bool {
-        // Aquí implementa la lógica para verificar si el credential es válido.
-        // Por ejemplo, podrías comprobar si el credential está en tu base de datos de usuarios.
-        // Si el credential es válido, devuelve true, de lo contrario, devuelve false.
-        return true // Aquí devuelves true temporalmente, deberás implementar la lógica real.
-    }
-    
-    func retrieveUserDetails() -> UserTest? {
-        return KeyChainManager.standard.read(service: "com.yourapp.service", account: "userAccount", type: UserTest.self)
+        // Intenta guardar los datos del usuario en el Keychain.
+        do {
+            let userData = try JSONEncoder().encode(userInfo)
+            try KeyChainManager.standard.save(userData, service: "com.yourapp.service", account: "userAccount")
+            print("Usuario registrado con éxito.")
+        } catch {
+            print("Error al registrar los detalles del usuario en el Keychain: \(error)")
+        }
     }
     
     func logoutUser() {
-        // Elimina la información del usuario de Keychain al cerrar la sesión
-        KeyChainManager.standard.delete(service: "com.yourapp.service", account: "userAccount")
+        if isUserLoggedIn() {
+            // Si el usuario está registrado, lo redirige al short login
+            redirectToShortLogin()
+        } else {
+            // Si el usuario no está registrado, lo redirige al login completo
+            redirectToFullLogin()
+        }
+    }
+    
+    // Método para verificar si el usuario está actualmente registrado (logueado).
+    private func isUserLoggedIn() -> Bool {
+        // Verifica si existen detalles de usuario en el Keychain.
+        return retrieveUserDetails() != nil
+    }
+    
+    // Método para redirigir al short login.
+    private func redirectToShortLogin() {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                print("Error: No se pudo acceder al objeto AppDelegate.")
+                return
+            }
+            
+            // Por ejemplo, si el short login está representado por un controlador de vista llamado ShortLoginViewController:
+            let shortLoginViewController = ShortLoginViewController()
+            appDelegate.window?.rootViewController = shortLoginViewController
+        }
+        
+        // Método para redirigir al login completo.
+    private func redirectToFullLogin() {
+        // Por ejemplo, si estás utilizando la estrategia FullLoginStrategy para el inicio de sesión completo:
+        let fullLoginStrategy = FullLoginStrategy()
+        
+        // Llama al método de inicio de sesión completo en la estrategia FullLoginStrategy
+        fullLoginStrategy.login(rememberme: false, userEmail: "", completionLoginHandler: {
+            // Aquí puedes realizar cualquier acción necesaria después del inicio de sesión completo
+            // Por ejemplo, presentar una vista específica o actualizar la interfaz de usuario
+            
+            // Por ahora, simplemente imprime un mensaje
+            print("Redireccionando al inicio de sesión completo...")
+        }, completionLoginErrorHandler: {
+            // Maneja cualquier error que pueda ocurrir durante el inicio de sesión completo
+            print("Error durante el inicio de sesión completo.")
+        })
+    }
+    
+    // Método para verificar si debemos registrar al usuario.
+     func shouldRegister(email: String, nickname: String) -> Bool {
+        return !isUserRegistered(withCredential: email) && !isUserRegistered(withCredential: nickname)
+    }
+    
+    // Método para verificar si el usuario ya está registrado.
+     func isUserRegistered(withCredential credential: String) -> Bool {
+        if let userDetails = retrieveUserDetails() {
+            return userDetails.email == credential || userDetails.nickname == credential
+        } else {
+            return false
+        }
+    }
+    
+    // Método para recuperar los detalles del usuario.
+     func retrieveUserDetails() -> UserTest? {
+        do {
+            if let userData = try KeyChainManager.standard.read(service: "com.yourapp.service", account: "userAccount") {
+                return try JSONDecoder().decode(UserTest.self, from: userData)
+            } else {
+                return nil
+            }
+        } catch {
+            print("Error al recuperar los detalles del usuario: \(error)")
+            return nil
+        }
+    }
+    
+    // Método para cerrar la sesión del usuario (log out).
+    func loginUser(withCredential credential: String, rememberme: Bool)  {
+        do {
+            try KeyChainManager.standard.delete(service: "com.yourapp.service", account: "userAccount")
+        } catch {
+            print("Error al cerrar la sesión del usuario: \(error)")
+        }
     }
 }

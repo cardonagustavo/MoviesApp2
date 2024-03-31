@@ -1,7 +1,6 @@
 //  RegisterViewController.swift
 //  MoviesApp
 //  Created by Gustavo Adolfo Cardona Quintero on 23/01/24.
-
 import UIKit
 
 protocol RegisterViewControllerDelegate: AnyObject {
@@ -27,12 +26,6 @@ class RegisterViewController: UIViewController {
         
         let isRemembering = UserDefaults.standard.bool(forKey: "RememberMe")
         registerView?.configureSwitch(isOn: isRemembering)
-        
-        if UserManager.shared.retrieveUserDetails() != nil {
-            if let rememberedUser = UserManager.shared.retrieveUserDetails()?.email {
-                registerView?.textFieldEmail.text = rememberedUser
-            }
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,7 +33,6 @@ class RegisterViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem()
     }
-    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -51,16 +43,9 @@ class RegisterViewController: UIViewController {
         super.viewDidDisappear(animated)
         self.keyboardManager.unregisterKeyboardNotifications()
     }
-    
-    @objc func switchValueChanged(_ sender: UISwitch) {
-        UserDefaults.standard.set(sender.isOn, forKey: "RememberMe")
-    }
-    
-    func loginViewDidTapLoginButtonWith(_ registerView: RegisterView, credential: String, andRememberme rememberme: Bool) {
-        UserManager.shared.loginUser(rememberMe: rememberme, userEmail: credential, nickname: nil)
-        self.navigationController?.popViewController(animated: true)
-    }
 }
+
+// MARK: - KeyboardManagerDelegate
 
 extension RegisterViewController: KeyboardManagerDelegate {
     func keyboardManager(_ keyboardManager: KeyboardManager, keyboardWillShowWith info: KeyboardManager.Info) {
@@ -68,23 +53,11 @@ extension RegisterViewController: KeyboardManagerDelegate {
     }
     
     func keyboardManager(_ keyboardManager: KeyboardManager, keyboardWillHideWith info: KeyboardManager.Info) {
-        print("Keyboard disappeared")
-        print(info)
         self.registerView?.keyboardDisappear(info)
     }
-    
-    private func isValidEmail(_ email: String) -> Bool {
-        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
-        return emailPredicate.evaluate(with: email)
-    }
-    
-    private func showAlert(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        UIApplication.shared.windows.first?.rootViewController?.present(alertController, animated: true, completion: nil)
-    }
 }
+
+// MARK: - RegisterViewDelegate
 
 extension RegisterViewController: RegisterViewDelegate {
     func switchValueChanged(isOn: Bool) {
@@ -92,31 +65,57 @@ extension RegisterViewController: RegisterViewDelegate {
     }
     
     func buttonCreateAccount(_ sender: UIButton) {
-        guard let registerView = registerView else {
-            showAlert(title: "Error", message: "An error occurred. Please try again.")
-            return
+            guard let registerView = registerView else {
+                showAlert(title: "Error", message: "An error occurred. Please try again.")
+                return
+            }
+            
+            guard let email = registerView.textFieldEmail.text, !email.isEmpty else {
+                showAlert(title: "Error", message: "Please enter your email.")
+                return
+            }
+            
+            guard isValidEmail(email) else {
+                showAlert(title: "Error", message: "Please enter a valid email.")
+                return
+            }
+            
+            guard let nickname = registerView.textFieldNickName.text, !nickname.isEmpty else {
+                showAlert(title: "Error", message: "Please enter your nickname.")
+                return
+            }
+            
+            let rememberMe = registerView.swithToRememberme.isOn
+            
+            // Verificar si el correo o el apodo ya están registrados
+            if UserManager.shared.isUserRegistered(withCredential: email) || UserManager.shared.isUserRegistered(withCredential: nickname) {
+                showAlert(title: "Error", message: "The email or nickname is already registered.")
+                return
+            }
+            
+            // Llama al método 'registerUser' en UserManager.
+            UserManager.shared.registerUser(email: email, nickname: nickname, rememberMe: rememberMe)
+            
+            // Si el correo y el apodo son válidos y no están registrados, navegar al login.
+            delegate?.loginViewDidTapLoginButtonWith(registerView, credential: email, andRememberme: rememberMe)
+            navigationController?.popViewController(animated: true)
         }
         
-        guard let credential = registerView.getCredentialText(), !credential.isEmpty else {
-            showAlert(title: "Error", message: "Please enter your email or nickname.")
-            return
+        private func isValidEmail(_ email: String) -> Bool {
+            let emailRegex = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"
+            let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+            return emailPredicate.evaluate(with: email)
         }
-        
-        if !isValidEmail(credential) && !isValidNickname(credential) {
-            showAlert(title: "Error", message: "Please enter a valid email or nickname.")
-            return
-        }
-        
-        let rememberMe = registerView.swithToRememberme.isOn
-        
-        self.delegate?.loginViewDidTapLoginButtonWith(registerView, credential: credential, andRememberme: rememberMe)
-        
-        self.navigationController?.popViewController(animated: true)
-    }
 
-    // Implementa la lógica de validación del nickname aquí
     private func isValidNickname(_ nickname: String) -> Bool {
-        // Agrega tu lógica de validación del nickname aquí.
+        // Supongamos que tenemos alguna lógica para validar el apodo aquí.
+        // Por ahora, solo devolvemos true para hacer que el código sea compilable.
         return true
+    }
+    
+    private func showAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
 }
