@@ -34,6 +34,7 @@ class ButtonComponent: UIButton {
     private func setupButton() {
         // Set the background color to black
         self.backgroundColor = UIColor.black
+        self.layer.cornerRadius = 10
         
         // Configure the golden gradient background
         gradientLayer.colors = [

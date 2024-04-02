@@ -104,17 +104,10 @@ class TabBarNavigationController: UITabBarController {
     
     // MARK: - Actions
     
-    /// Redirige al usuario a la pantalla de inicio de sesión.
-    @objc private func redirectToLogin() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-        navigationController?.pushViewController(loginViewController, animated: true)
-    }
-    
     /// Maneja el evento del botón de cierre de sesión.
     @objc private func logoutButtonTapped() {
         UserManager.shared.logoutUser()
-        redirectToLogin()
+//        UserManager.shared.redirectToAppropriateLogin()
     }
 }
 

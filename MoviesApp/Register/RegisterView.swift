@@ -140,6 +140,7 @@ class RegisterView: UIView {
     ///
     /// - Parameter sender: Objeto UISwitch que representa el interruptor.
     @objc public func switchValueChanged(_ sender: UISwitch) {
+        let isOn = sender.isOn
         delegate?.switchValueChanged(isOn: sender.isOn)
     }
     

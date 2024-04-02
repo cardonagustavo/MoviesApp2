@@ -1,3 +1,58 @@
+
+erie de preguntas técnicas para un nivel Junior Advanced en el desarrollo de iOS:
+
+¿Qué es UIKit y cuál es su propósito en el desarrollo de iOS?
+¿Cuál es la diferencia entre UIView y UIViewController en iOS?
+¿Qué es el ciclo de vida de una vista en iOS y cuáles son los métodos principales que se llaman durante este ciclo?
+    Explica la diferencia entre un IBOutlet y un IBAction.
+¿Qué es AutoLayout y por qué es importante en el desarrollo de iOS?
+¿Cuál es la diferencia entre un UINavigationController y un UITabBarController?
+¿Cómo gestionarías la persistencia de datos en una aplicación iOS?
+¿Qué es CoreData y cuándo lo usarías en lugar de SQLite?
+    Describe el patrón de diseño MVC (Model-View-Controller) y su aplicación en el desarrollo de iOS.
+¿Qué es GCD (Grand Central Dispatch) y cuál es su función en iOS?
+    Explica la diferencia entre un hilo principal (main thread) y un hilo de fondo (background thread).
+¿Qué es ARC (Automatic Reference Counting) y cómo funciona en iOS?
+¿Cómo se manejan las notificaciones push en iOS?
+¿Qué es CoreData y en qué situaciones lo usarías sobre Realm?
+¿Cuál es la diferencia entre Swift y Objective-C?
+¿Qué es un protocolo en Swift y cómo se utiliza?
+¿Qué es un Optional en Swift y cuál es su propósito?
+    Explica el concepto de delegates en iOS y proporciona un ejemplo.
+¿Qué es un singleton y cuándo lo usarías en una aplicación iOS?
+¿Qué son las pruebas unitarias y cómo se realizan en iOS?
+¿Cuál es la diferencia entre una clase y una estructura en Swift?
+¿Qué es un closure en Swift y cuál es su sintaxis?
+    Explica el uso de los métodos map, filter y reduce en Swift.
+¿Cómo manejarías la seguridad de los datos en una aplicación iOS?
+¿Qué es Keychain y cuál es su uso en el desarrollo de iOS?
+¿Cómo se implementa la autenticación de usuario en una aplicación iOS?
+¿Qué es Core Animation y cuál es su función en iOS?
+¿Qué es Core Data y en qué situaciones lo usarías en lugar de un enfoque basado en archivos?
+¿Cómo manejarías el soporte para múltiples idiomas en una aplicación iOS?
+¿Qué es un UIStoryboard y cómo se relaciona con el flujo de navegación de una aplicación iOS?
+¿Qué es Codable y cómo se utiliza para la serialización y deserialización de datos en Swift?
+    Explica cómo se realiza la gestión de memoria en iOS.
+¿Qué es el patrón de diseño Singleton y cuándo lo usarías en el desarrollo de iOS?
+¿Cuál es la diferencia entre UserDefaults y CoreData?
+¿Cómo se implementa la persistencia de datos en una aplicación iOS?
+¿Qué es un Stack View y cuál es su propósito en la interfaz de usuario de iOS?
+¿Cuál es la diferencia entre una aplicación nativa y una aplicación híbrida?
+¿Cómo optimizarías el rendimiento de una aplicación iOS?
+¿Qué es CocoaPods y cuál es su función en el desarrollo de iOS?
+¿Qué es Swift Package Manager y cuál es su función en el desarrollo de iOS?
+¿Cómo se implementa la seguridad de datos en una aplicación iOS?
+¿Qué es un patrón de diseño Factory y cuándo lo usarías en iOS?
+¿Cuál es la diferencia entre un framework y una librería en iOS?
+¿Cómo manejarías la gestión de errores en una aplicación iOS?
+¿Qué es el patrón de diseño Observer y cómo se implementa en iOS?
+¿Cuál es la diferencia entre un hilo principal y un hilo secundario en iOS?
+¿Qué es un algoritmo de ordenación y cuáles son algunos ejemplos comunes utilizados en iOS?
+¿Cómo se implementa la autenticación de dos factores en una aplicación iOS?
+¿Qué es la seguridad de transporte y cómo se implementa en iOS?
+¿Cómo gestionarías la compatibilidad con versiones anteriores en una aplicación iOS?
+
+
 Get Started Scene.
 
 1. **Import UIKit**: This is like saying, "I need to use tools to make an iPhone app." UIKit is a set of tools that help make the buttons, screens, and other things you touch in an iPhone app.

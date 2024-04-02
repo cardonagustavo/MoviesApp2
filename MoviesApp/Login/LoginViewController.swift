@@ -9,11 +9,16 @@ class LoginViewController: UIViewController {
     
     // MARK: - Propiedades
     
+    /// Bandera para controlar si se ha realizado una transición de vista.
     private var hasPerformedSegue: Bool = false
+    
+    /// Vista de inicio de sesión.
     private var loginView: LoginView? { self.view as? LoginView }
     
+    /// Administrador de inicio de sesión.
     let loginManager = LoginManager()
     
+    /// Administrador del teclado para manejar su aparición y desaparición.
     lazy var keyboardManager = KeyboardManager(delegate: self)
     
     // MARK: - Ciclo de vida de la vista
@@ -44,7 +49,7 @@ class LoginViewController: UIViewController {
     
     // MARK: - Métodos privados
     
-    /// Configura la interfaz de usuario
+    /// Configura la interfaz de usuario.
     private func setupUI() {
         loginView?.textFieldLoginUpdate()
         loginView?.updateLabels()
@@ -52,7 +57,7 @@ class LoginViewController: UIViewController {
         loginView?.buttonsUpdate()
     }
     
-    /// Imprime los detalles de usuario guardados en la consola
+    /// Imprime los detalles de usuario guardados en la consola.
     private func imprimirDatosDeUsuarioGuardados() {
         if let detallesDeUsuario = UserManager.shared.retrieveUserDetails() {
             print("Detalles de usuario guardados:")
@@ -66,6 +71,7 @@ class LoginViewController: UIViewController {
         }
     }
 }
+
 
 // MARK: - Extensión para conformidad con el protocolo KeyboardManagerDelegate
 extension LoginViewController: KeyboardManagerDelegate {
@@ -85,11 +91,13 @@ extension LoginViewController: LoginViewDelegate {
     
     // MARK: - Métodos del delegado de la vista de inicio de sesión
     
+    /// Método llamado al tocar el botón de inicio de sesión
     func tapButtonLoginShowToMoviesCell(_ loginView: LoginView) {
         // Verificar si ya se realizó una transición de vista
         guard !hasPerformedSegue else {
             return
         }
+        
         // Obtener el texto ingresado en el campo de texto de inicio de sesión
         if let inputText = loginView.getEmailOrNickname(), !inputText.isEmpty {
             // Verificar si el usuario está registrado
@@ -106,8 +114,9 @@ extension LoginViewController: LoginViewDelegate {
         }
     }
     
+    /// Método para manejar el inicio de sesión corto (no implementado)
     func buttonShortLogin(_ loginView: LoginView) {
-        // Método para manejar el inicio de sesión corto (no implementado)
+        // No implementado actualmente
     }
     
     // MARK: - Métodos privados

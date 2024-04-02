@@ -6,16 +6,25 @@ import UIKit
 
 // MARK: - Delegado para la vista de inicio de sesión
 @objc protocol LoginViewDelegate: AnyObject {
+    /// Método llamado cuando se toca el botón de inicio de sesión para mostrar la vista de películas.
     func tapButtonLoginShowToMoviesCell(_ loginView: LoginView)
-    //func tapButtonLoginShowRegisterView(_ loginView: LoginView)
+    
+    /// Método llamado cuando se toca el botón de inicio de sesión corto.
     func buttonShortLogin(_ loginView: LoginView)
 }
 
 // MARK: - Protocolo para la vista de inicio de sesión
 protocol LoginViewProtocol {
+    /// Actualiza el texto del campo de inicio de sesión.
     func textFieldLoginUpdate()
+    
+    /// Configura la apariencia de la barra de navegación.
     func setupNavigationBarAppearance()
+    
+    /// Actualiza las etiquetas de la vista de inicio de sesión.
     func updateLabels()
+    
+    /// Actualiza los botones de la vista de inicio de sesión.
     func buttonsUpdate()
 }
 
@@ -24,8 +33,6 @@ class LoginView: UIView {
     
     @IBOutlet weak var delegate: LoginViewDelegate?
     
-    // @IBOutlet private weak var delegade: LoginViewProtocolDelegade?
-    
     // MARK: - Acciones
     
     /// Método llamado al tocar para cerrar el teclado.
@@ -33,10 +40,10 @@ class LoginView: UIView {
         self.endEditing(true)
     }
     
-//    override func didMoveToSuperview() {
-//        super.didMoveToSuperview()
-//        buttonLogin.animateGradient()
-//    }
+    //    override func didMoveToSuperview() {
+    //        super.didMoveToSuperview()
+    //        buttonLogin.animateGradient()
+    //    }
     
     
     @IBOutlet weak var ContainerImagesPosters: UIView!

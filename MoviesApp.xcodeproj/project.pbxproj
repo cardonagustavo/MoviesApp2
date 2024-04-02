@@ -42,6 +42,8 @@
 		296C072F2BA08CA2006A6348 /* TabBarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296C072E2BA08CA2006A6348 /* TabBarNavigationController.swift */; };
 		29841C702BBB323E00F96ECB /* ButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29841C6F2BBB323E00F96ECB /* ButtonComponent.swift */; };
 		29841C722BBB5DF000F96ECB /* PosterCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29841C712BBB5DF000F96ECB /* PosterCarouselView.swift */; };
+		29841C762BBC96F200F96ECB /* LoadingWait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29841C752BBC96F200F96ECB /* LoadingWait.swift */; };
+		29841C792BBCA2BB00F96ECB /* TextFieldComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29841C782BBCA2BB00F96ECB /* TextFieldComponent.swift */; };
 		299550D12B5FE82A000F1D51 /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299550D02B5FE82A000F1D51 /* GetStartedView.swift */; };
 		299550D32B5FE845000F1D51 /* GetStartedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299550D22B5FE845000F1D51 /* GetStartedViewController.swift */; };
 		29A8BA262B6017F700238C97 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A8BA252B6017F700238C97 /* RegisterView.swift */; };
@@ -105,6 +107,8 @@
 		29841C6F2BBB323E00F96ECB /* ButtonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonComponent.swift; sourceTree = "<group>"; };
 		29841C712BBB5DF000F96ECB /* PosterCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCarouselView.swift; sourceTree = "<group>"; };
 		29841C732BBC530300F96ECB /* Notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Notes.txt; sourceTree = "<group>"; };
+		29841C752BBC96F200F96ECB /* LoadingWait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingWait.swift; sourceTree = "<group>"; };
+		29841C782BBCA2BB00F96ECB /* TextFieldComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldComponent.swift; sourceTree = "<group>"; };
 		299550D02B5FE82A000F1D51 /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
 		299550D22B5FE845000F1D51 /* GetStartedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedViewController.swift; sourceTree = "<group>"; };
 		29A8BA252B6017F700238C97 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
@@ -267,11 +271,9 @@
 			children = (
 				2940BE892BA33B4A009D7FDD /* StarsRank.swift */,
 				29C6C03B2BA775B600182E32 /* ImageView.swift */,
-				29DB04802BAB62FA009D1F8E /* KeyChainManager.swift */,
-				29DB04862BAB651A009D1F8E /* UserManager.swift */,
-				296384A32BAB8EC400E75CAD /* UserTest.swift */,
+				29841C712BBB5DF000F96ECB /* PosterCarouselView.swift */,
 				296299B22BB471B6002A6804 /* StringsLocalizable.swift */,
-				29BE4C9C2BB87BE400FCE31C /* LoginManager.swift */,
+				29841C752BBC96F200F96ECB /* LoadingWait.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -295,6 +297,7 @@
 		2949A8342B59FE800087FEF1 /* MoviesApp */ = {
 			isa = PBXGroup;
 			children = (
+				29841C772BBCA08D00F96ECB /* ManagerUserData */,
 				29841C6E2BBB322600F96ECB /* Components */,
 				2940BE882BA33A16009D7FDD /* Others */,
 				291D73F22B9F9828002B1C8D /* Adapters */,
@@ -357,9 +360,20 @@
 			isa = PBXGroup;
 			children = (
 				29841C6F2BBB323E00F96ECB /* ButtonComponent.swift */,
-				29841C712BBB5DF000F96ECB /* PosterCarouselView.swift */,
+				29841C782BBCA2BB00F96ECB /* TextFieldComponent.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		29841C772BBCA08D00F96ECB /* ManagerUserData */ = {
+			isa = PBXGroup;
+			children = (
+				296384A32BAB8EC400E75CAD /* UserTest.swift */,
+				29DB04862BAB651A009D1F8E /* UserManager.swift */,
+				29BE4C9C2BB87BE400FCE31C /* LoginManager.swift */,
+				29DB04802BAB62FA009D1F8E /* KeyChainManager.swift */,
+			);
+			path = ManagerUserData;
 			sourceTree = "<group>";
 		};
 		299550CF2B5FE80A000F1D51 /* Started */ = {
@@ -484,6 +498,7 @@
 				29DB047B2BAB3EE4009D1F8E /* ModelDataMovies.xcdatamodeld in Sources */,
 				29CA891F2B92663A0043AF1D /* DetailsModel.swift in Sources */,
 				29C6C0322BA5E7A300182E32 /* LoginAdapter.swift in Sources */,
+				29841C792BBCA2BB00F96ECB /* TextFieldComponent.swift in Sources */,
 				296384AE2BAC6B7800E75CAD /* MoviesEntity+CoreDataClass.swift in Sources */,
 				296299B12BB31B03002A6804 /* VideoModel.swift in Sources */,
 				29841C722BBB5DF000F96ECB /* PosterCarouselView.swift in Sources */,
@@ -529,6 +544,7 @@
 				299550D12B5FE82A000F1D51 /* GetStartedView.swift in Sources */,
 				2927DBBC2B8D316900C105A1 /* MoviesWebService.swift in Sources */,
 				291D73F42B9F9A0C002B1C8D /* MoviesListAdapterProtocol.swift in Sources */,
+				29841C762BBC96F200F96ECB /* LoadingWait.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
