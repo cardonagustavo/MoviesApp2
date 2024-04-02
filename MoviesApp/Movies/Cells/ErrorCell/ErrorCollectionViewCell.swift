@@ -32,7 +32,7 @@ extension ErrorCollectionViewCell {
 
     class func buildIn(_ collectionView: UICollectionView, para indexPath: IndexPath, conTexto text: String) -> ErrorCollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.identifier, for: indexPath) as? ErrorCollectionViewCell else {
-            fatalError("No se pudo reutilizar la celda ErrorCollectionViewCell con identificador: \(self.identifier)")
+            fatalError(StringsLocalizable.Messages.CollectionViewCellErrorWithIdentifier.localized() + "\(self.identifier)")
         }
         cell.updateDataWith(text)
         return cell

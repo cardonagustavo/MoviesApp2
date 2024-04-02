@@ -7,8 +7,11 @@
 
 import Foundation
 
+/// Protocolo para definir estrategias de obtención de datos de películas.
 protocol MoviesStrategy {
-    mutating  func getWebServiceStrategy()
+    
+    /// Método para obtener datos de películas a través de servicios web.
+    mutating func getWebServiceStrategy()
     
 }
 

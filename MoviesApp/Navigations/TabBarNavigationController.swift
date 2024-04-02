@@ -6,6 +6,9 @@
 //
 import UIKit
 
+// MARK: - Tab Bar Navigation Controller
+
+/// Controlador de vista para la barra de pestañas de la aplicación.
 class TabBarNavigationController: UITabBarController {
     
     // MARK: - Lifecycle Methods
@@ -13,27 +16,31 @@ class TabBarNavigationController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        customTabBar()
     }
     
     // MARK: - Private Methods
     
+    /// Configura la interfaz de usuario.
     private func setupUI() {
         setupNavigationBar()
         setupTabBar()
+        customTabBar()
         setupCustomBackground()
     }
     
+    /// Configura la barra de navegación.
     private func setupNavigationBar() {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem()
         self.navigationController?.navigationBar.scrollEdgeAppearance = self.navigationController?.navigationBar.standardAppearance
     }
     
+    /// Configura la barra de pestañas.
     private func setupTabBar() {
         self.tabBar.shadowImage = UIImage()
         self.tabBar.tintColor = UIColor(red: 0.0, green: 0.4, blue: 1.0, alpha: 1.0)
     }
     
+    /// Personaliza la barra de pestañas con títulos, elementos y un botón de cierre de sesión.
     private func customTabBar() {
         let moviesTitle = MoviesViewController.buildMovies()
         let favoritesTitle = MoviesViewController.buildFavorites()
@@ -45,19 +52,25 @@ class TabBarNavigationController: UITabBarController {
 
         viewControllers = [moviesTitle, favoritesTitle]
         
-        if let logoutImage = UIImage(named: "logout.png")?.scaled(toSize: CGSize(width: 30, height: 30)) {
-            let buttonLogout = UIButton(type: .custom)
-            buttonLogout.setImage(logoutImage, for: .normal)
-            buttonLogout.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
-            
-            let customBarButtonItem = UIBarButtonItem(customView: buttonLogout)
-            
-            self.navigationItem.rightBarButtonItem = customBarButtonItem
-        } else {
-            print("Error: No se pudo cargar la imagen 'logout.png'")
-        }
+        setupLogoutButton()
     }
     
+    /// Configura el botón de cierre de sesión.
+    private func setupLogoutButton() {
+        guard let logoutImage = UIImage(named: "logout.png")?.scaled(toSize: CGSize(width: 30, height: 30)) else {
+            print("Error: No se pudo cargar la imagen 'logout.png'")
+            return
+        }
+        
+        let buttonLogout = UIButton(type: .custom)
+        buttonLogout.setImage(logoutImage, for: .normal)
+        buttonLogout.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
+        
+        let customBarButtonItem = UIBarButtonItem(customView: buttonLogout)
+        self.navigationItem.rightBarButtonItem = customBarButtonItem
+    }
+    
+    /// Configura el fondo personalizado de la barra de pestañas.
     private func setupCustomBackground() {
         let customBackgroundView = UIView()
         customBackgroundView.backgroundColor = determineBackgroundColor()
@@ -76,6 +89,7 @@ class TabBarNavigationController: UITabBarController {
         ])
     }
     
+    /// Determina el color de fondo basado en el modo de interfaz.
     private func determineBackgroundColor() -> UIColor {
         if #available(iOS 13.0, *) {
             if UITraitCollection.current.userInterfaceStyle == .dark {
@@ -90,23 +104,24 @@ class TabBarNavigationController: UITabBarController {
     
     // MARK: - Actions
     
+    /// Redirige al usuario a la pantalla de inicio de sesión.
     @objc private func redirectToLogin() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
         navigationController?.pushViewController(loginViewController, animated: true)
     }
     
+    /// Maneja el evento del botón de cierre de sesión.
     @objc private func logoutButtonTapped() {
         UserManager.shared.logoutUser()
         redirectToLogin()
     }
-
-    private func backButtonTapped() {
-        navigationController?.popViewController(animated: false)
-    }
 }
 
+// MARK: - UIImage Extension
+
 extension UIImage {
+    /// Escala la imagen al nuevo tamaño especificado.
     func scaled(toSize newSize: CGSize) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
         defer { UIGraphicsEndImageContext() }

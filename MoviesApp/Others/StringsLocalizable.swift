@@ -7,15 +7,20 @@
 
 import Foundation
 
+// MARK: - Strings Localizable
 
+/// Estructura que contiene todas las cadenas localizables de la aplicación.
 struct StringsLocalizable {
+    
+    // MARK: - Get Start View Strings
     
     struct GetStartView {
         static let labelWelcomeTitle = "labelWelcomeTitle"
         static let labelWelcomeText = "labelWelcomeText"
         static let buttonGetStarted = "buttonGetStarted"
-        
     }
+    
+    // MARK: - Login View Strings
     
     struct LoginView {
         static let textFieldLogin = "textFieldLogin"
@@ -25,11 +30,15 @@ struct StringsLocalizable {
         static let buttonRegister = "buttonRegister"
     }
     
+    // MARK: - Details View Strings
+    
     struct DetailsView {
         static let labelGeneresTitle = "labelGeneresTitle"
         static let labelDescriptionTitle = "labelDescriptionTitle"
         static let labelPlayTeaser = "labelPlayTeaser"
     }
+    
+    // MARK: - Register View Strings
     
     struct RegisterView {
         static let secondLabel = "secondLabel"
@@ -40,6 +49,8 @@ struct StringsLocalizable {
         static let labelTextBottom = "labelTextBottom"
     }
     
+    // MARK: - Error View Strings
+    
     struct ErrorView {
         static let labelMessage = "labelMessage"
         static let labelReleaseData = "labelReleaseData"
@@ -49,13 +60,50 @@ struct StringsLocalizable {
         static let noFavoritesMessage = "noFavoritesMessage"
     }
     
+    // MARK: - Short Login Strings
+    
     struct ShortLogin {
         static let labelShortLogin = "labelShortLogin"
     }
+    
+    // MARK: - Messages alerts or errors
+
+    struct Messages {
+        static let checkIfTheUserIsRegistered = "checkIfTheUserIsRegistered"
+        static let RegisteredUserSuccessfully = "RegisteredUserSuccessfully"
+        static let ErrorRegistering = "ErrorRegistering"
+        static let AppDelegateError = "AppDelegateError"
+        static let AlreadyInFavorites = "AlreadyInFavorites"
+        static let MovieAddedToFavorites = "MovieAddedToFavorites"
+        static let SearchOrSaveMovieError = "SearchOrSaveMovieError"
+        static let MovieRemovedFromFavorites = "MovieRemovedFromFavorites"
+        static let MovieIsNotInFavorites = "MovieIsNotInFavorites"
+        static let NotVideoForFilm = "NotVideoForFilm"
+        static let NoVideoKeyAvailable = "NoVideoKeyAvailable"
+        static let ErrorOccurred = "ErrorOccurred"
+        static let EnterEmail = "EnterEmail"
+        static let EnterValidEmail = "EnterValidEmail"
+        static let EnterNickname = "EnterNickname"
+        static let EmailNicknameIsRegistered = "EmailNicknameIsRegistered"
+        static let MovieRecoveryError = "MovieRecoveryError"
+        static let CollectionViewCellErrorWithIdentifier = "CollectionViewCellErrorWithIdentifier"
+        static let LoginErrorTitle = "LoginErrorTitle"
+        static let LoginErrorMessage = "LoginErrorMessage"
+        static let LoginErrorNeddRegisterTitle = "LoginErrorNeddRegisterTitle"
+        static let LoginErrorNeddRegisterMessage = "LoginErrorNeddRegisterMessage"
+    }
 }
 
+
+
+// MARK: - Extension for Localized Strings
+
 extension String {
-    func localized() ->  String {
+    
+    /// Método que localiza una cadena.
+    ///
+    /// - Returns: La cadena localizada.
+    func localized() -> String {
         return NSLocalizedString(self, comment: "")
     }
 }

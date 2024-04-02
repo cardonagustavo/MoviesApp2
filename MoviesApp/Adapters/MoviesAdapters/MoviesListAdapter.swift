@@ -117,7 +117,7 @@ extension MoviesListAdapter: UICollectionViewDataSource {
             return ErrorCollectionViewCell.buildIn(collectionView, para: indexPath, conTexto: message) // Devuelve una celda de mensaje de error.
         } else {
             if  let movie = item as? Movies {
-                return MoviesCollectionViewCell.buildIn(collectionView, in: indexPath, whit: movie) // Devuelve una celda de película.
+                return MoviesCollectionViewCell.buildIn(collectionView, at: indexPath, with: movie) // Devuelve una celda de película.
             } else {
                 return UICollectionViewCell() // Devuelve una celda vacía si el tipo de elemento no es reconocido.
             }

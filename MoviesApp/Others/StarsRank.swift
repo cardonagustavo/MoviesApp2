@@ -105,4 +105,8 @@ class StarsRank: UIView {
         }
     }
 }
-
+/*
+ ahora vamos a hacer lo siguiente y es:
+  ordenar el codigo, MARKS
+   Documentar lo mas detalladamente posible con el formato swift:
+ */

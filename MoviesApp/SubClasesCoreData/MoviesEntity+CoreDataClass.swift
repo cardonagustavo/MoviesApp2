@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
+/// Represents an entity in Core Data for storing movie data.
 @objc(MoviesEntity)
 public class MoviesEntity: NSManagedObject {
     

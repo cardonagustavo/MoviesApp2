@@ -6,35 +6,36 @@
 
 import UIKit
 
-// Protocolo para la vista de películas
+/// Protocol to handle interactions with the MoviesView.
 protocol MoviesViewDelegate: AnyObject {
     func moviesViewStartPullToRefresh(_ initView: MoviesView)
     func moviesView(_ initView: MoviesView, didSelectMovie movie: Movies)
 }
 
-// Vista de películas
+/// Custom view for displaying movies.
 class MoviesView: UIView {
     
-    // Elementos de la vista
+    // MARK: - Properties
+    
     private lazy var collectionViewMovies: UICollectionView = {
-        let codeClvMovies = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
-        codeClvMovies.backgroundColor = .principalColorBackground
-        codeClvMovies.showsVerticalScrollIndicator = false
-        codeClvMovies.translatesAutoresizingMaskIntoConstraints = false
-        codeClvMovies.keyboardDismissMode = .onDrag
-        return codeClvMovies
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+        collectionView.backgroundColor = .principalColorBackground
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.keyboardDismissMode = .onDrag
+        return collectionView
     }()
     
     private lazy var refreshControl: UIRefreshControl = {
-        let refresh = UIRefreshControl()
-        refresh.addTarget(self, action: #selector(self.pullToRefresh(_:)), for: .valueChanged)
-        return refresh
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.pullToRefresh(_:)), for: .valueChanged)
+        return refreshControl
     }()
     
     private lazy var customSearchBar: UISearchBar = {
-        let customSearchBar = UISearchBar(frame: .zero)
-        customSearchBar.translatesAutoresizingMaskIntoConstraints = false
-        return customSearchBar
+        let searchBar = UISearchBar(frame: .zero)
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        return searchBar
     }()
     
     weak var delegate: MoviesViewDelegate?
@@ -42,7 +43,8 @@ class MoviesView: UIView {
     private var searchAdapter: SearchMoviesAdapterProtocol?
     private var needsUsePullToRefresh: Bool = false
     
-    // Inicializador
+    // MARK: - Initialization
+    
     init(listAdapter: MoviesListAdapterProtocol, searchAdapter: SearchMoviesAdapterProtocol, addPullToRefresh:  Bool) {
         self.listAdapter = listAdapter
         self.searchAdapter = searchAdapter
@@ -61,11 +63,12 @@ class MoviesView: UIView {
         self.addingElements()
     }
     
-    // Configuración de adaptadores
+    // MARK: - Public Methods
+    
+    /// Configures the adapters for the MoviesView.
     func setupAdapters() {
         self.listAdapter?.setCollectionView(self.collectionViewMovies)
         self.searchAdapter?.setSearchBar(self.customSearchBar)
-        //        self.collectionViewMovies.addSubview(self.refreshControl)
         
         self.listAdapter?.didSelectHandler { movie in
             self.delegate?.moviesView(self, didSelectMovie: movie)
@@ -79,32 +82,44 @@ class MoviesView: UIView {
         }
     }
     
-    // Mostrar o esconder el indicador de carga
+    /// Shows or hides the loading indicator.
+    ///
+    /// - Parameter isShow: A Boolean value indicating whether to show the loading indicator.
     func showLoading(_ isShow: Bool) {
         if self.needsUsePullToRefresh {
             isShow ? self.refreshControl.beginRefreshing() : self.refreshControl.endRefreshing()
         }
     }
     
-    // Manejar el "Pull to Refresh"
+    // MARK: - Private Methods
+    
+    /// Handles pull-to-refresh action.
     @objc private func pullToRefresh(_ refreshControl: UIRefreshControl) {
         self.delegate?.moviesViewStartPullToRefresh(self)
     }
     
-    // Recargar la colección de películas
+    /// Reloads the collection view with new data.
     private func reloadCollectionView(_ datasource: [Any], message: String) {
         self.listAdapter?.datasource = datasource.count == 0 ? [message] : datasource
         self.collectionViewMovies.reloadData()
     }
     
-    // Actualizar la vista con nuevos datos
+    // MARK: - Data Handling
+    
+    /// Reloads the view with new movie data.
+    ///
+    /// - Parameters:
+    ///   - datasource: The array of movies to display.
+    ///   - message: The message to display when there are no movies.
     func reloadData(_ datasource: [Movies], message: String) {
         self.searchAdapter?.datasource = datasource
         self.reloadCollectionView(datasource, message: "Aun no agregas peliculas a favoritos")
     }
     
-    // Agregar elementos a la vista
-    func addingElements() {
+    // MARK: - UI Setup
+    
+    /// Adds subviews to the view and sets up constraints.
+    private func addingElements() {
         self.addSubview(self.collectionViewMovies)
         self.addSubview(self.customSearchBar)
         

@@ -12,9 +12,9 @@ buttonRegister = "Register";
 
 /*RegisterView*/
 labelCreateAccount = "Create your Account";
-secondLabel = "Unlimited movies TV shows and more";
+secondLabel = "Unlimited movies, TV shows, and more";
 textFieldEmail = "E-mail";
-textFieldNickName = "Nick Name";
+textFieldNickName = "Nickname";
 labelRememberme = "Remember me";
 buttonCreateAccount = "Create an account";
 labelTextBottom = "Watch anywhere, anytime
@@ -23,17 +23,41 @@ Ready to watch? Enter your Email to create your
 membership.";
 
 /*LoginView*/
-labelGeneresTitle = "Generes:";
-labelDescriptionTitle = "Description";
+labelGeneresTitle = "Genres:";
+labelDescriptionTitle = "Description: ";
 labelPlayTeaser = "Watch trailer";
 
 /*ErrorView*/
-labelMessage = "text";
+labelMessage = "Text";
 labelReleaseData = "Release Date";
 moviesTitle = "Movies";
 favoritesTitle = "Favorites";
-noResultsMessage = "No hay resultados para la busqueda de:";
-noFavoritesMessage = "No has añadido peliculas a favoritos";
+noResultsMessage = "No results found for the search of:";
+noFavoritesMessage = "You haven't added movies to favorites";
 
 /*ShortLoguinView*/
 labelShortLogin = "Welcome Again";
+
+/*Messages*/
+checkIfTheUserIsRegistered = "The user is already registered.";
+RegisteredUserSuccessfully = "User registered successfully.";
+ErrorRegistering = "Error registering user details in the Keychain:";
+AppDelegateError = "Error: The AppDelegate object could not be accessed.";
+AlreadyInFavorites = "The movie is already in favorites.";
+MovieAddedToFavorites = "The movie has been added to favorites.";
+SearchOrSaveMovieError = "Error when searching or saving the movie to favorites:";
+MovieRemovedFromFavorites = "The movie has been removed from favorites.";
+MovieIsNotInFavorites = "The movie is not in favorites.";
+NotVideoForFilm = "No videos of the movie were found.";
+NoVideoKeyAvailable = "Error: No video key available.";
+ErrorOccurred = "An error occurred. Please try again.";
+EnterEmail = "Please enter your email.";
+EnterValidEmail = "Please enter a valid email.";
+EnterNickname = "Please enter your nickname.";
+EmailNicknameIsRegistered = "The email or nickname is already registered.";
+MovieRecoveryError = "Error recovering movies:";
+CollectionViewCellErrorWithIdentifier = "Could not reuse ErrorCollectionViewCell with identifier:";
+LoginErrorMessage = "Please enter your valid email or nickname to log in.";
+LoginErrorTitle = "Login Error";
+LoginErrorNeddRegisterTitle = "You are not registered";
+LoginErrorNeddRegisterMessage = "You are not registered yet. We invite you to register.";

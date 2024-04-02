@@ -66,22 +66,22 @@ extension RegisterViewController: RegisterViewDelegate {
     
     func buttonCreateAccount(_ sender: UIButton) {
             guard let registerView = registerView else {
-                showAlert(title: "Error", message: "An error occurred. Please try again.")
+                showAlert(title: "Error", message: StringsLocalizable.Messages.ErrorOccurred.localized())
                 return
             }
             
             guard let email = registerView.textFieldEmail.text, !email.isEmpty else {
-                showAlert(title: "Error", message: "Please enter your email.")
+                showAlert(title: "Error", message: StringsLocalizable.Messages.EnterEmail.localized())
                 return
             }
             
             guard isValidEmail(email) else {
-                showAlert(title: "Error", message: "Please enter a valid email.")
+                showAlert(title: "Error", message: StringsLocalizable.Messages.EnterValidEmail.localized())
                 return
             }
             
             guard let nickname = registerView.textFieldNickName.text, !nickname.isEmpty else {
-                showAlert(title: "Error", message: "Please enter your nickname.")
+                showAlert(title: "Error", message: StringsLocalizable.Messages.EnterNickname.localized())
                 return
             }
             
@@ -89,7 +89,7 @@ extension RegisterViewController: RegisterViewDelegate {
             
             // Verificar si el correo o el apodo ya están registrados
             if UserManager.shared.isUserRegistered(withCredential: email) || UserManager.shared.isUserRegistered(withCredential: nickname) {
-                showAlert(title: "Error", message: "The email or nickname is already registered.")
+                showAlert(title: "Error", message: StringsLocalizable.Messages.EmailNicknameIsRegistered.localized())
                 return
             }
             

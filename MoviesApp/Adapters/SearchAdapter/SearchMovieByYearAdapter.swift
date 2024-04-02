@@ -7,19 +7,32 @@
 
 import UIKit
 
+// MARK: - Search Movie By Year Adapter
+
+/// Clase para gestionar la búsqueda de películas por año.
 class SearchMovieByYearAdapter: NSObject, SearchMoviesAdapterProtocol {
-    var datasource: [Movies] = []
-    private var didFilter: ((_ result: [Any],_ message: String ) -> Void)?
     
+    // MARK: - Propiedades
+    
+    /// Arreglo que contiene las películas a buscar.
+    var datasource: [Movies] = []
+    private var didFilter: FilterCompletionHandler?
+    
+    // MARK: - Métodos
+    
+    /// Establece la barra de búsqueda para la adaptador.
     func setSearchBar(_ searchBar: UISearchBar) {
         searchBar.delegate = self
     }
     
-    func didFilterHandler(_ handler: @escaping ([Any], _ message: String) -> Void) {
+    /// Establece el controlador de filtrado de resultados.
+    func didFilterHandler(_ handler: @escaping FilterCompletionHandler) {
         self.didFilter = handler
     }
 
 }
+
+// MARK: - UISearchBarDelegate
 
 extension SearchMovieByYearAdapter: UISearchBarDelegate {
     
@@ -43,6 +56,10 @@ extension SearchMovieByYearAdapter: UISearchBarDelegate {
         let noFavoritesMessage = StringsLocalizable.ErrorView.noFavoritesMessage.localized()
         self.didFilter?(arrayResult, noFavoritesMessage)
     }
+}
 
+// MARK: - Typealias
 
+extension SearchMovieByYearAdapter {
+    typealias FilterCompletionHandler = ([Any], String) -> Void
 }

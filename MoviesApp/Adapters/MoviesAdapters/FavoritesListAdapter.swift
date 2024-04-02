@@ -7,32 +7,40 @@
 
 import UIKit
 
+// MARK: - Favorites List Adapter
 
-//MARK: - class
+/// Clase para gestionar la lista de favoritos.
 class FavoritesListAdapter: NSObject, MoviesListAdapterProtocol {
     
-    private unowned var collectionView: UICollectionView?
-    private var didSelect: ((_ movies: Movies) -> Void)?
+    // MARK: Propiedades
     
+    private unowned var collectionView: UICollectionView?
+    private var didSelect: CompletionDidSelectHandler?
+    
+    /// Arreglo que contiene los datos a mostrar en la colección.
     var datasource = [Any]() {
         didSet {
             self.datasource is [Movies] ? self.setFavoritesLayout() : self.setErrorLayout()
         }
     }
     
+    // MARK: Métodos
+    
+    /// Establece la colección de vista.
     func setCollectionView(_ collectionView: UICollectionView) {
         self.collectionView = collectionView
         self.collectionView?.delegate = self
         self.collectionView?.dataSource = self
         self.setFavoritesLayout()
-        self.collectionView?.register(UINib(nibName: "ErrorCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "ErrorCollectionViewCell")
-        self.collectionView?.register(UINib(nibName: "FavoritesCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "FavoritesCollectionViewCell")
+        self.registerCells()
     }
     
-    func didSelectHandler(_ handler: @escaping (_ movies: Movies) -> Void ) {
+    /// Establece el controlador de selección de elementos.
+    func didSelectHandler(_ handler: @escaping CompletionDidSelectHandler) {
         self.didSelect = handler
     }
     
+    /// Establece el diseño para la vista de favoritos.
     func setFavoritesLayout() {
         let LayoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(.leastNormalMagnitude))
         let item = NSCollectionLayoutItem(layoutSize: LayoutSize)
@@ -48,9 +56,9 @@ class FavoritesListAdapter: NSObject, MoviesListAdapterProtocol {
         
         let layout = UICollectionViewCompositionalLayout(section: section)
         self.collectionView?.collectionViewLayout = layout
-        
     }
     
+    /// Establece el diseño para la vista de error.
     func setErrorLayout() {
         let LayoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: LayoutSize)
@@ -66,45 +74,46 @@ class FavoritesListAdapter: NSObject, MoviesListAdapterProtocol {
         
         let layout = UICollectionViewCompositionalLayout(section: section)
         self.collectionView?.collectionViewLayout = layout
-        
+    }
+    
+    /// Registra las celdas de la colección.
+    private func registerCells() {
+        self.collectionView?.register(UINib(nibName: "ErrorCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "ErrorCollectionViewCell")
+        self.collectionView?.register(UINib(nibName: "FavoritesCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "FavoritesCollectionViewCell")
     }
 }
 
-//MARK: - Extension - UICollectionViewDataSource
+// MARK: - UICollectionViewDataSource
+
 extension FavoritesListAdapter: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         self.datasource.count
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let item = self.datasource[indexPath.row]
         
         if let message = item as? String {
             return ErrorCollectionViewCell.buildIn(collectionView, para: indexPath, conTexto: message)
+        } else if let movie = item as? Movies {
+            return FavoritesCollectionViewCell.buildIn(collectionView, at: indexPath, with: movie)
         } else {
-            if  let movie = item as? Movies {
-                return FavoritesCollectionViewCell.buildIn(collectionView, in: indexPath, whit: movie)
-            } else {
-                return UICollectionViewCell()
-            }
+            return UICollectionViewCell()
         }
-        
-        
     }
 }
 
-//MARK: - Extension - UICollectionViewDelegate
+// MARK: - UICollectionViewDelegate
+
 extension FavoritesListAdapter: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         guard let movies = self.datasource[indexPath.row] as? Movies else { return }
         self.didSelect?(movies)
-        
     }
 }
+
+// MARK: - Typealias
 
 extension FavoritesListAdapter {
     typealias CompletionDidSelectHandler = (_ movies: Movies) -> Void

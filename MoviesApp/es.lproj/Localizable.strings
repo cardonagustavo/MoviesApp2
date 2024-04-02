@@ -1,42 +1,61 @@
 /*GetStartView*/
-labelWelcomeTitle = "Bienvenido a peliculas App";
+labelWelcomeTitle = "¡Bienvenido a la aplicación de Películas!";
 labelWelcomeText = "¡La mejor aplicación de transmisión de películas del siglo para hacer que tus días sean geniales!";
 buttonGetStarted = "Empezar";
-textFieldLogin = "Coreo electronico";
+textFieldLogin = "Correo electrónico";
 
 /*LoginView*/
-buttonLogin = "Iniciar";
-buttonShortLoginOutlet = "Iniciar";
-labelCreateAccount = "Crear Cuenta";
+buttonLogin = "Iniciar sesión";
+buttonShortLoginOutlet = "Iniciar sesión";
+labelCreateAccount = "Crear cuenta";
 buttonRegister = "Registro";
 
 /*RegisterView*/
 labelCreateAccount = "Crea tu cuenta";
-secondLabel = "Peliculas y programas de tv ilimitados";
-textFieldEmail = "Correo electonico";
-textFieldNickName = "Nombre Corto";
+secondLabel = "Películas y programas de TV ilimitados";
+textFieldEmail = "Correo electrónico";
+textFieldNickName = "Nombre corto";
 labelRememberme = "Recordar usuario";
-buttonCreateAccount = "Crear Cuenta";
-labelTextBottom = "Mira en cualquier lugar y en cualquier momento.
-
-¿Listo para ver? Ingresa tu Email para crear tu
-afiliación.";
+buttonCreateAccount = "Crear cuenta";
+labelTextBottom = "Mira en cualquier lugar y en cualquier momento. ¿Listo para ver? Ingresa tu correo electrónico para crear tu afiliación.";
 
 /*LoginView*/
-labelGeneresTitle = "Generos:";
-labelDescriptionTitle = "Descripcion";
-labelPlayTeaser = "Ver trailer";
-
+labelGeneresTitle = "Géneros:";
+labelDescriptionTitle = "Descripción: ";
+labelPlayTeaser = "Ver tráiler";
 
 /*ErrorView*/
 labelMessage = "Error";
-labelReleaseData = "Fecha Lanzamiento";
-moviesTitle = "Peliculas";
+labelReleaseData = "Fecha de lanzamiento";
+moviesTitle = "Películas";
 favoritesTitle = "Favoritos";
-noResultsMessage = "No hay resultados para la busqueda de:";
-noFavoritesMessage = "No has añadido peliculas a favoritos";
+noResultsMessage = "No hay resultados para la búsqueda de:";
+noFavoritesMessage = "No has añadido películas a favoritos";
 
-/*ShortLoguinView*/
-labelShortLogin = "Bienvenido de nuevo";
+/*ShortLoginView*/
+labelShortLogin = "¡Bienvenido de nuevo!";
 
+/*Messages*/
+checkIfTheUserIsRegistered = "El usuario ya está registrado.";
+RegisteredUserSuccessfully = "Usuario registrado con éxito.";
+ErrorRegistering = "Error al registrar detalles del usuario en Keychain:";
+AppDelegateError = "Error: No se pudo acceder al objeto AppDelegate.";
+AlreadyInFavorites = "La película ya está en favoritos.";
+MovieAddedToFavorites = "La película ha sido agregada a favoritos.";
+SearchOrSaveMovieError = "Error al buscar o guardar la película en favoritos:";
+MovieRemovedFromFavorites = "La película ha sido eliminada de favoritos.";
+MovieIsNotInFavorites = "La película no está en favoritos.";
+NotVideoForFilm = "No se encontraron videos de la película.";
+NoVideoKeyAvailable = "Error: No hay una clave de video disponible.";
+ErrorOccurred = "Ocurrió un error. Inténtalo de nuevo.";
+EnterEmail = "Por favor, introduzca su correo electrónico.";
+EnterValidEmail = "Por favor, introduzca una dirección de correo electrónico válida.";
+EnterNickname = "Introduzca su apodo.";
+EmailNicknameIsRegistered = "El correo electrónico o apodo ya está registrado.";
+MovieRecoveryError = "Error al recuperar películas:";
+CollectionViewCellErrorWithIdentifier = "No se pudo reutilizar la celda ErrorCollectionViewCell con identificador:";
+LoginErrorMessage = "Por favor, ingrese su correo electrónico o apodo válido para iniciar sesión.";
+LoginErrorTitle = "Error en inicio de sesión";
+LoginErrorNeddRegisterTitle = "No estás registrado";
+LoginErrorNeddRegisterMessage = "Aún no estás registrado. Te invitamos a realizar tu registro.";
 

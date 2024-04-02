@@ -4,51 +4,63 @@
 
 import UIKit
 
-// MARK: - Class
+/// A custom UICollectionViewCell to display favorite movie information.
 class FavoritesCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var imageMovie: UIImageView!
-    @IBOutlet weak var labelName: UILabel!
-    @IBOutlet weak var labelReleaseDate: UILabel!
+    // MARK: - Outlets
     
+    @IBOutlet private weak var imageMovie: UIImageView!
+    @IBOutlet private weak var labelName: UILabel!
+    @IBOutlet private weak var labelReleaseDate: UILabel!
     
+    // MARK: - Public Methods
+    
+    /// Updates the cell's UI with favorite movie data.
+    ///
+    /// - Parameter movies: The movie object containing information to be displayed.
     fileprivate func updateDataWith(_ movies: Movies) {
-        //       self.imageMovie.image = movies.posterPath
         let baseURLImage = "https://image.tmdb.org/t/p/w500"
         let urlImage = baseURLImage + movies.poster_path
-        //            print(urlImage)
         if let url = URL(string: urlImage) {
-            URLSession.shared.dataTask(with: url) {(data, response, error) in guard let imageData = data else { return }
+            URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
+                guard let self = self,
+                      let imageData = data else { return }
                 DispatchQueue.main.async {
-                    //                    print("Here")
                     self.imageMovie.image = UIImage(data: imageData)
-                    
                 }
-                
             }.resume()
-            self.labelName.text = movies.title
-            
-            
-            self.labelReleaseDate.text = movies.formattedReleaseDateForFavorite
-            self.labelReleaseDate.font = UIFont.italicSystemFont(ofSize: 16.0)
-            self.labelReleaseDate.textColor = UIColor.lightGray
-            
-            
-            self.imageMovie.layer.cornerRadius = 20
         }
+        labelName.text = movies.title
+        
+        // Set up release date label
+        labelReleaseDate.text = movies.formattedReleaseDateForFavorite
+        labelReleaseDate.font = UIFont.italicSystemFont(ofSize: 16.0)
+        labelReleaseDate.textColor = UIColor.lightGray
+        
+        // Set up image view
+        imageMovie.layer.cornerRadius = 20
     }
 }
 
+// MARK: - Extension
 
-// MARK: - Extencion
 extension FavoritesCollectionViewCell {
     
+    /// The reusable cell identifier.
     class var identifier: String { "FavoritesCollectionViewCell" }
     
-    class func buildIn(_ collectionView: UICollectionView, in indexPath: IndexPath, whit movies: Movies) -> Self {
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.identifier, for: indexPath) as? Self
-        cell?.updateDataWith(movies)
-        return cell ?? Self()
+    /// Builds a `FavoritesCollectionViewCell` and configures it with movie data.
+    ///
+    /// - Parameters:
+    ///   - collectionView: The collection view in which the cell will be displayed.
+    ///   - indexPath: The index path of the cell.
+    ///   - movies: The movie object containing information to be displayed.
+    /// - Returns: A configured `FavoritesCollectionViewCell`.
+    class func buildIn(_ collectionView: UICollectionView, at indexPath: IndexPath, with movies: Movies) -> Self {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? Self else {
+            return Self()
+        }
+        cell.updateDataWith(movies)
+        return cell
     }
 }

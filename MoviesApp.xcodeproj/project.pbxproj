@@ -40,6 +40,8 @@
 		296384AE2BAC6B7800E75CAD /* MoviesEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296384AC2BAC6B7800E75CAD /* MoviesEntity+CoreDataClass.swift */; };
 		296384AF2BAC6B7800E75CAD /* MoviesEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296384AD2BAC6B7800E75CAD /* MoviesEntity+CoreDataProperties.swift */; };
 		296C072F2BA08CA2006A6348 /* TabBarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296C072E2BA08CA2006A6348 /* TabBarNavigationController.swift */; };
+		29841C702BBB323E00F96ECB /* ButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29841C6F2BBB323E00F96ECB /* ButtonComponent.swift */; };
+		29841C722BBB5DF000F96ECB /* PosterCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29841C712BBB5DF000F96ECB /* PosterCarouselView.swift */; };
 		299550D12B5FE82A000F1D51 /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299550D02B5FE82A000F1D51 /* GetStartedView.swift */; };
 		299550D32B5FE845000F1D51 /* GetStartedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299550D22B5FE845000F1D51 /* GetStartedViewController.swift */; };
 		29A8BA262B6017F700238C97 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A8BA252B6017F700238C97 /* RegisterView.swift */; };
@@ -50,7 +52,6 @@
 		29C6C02E2BA5E72400182E32 /* ShortLoginStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C6C02D2BA5E72400182E32 /* ShortLoginStrategy.swift */; };
 		29C6C0302BA5E73E00182E32 /* FullLoginStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C6C02F2BA5E73E00182E32 /* FullLoginStrategy.swift */; };
 		29C6C0322BA5E7A300182E32 /* LoginAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C6C0312BA5E7A300182E32 /* LoginAdapter.swift */; };
-		29C6C0382BA6028A00182E32 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C6C0372BA6028A00182E32 /* AuthenticationManager.swift */; };
 		29C6C03A2BA614FE00182E32 /* ShortLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C6C0392BA614FE00182E32 /* ShortLoginViewController.swift */; };
 		29C6C03C2BA775B600182E32 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C6C03B2BA775B600182E32 /* ImageView.swift */; };
 		29CA891F2B92663A0043AF1D /* DetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA891E2B92663A0043AF1D /* DetailsModel.swift */; };
@@ -101,6 +102,8 @@
 		296384AC2BAC6B7800E75CAD /* MoviesEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoviesEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		296384AD2BAC6B7800E75CAD /* MoviesEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoviesEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		296C072E2BA08CA2006A6348 /* TabBarNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarNavigationController.swift; sourceTree = "<group>"; };
+		29841C6F2BBB323E00F96ECB /* ButtonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonComponent.swift; sourceTree = "<group>"; };
+		29841C712BBB5DF000F96ECB /* PosterCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCarouselView.swift; sourceTree = "<group>"; };
 		299550D02B5FE82A000F1D51 /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
 		299550D22B5FE845000F1D51 /* GetStartedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedViewController.swift; sourceTree = "<group>"; };
 		29A8BA252B6017F700238C97 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
@@ -111,7 +114,6 @@
 		29C6C02D2BA5E72400182E32 /* ShortLoginStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortLoginStrategy.swift; sourceTree = "<group>"; };
 		29C6C02F2BA5E73E00182E32 /* FullLoginStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullLoginStrategy.swift; sourceTree = "<group>"; };
 		29C6C0312BA5E7A300182E32 /* LoginAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAdapter.swift; sourceTree = "<group>"; };
-		29C6C0372BA6028A00182E32 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		29C6C0392BA614FE00182E32 /* ShortLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortLoginViewController.swift; sourceTree = "<group>"; };
 		29C6C03B2BA775B600182E32 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		29CA891E2B92663A0043AF1D /* DetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsModel.swift; sourceTree = "<group>"; };
@@ -142,7 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				296C072E2BA08CA2006A6348 /* TabBarNavigationController.swift */,
-				29C6C0372BA6028A00182E32 /* AuthenticationManager.swift */,
 			);
 			path = Navigations;
 			sourceTree = "<group>";
@@ -293,6 +294,7 @@
 		2949A8342B59FE800087FEF1 /* MoviesApp */ = {
 			isa = PBXGroup;
 			children = (
+				29841C6E2BBB322600F96ECB /* Components */,
 				2940BE882BA33A16009D7FDD /* Others */,
 				291D73F22B9F9828002B1C8D /* Adapters */,
 				291D73EF2B9F936D002B1C8D /* Representable */,
@@ -347,6 +349,15 @@
 				296384AC2BAC6B7800E75CAD /* MoviesEntity+CoreDataClass.swift */,
 			);
 			path = SubClasesCoreData;
+			sourceTree = "<group>";
+		};
+		29841C6E2BBB322600F96ECB /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				29841C6F2BBB323E00F96ECB /* ButtonComponent.swift */,
+				29841C712BBB5DF000F96ECB /* PosterCarouselView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		299550CF2B5FE80A000F1D51 /* Started */ = {
@@ -473,6 +484,7 @@
 				29C6C0322BA5E7A300182E32 /* LoginAdapter.swift in Sources */,
 				296384AE2BAC6B7800E75CAD /* MoviesEntity+CoreDataClass.swift in Sources */,
 				296299B12BB31B03002A6804 /* VideoModel.swift in Sources */,
+				29841C722BBB5DF000F96ECB /* PosterCarouselView.swift in Sources */,
 				296384AF2BAC6B7800E75CAD /* MoviesEntity+CoreDataProperties.swift in Sources */,
 				29A8BA282B60180A00238C97 /* RegisterViewController.swift in Sources */,
 				2927DBC32B8E23CE00C105A1 /* MoviesListAdapter.swift in Sources */,
@@ -494,11 +506,11 @@
 				29C6C0302BA5E73E00182E32 /* FullLoginStrategy.swift in Sources */,
 				29C6C03C2BA775B600182E32 /* ImageView.swift in Sources */,
 				291D74082B9FBBEE002B1C8D /* SearchMovieByYearAdapter.swift in Sources */,
-				29C6C0382BA6028A00182E32 /* AuthenticationManager.swift in Sources */,
 				29DB04702BAB381D009D1F8E /* MoviesViewControllerBuilder.swift in Sources */,
 				2940BE8A2BA33B4A009D7FDD /* StarsRank.swift in Sources */,
 				29DB046F2BAB381D009D1F8E /* MoviesViewController.swift in Sources */,
 				2949A8362B59FE800087FEF1 /* AppDelegate.swift in Sources */,
+				29841C702BBB323E00F96ECB /* ButtonComponent.swift in Sources */,
 				29C6C03A2BA614FE00182E32 /* ShortLoginViewController.swift in Sources */,
 				29DB04872BAB651A009D1F8E /* UserManager.swift in Sources */,
 				2917C2BD2B8FEC660013D588 /* DetailsViewController.swift in Sources */,

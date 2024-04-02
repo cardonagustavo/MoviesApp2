@@ -31,7 +31,7 @@ struct LocalMoviesStategyCD: MoviesStrategy {
             // Updates the moviesView with the sorted favorite movies
             self.moviesView.reloadData(sortedFavoriteMovies.toMoviesToFavoritesMovies, message: "String")
         } catch {
-            print("Error al recuperar películas: \(error)")
+            print(StringsLocalizable.Messages.MovieRecoveryError + "\(error)")
         }
     }
 }

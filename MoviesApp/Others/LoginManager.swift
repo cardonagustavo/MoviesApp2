@@ -7,33 +7,45 @@
 import Foundation
 import UIKit
 
-
-class LoginManager {
+/// Clase que gestiona el inicio de sesión del usuario.
+struct LoginManager {
+    /// Referencia débil a la vista controladora para evitar retención circular.
     weak var viewController: UIViewController?
     
+    /// Método para iniciar sesión del usuario.
+    ///
+    /// - Parameters:
+    ///   - credential: La credencial del usuario (email o apodo).
+    ///   - rememberMe: Booleano que indica si se debe recordar el inicio de sesión.
     func loginUser(withCredential credential: String, rememberMe: Bool) {
+        // Verificar si se pueden obtener los detalles del usuario
         if let userDetails = UserManager.shared.retrieveUserDetails() {
+            // Verificar si la credencial coincide con el email o el apodo del usuario
             if userDetails.email == credential || userDetails.nickname == credential {
+                // Verificar si la vista controladora está disponible
                 guard let viewController = self.viewController else {
                     print("Error: No se puede realizar la transición porque la vista controladora es nula.")
                     return
                 }
+                // Crear una estrategia de inicio de sesión
                 let loginStrategy = ShortLoginStrategy(viewController: viewController)
                 
-                // He cambiado `completionLoginErrorHandler` para que no tome ningún argumento.
-                loginStrategy.login(rememberme: rememberMe, userEmail: userDetails.email, completionLoginHandler: {
+                // Iniciar sesión utilizando la estrategia de inicio de sesión corto
+                loginStrategy.login(rememberme: rememberMe, userEmail: userDetails.email) {
+                    // Éxito en el inicio de sesión: realizar la transición a la pantalla principal
                     [weak viewController] in
                     guard let viewController = viewController else {
                         print("Error: No se puede realizar la transición porque la vista controladora es nula.")
                         return
                     }
                     viewController.performSegue(withIdentifier: "TabBarNavigationController", sender: nil)
-                }, completionLoginErrorHandler: { // Se han eliminado los argumentos de esta clausura.
+                } completionLoginErrorHandler: {
+                    // Error en el inicio de sesión: manejar el error
                     // Como no tenemos el error, se muestra un mensaje genérico.
                     guard self.viewController != nil else { return }
                     // Manejar el caso de error aquí, tal vez mostrando una alerta con un mensaje genérico
                     print("Se produjo un error durante el inicio de sesión.")
-                })
+                }
             } else {
                 print("Credencial inválida")
             }
@@ -42,4 +54,3 @@ class LoginManager {
         }
     }
 }
-

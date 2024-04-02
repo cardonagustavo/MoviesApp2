@@ -20,12 +20,12 @@
                                 <rect key="frame" x="0.0" y="338.66666666666669" width="393" height="200.00000000000006"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="MoviesLogo" translatesAutoresizingMaskIntoConstraints="NO" id="EIo-w4-FnX">
-                                        <rect key="frame" x="14" y="40" width="365" height="120"/>
+                                        <rect key="frame" x="-3.6666666666666572" y="50" width="400.33333333333326" height="100"/>
                                         <color key="backgroundColor" name="ColorLogo"/>
                                         <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.94999999999999996"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="120" id="6p2-Jj-s4W"/>
-                                            <constraint firstAttribute="width" constant="365" id="Z63-RA-FKw"/>
+                                            <constraint firstAttribute="height" constant="100" id="6p2-Jj-s4W"/>
+                                            <constraint firstAttribute="width" constant="400" id="Z63-RA-FKw"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>

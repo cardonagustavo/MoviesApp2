@@ -7,12 +7,17 @@
 import Foundation
 import UIKit
 
+/// Estrategia de inicio de sesión rápido.
 class ShortLoginStrategy: LoginStrategy {
+    
+    /// Referencia débil al controlador de vista que iniciará sesión.
     weak var viewController: UIViewController?
 
-        init(viewController: UIViewController) {
-            self.viewController = viewController
-        }
+    /// Inicializador de la estrategia de inicio de sesión rápida.
+    /// - Parameter viewController: El controlador de vista desde el cual se inicia sesión.
+    init(viewController: UIViewController) {
+        self.viewController = viewController
+    }
     
     func login(rememberme: Bool, userEmail: String, completionLoginHandler: @escaping CompletionLoginHandler, completionLoginErrorHandler: @escaping CompletionLoginErrorHandler) {
         // Implementación de inicio de sesión...
@@ -23,6 +28,7 @@ class ShortLoginStrategy: LoginStrategy {
         viewController?.performSegue(withIdentifier: "TabBarNavigationController", sender: nil)
     }
 }
+
 
 
 

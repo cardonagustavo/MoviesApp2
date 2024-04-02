@@ -7,19 +7,23 @@
 
 import UIKit
 
-
+/// Protocolo para manejar la acción de tocar el botón de ver vídeo en la vista de detalle.
 protocol DetailViewDelegate: AnyObject {
     func didTapWatchVideoButton()
 }
 
-//MARK: - Class
+/// Vista de detalle que muestra información sobre una película.
 class DetailView: UIView {
     
+    // MARK: - Properties
+    
+    /// Delegado para manejar la acción de tocar el botón de ver vídeo.
     weak var delegate: DetailViewDelegate?
+    
+    // MARK: - Outlets
     
     @IBOutlet weak var viewContainerTop: UIView!
     @IBOutlet weak var viewContainerStars: UIView!
-    
     @IBOutlet weak var imageBackdrop: UIImageView!
     @IBOutlet weak var imageMovie: UIImageView!
     @IBOutlet weak var labelTitle: UILabel!
@@ -31,45 +35,62 @@ class DetailView: UIView {
     @IBOutlet weak var labelPlayTeaser: UILabel!
     @IBOutlet weak var buttonTeaserMovie: UIButton!
     
+    // MARK: - Actions
     
+    /// Método para manejar la acción de tocar el botón de ver vídeo.
     @IBAction func buttonWhatchVideo(_ sender: Any) {
         delegate?.didTapWatchVideoButton()
     }
     
-
+    // MARK: - Private Properties
+    
+    /// Vista para mostrar la calificación de estrellas.
     private let starMaskView = StarsRank(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
     
+    // MARK: - Public Methods
+    
+    /// Método para formatear la lista de géneros de la película.
+    ///
+    /// - Parameter genres: Lista de géneros de la película.
+    /// - Returns: Cadena formateada con la lista de géneros.
     func genresList(_ genres: [MoviesWebService.GenreDTO]) -> String {
         var list = ""
-        genres.forEach({ genre in
+        genres.forEach { genre in
             list += "\u{2022} \(genre.name ?? "") "
-        })
+        }
         return list
     }
     
+    /// Método para inyectar datos de modelo en la vista.
+    ///
+    /// - Parameter movie: Objeto `MovieDetail` con la información de la película.
     func dataInjection(fromModel movie: MovieDetail) {
-        self.labelTitle.text = movie.original_title
-        self.labelReleaseDate.text = NSLocalizedString(movie.formattedReleaseDateForFavorite, comment: "")
-        self.starMaskView.progressView.progress = (movie.vote_average / 10)
-        self.viewContainerStars.addSubview(starMaskView)
-        self.labelListGenere.text = self.genresList(movie.genres)
-        self.labelDescriptionText.text = movie.overview
+        labelTitle(movie)
+        labelDate(movie)
+        labelDescriptionText(movie)
+        labelDescriptionTitleMethod()
+        labelGenteresTitleMethod()
+        labelListGeneresUpdate()
+        updateViewContainerStars()
+        labelPlayTeaserUpdate()
+        stylesTeaserButton()
         
-        self.imageDetailBackdrop(movie)
-        self.imageDetail(movie)
-        self.labelTitle(movie)
-        self.labelDate(movie)
-        self.labelDescriptionText(movie)
-        self.labelDescriptionTitleMethod()
-        self.labelGenteresTitleMethod()
-        self.labelListGeneresUpdate()
-        self.updateViewContainerStars()
-        self.labelPlayTeaserUpdate()
-        self.stylesTeaserButton()
+        // Configuración de la imagen de fondo
+        imageDetailBackdrop(movie)
         
+        // Configuración de la imagen de la película
+        imageDetail(movie)
+        
+        // Configuración de la lista de géneros
+        labelListGenere.text = genresList(movie.genres)
     }
     
-    func imageDetailBackdrop(_ movie: MovieDetail) {
+    // MARK: - Private Methods
+    
+    /// Método para cargar y mostrar la imagen de fondo.
+    ///
+    /// - Parameter movie: Objeto `MovieDetail` con la información de la película.
+    private func imageDetailBackdrop(_ movie: MovieDetail) {
         let baseURLImage = "https://image.tmdb.org/t/p/w500"
         let urlImage = baseURLImage + movie.backdrop_path
         
@@ -79,10 +100,6 @@ class DetailView: UIView {
                 DispatchQueue.main.async {
                     let image = UIImage(data: imageData)
                     self.imageBackdrop.image = image
-                    
-                    //                    let fadeView = UIView(frame: self.imageBackdrop.bounds)
-                    //                    fadeView.backgroundColor = UIColor.black.withAlphaComponent(1)
-                    //                    self.imageBackdrop.addSubview(fadeView)
                     
                     let blurEffect = UIBlurEffect(style: .dark)
                     let blurView = UIVisualEffectView(effect: blurEffect)
@@ -94,68 +111,83 @@ class DetailView: UIView {
         }
     }
     
-    func imageDetail(_ movie: MovieDetail) {
-        //        self.imageMovie.image = movies.posterPath
+    /// Método para cargar y mostrar la imagen de la película.
+    ///
+    /// - Parameter movie: Objeto `MovieDetail` con la información de la película.
+    private func imageDetail(_ movie: MovieDetail) {
         let baseURLImage = "https://image.tmdb.org/t/p/w500"
         let urlImage = baseURLImage + movie.poster_path
         if let url = URL(string: urlImage) {
             URLSession.shared.dataTask(with: url) {(data, response, error) in guard let imageData = data else { return }
                 DispatchQueue.main.async {
-                    //                    print("Here")
                     self.imageMovie.image = UIImage(data: imageData)
-                    
                 }
             }.resume()
-            
         }
     }
     
-    func labelTitle(_ movies: MovieDetail) {
-        self.labelTitle.font = UIFont.boldSystemFont(ofSize: 18)
-        self.labelTitle.textColor = UIColor.white
-        self.labelTitle.text = movies.original_title
-    }
-    func labelDate(_ movie: MovieDetail) {
-        self.labelReleaseDate.text = " \(movie.formattedReleaseDateForFavorite)"
-        self.labelReleaseDate.font = UIFont.italicSystemFont(ofSize: 16.0)
-        self.labelReleaseDate.textColor = UIColor.lightGray
+    /// Método para configurar el título de la película.
+    ///
+    /// - Parameter movies: Objeto `MovieDetail` con la información de la película.
+    private func labelTitle(_ movies: MovieDetail) {
+        labelTitle.font = UIFont.boldSystemFont(ofSize: 18)
+        labelTitle.textColor = .white
+        labelTitle.text = movies.original_title
     }
     
-    func updateViewContainerStars() {
-        self.viewContainerStars.backgroundColor = UIColor(named: "PrincipalInvertColorBackground")
+    /// Método para configurar la fecha de lanzamiento de la película.
+    ///
+    /// - Parameter movie: Objeto `MovieDetail` con la información de la película.
+    private func labelDate(_ movie: MovieDetail) {
+        labelReleaseDate.text = " \(movie.formattedReleaseDateForFavorite)"
+        labelReleaseDate.font = UIFont.italicSystemFont(ofSize: 16.0)
+        labelReleaseDate.textColor = .lightGray
     }
     
-    func labelDescriptionText(_ movie: MovieDetail) {
-        self.labelDescriptionText.text = movie.overview
-        self.labelDescriptionText.textAlignment = .justified
-        self.labelDescriptionText.font = UIFont.italicSystemFont(ofSize: 16.0)
-        self.labelDescriptionText.textColor = UIColor.lightGray
+    /// Método para actualizar el fondo del contenedor de estrellas.
+    private func updateViewContainerStars() {
+        viewContainerStars.backgroundColor = UIColor(named: "PrincipalInvertColorBackground")
     }
     
-    func labelDescriptionTitleMethod() {
-        self.labelDescriptionTitle.text = StringsLocalizable.DetailsView.labelDescriptionTitle.localized()
-        self.labelDescriptionTitle.font = UIFont(name: "Helvetica-Bold", size: 20)
-        self.labelDescriptionTitle.textColor = UIColor(named: "PrincipalInvertColorBackground")
+    /// Método para configurar el texto de descripción de la película.
+    ///
+    /// - Parameter movie: Objeto `MovieDetail` con la información de la película.
+    private func labelDescriptionText(_ movie: MovieDetail) {
+        labelDescriptionText.text = movie.overview
+        labelDescriptionText.textAlignment = .justified
+        labelDescriptionText.font = UIFont.italicSystemFont(ofSize: 16.0)
+        labelDescriptionText.textColor = .lightGray
     }
     
-    func labelGenteresTitleMethod() {
-        self.labelGeneresTitle.text = StringsLocalizable.DetailsView.labelGeneresTitle.localized()
-        self.labelGeneresTitle.font = UIFont(name: "Helvetica-Bold", size: 20)
-        self.labelGeneresTitle.textColor = UIColor(named: "PrincipalInvertColorBackground")
+    /// Método para configurar el título de descripción de la película.
+    private func labelDescriptionTitleMethod() {
+        labelDescriptionTitle.text = StringsLocalizable.DetailsView.labelDescriptionTitle.localized()
+        labelDescriptionTitle.font = UIFont(name: "Helvetica-Bold", size: 20)
+        labelDescriptionTitle.textColor = UIColor(named: "PrincipalInvertColorBackground")
     }
     
-    func labelListGeneresUpdate() {
-        self.labelListGenere.font = UIFont.italicSystemFont(ofSize: 16.0)
-        self.labelListGenere.textColor = UIColor.lightGray
+    /// Método para configurar el título de géneros de la película.
+    private func labelGenteresTitleMethod() {
+        labelGeneresTitle.text = StringsLocalizable.DetailsView.labelGeneresTitle.localized()
+        labelGeneresTitle.font = UIFont(name: "Helvetica-Bold", size: 20)
+        labelGeneresTitle.textColor = UIColor(named: "PrincipalInvertColorBackground")
     }
     
-    func labelPlayTeaserUpdate() {
-        self.labelPlayTeaser.text = StringsLocalizable.DetailsView.labelPlayTeaser.localized()
-        self.labelPlayTeaser.font = UIFont(name: "Helvetica-Bold", size: 15)
-        self.labelPlayTeaser.textColor = UIColor.lightGray
+    /// Método para actualizar el texto de la lista de géneros.
+    private func labelListGeneresUpdate() {
+        labelListGenere.font = UIFont.italicSystemFont(ofSize: 16.0)
+        labelListGenere.textColor = .lightGray
     }
     
-    func stylesTeaserButton() {
+    /// Método para actualizar el texto del botón de reproducir avance.
+    private func labelPlayTeaserUpdate() {
+        labelPlayTeaser.text = StringsLocalizable.DetailsView.labelPlayTeaser.localized()
+        labelPlayTeaser.font = UIFont(name: "Helvetica-Bold", size: 15)
+        labelPlayTeaser.textColor = .lightGray
+    }
+    
+    /// Método para aplicar estilos al botón de reproducir avance.
+    private func stylesTeaserButton() {
         buttonTeaserMovie.translatesAutoresizingMaskIntoConstraints = false
 
         let buttonSize: CGFloat = 100
@@ -172,4 +204,3 @@ class DetailView: UIView {
         buttonTeaserMovie.imageView?.contentMode = .scaleAspectFill
     }
 }
-

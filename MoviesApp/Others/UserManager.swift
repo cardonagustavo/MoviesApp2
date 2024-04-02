@@ -8,9 +8,7 @@
 import Foundation
 import UIKit
 
-import Foundation
-
-class UserManager {
+struct UserManager {
     static let shared = UserManager()
     
     // Agrega el nuevo método 'registerUser'.
@@ -19,7 +17,7 @@ class UserManager {
         
         // Verificar si ya se debe registrar al usuario.
         guard shouldRegister(email: email, nickname: safeNickname) else {
-            print("El usuario ya está registrado.")
+            print(StringsLocalizable.Messages.checkIfTheUserIsRegistered.localized())
             return
         }
         
@@ -30,9 +28,9 @@ class UserManager {
         do {
             let userData = try JSONEncoder().encode(userInfo)
             try KeyChainManager.standard.save(userData, service: "com.yourapp.service", account: "userAccount")
-            print("Usuario registrado con éxito.")
+            print(StringsLocalizable.Messages.RegisteredUserSuccessfully.localized())
         } catch {
-            print("Error al registrar los detalles del usuario en el Keychain: \(error)")
+            print(StringsLocalizable.Messages.ErrorRegistering.localized() + "\(error)")
         }
     }
     
@@ -55,7 +53,7 @@ class UserManager {
     // Método para redirigir al short login.
     private func redirectToShortLogin() {
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-                print("Error: No se pudo acceder al objeto AppDelegate.")
+                print(StringsLocalizable.Messages.AppDelegateError.localized())
                 return
             }
             
