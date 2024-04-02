@@ -104,6 +104,7 @@
 		296C072E2BA08CA2006A6348 /* TabBarNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarNavigationController.swift; sourceTree = "<group>"; };
 		29841C6F2BBB323E00F96ECB /* ButtonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonComponent.swift; sourceTree = "<group>"; };
 		29841C712BBB5DF000F96ECB /* PosterCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCarouselView.swift; sourceTree = "<group>"; };
+		29841C732BBC530300F96ECB /* Notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Notes.txt; sourceTree = "<group>"; };
 		299550D02B5FE82A000F1D51 /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
 		299550D22B5FE845000F1D51 /* GetStartedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedViewController.swift; sourceTree = "<group>"; };
 		29A8BA252B6017F700238C97 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
@@ -316,6 +317,7 @@
 				2949A8402B59FE820087FEF1 /* LaunchScreen.storyboard */,
 				2949A8432B59FE820087FEF1 /* Info.plist */,
 				29DB04792BAB3EE4009D1F8E /* ModelDataMovies.xcdatamodeld */,
+				29841C732BBC530300F96ECB /* Notes.txt */,
 			);
 			path = MoviesApp;
 			sourceTree = "<group>";

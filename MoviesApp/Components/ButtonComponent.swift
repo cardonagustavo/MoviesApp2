@@ -6,21 +6,23 @@
 //
 import UIKit
 
-/// Clase personalizada para un botón con diseño sofisticado.
+/// A custom class for a button with a sophisticated design.
 class ButtonComponent: UIButton {
     
     // MARK: - Properties
     
-    /// Capa de gradiente para el fondo del botón.
+    /// A gradient layer for the button's background.
     private let gradientLayer = CAGradientLayer()
     
     // MARK: - Initialization
     
+    /// Initializes the button with a frame.
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupButton()
     }
     
+    /// Initializes the button from a storyboard or XIB file.
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupButton()
@@ -28,16 +30,16 @@ class ButtonComponent: UIButton {
     
     // MARK: - Private Methods
     
-    /// Configura el aspecto del botón.
+    /// Sets up the button's appearance.
     private func setupButton() {
-        // Color de fondo negro
+        // Set the background color to black
         self.backgroundColor = UIColor.black
         
-        // Configuración del gradiente dorado
+        // Configure the golden gradient background
         gradientLayer.colors = [
-            UIColor.black.cgColor, // Negro en ambos extremos para el fondo
-            UIColor(red: 1.0, green: 0.8, blue: 0.0, alpha: 1.0).cgColor, // Dorado intenso
-            UIColor.black.cgColor // Negro en ambos extremos para el fondo
+            UIColor.black.cgColor, // Black at both ends for the background
+            UIColor(red: 1.0, green: 0.8, blue: 0.0, alpha: 1.0).cgColor, // Intense gold color
+            UIColor.black.cgColor // Black again at both ends for the background
         ]
         gradientLayer.startPoint = CGPoint(x: 0, y: 0.5)
         gradientLayer.endPoint = CGPoint(x: 1, y: 0.5)
@@ -45,15 +47,15 @@ class ButtonComponent: UIButton {
         gradientLayer.cornerRadius = layer.cornerRadius
         layer.insertSublayer(gradientLayer, at: 0)
         
-        // Estilo del texto y borde dorado
+        // Text style and golden border
         setTitleColor(UIColor(red: 1.0, green: 0.8, blue: 0.0, alpha: 1.0), for: .normal)
         titleLabel?.font = UIFont(name: "HelveticaNeue-Medium", size: 16)
         layer.cornerRadius = 10
         layer.borderWidth = 1.0
         layer.borderColor = UIColor(red: 1.0, green: 0.8, blue: 0.0, alpha: 1.0).cgColor
-        clipsToBounds = true
+        clipsToBounds = false
         
-        // Configuración de la sombra
+        // Shadow configuration
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 4)
         layer.shadowOpacity = 0.5
@@ -62,6 +64,7 @@ class ButtonComponent: UIButton {
     
     // MARK: - Layout
     
+    /// Adjusts the gradient layer to the button's bounds when the layout changes.
     override func layoutSubviews() {
         super.layoutSubviews()
         gradientLayer.frame = bounds
@@ -69,7 +72,7 @@ class ButtonComponent: UIButton {
     
     // MARK: - Animation
     
-    /// Animación del gradiente para desplazarse de izquierda a derecha.
+    /// An animation for the gradient to move from left to right.
     func animateGradient() {
         let animation = CABasicAnimation(keyPath: "locations")
         animation.fromValue = [-1.0, -0.5, 0.0]
@@ -83,6 +86,7 @@ class ButtonComponent: UIButton {
     
     // MARK: - Highlighted State
     
+    /// Changes the button's appearance when it is tapped.
     override var isHighlighted: Bool {
         didSet {
             let transform = isHighlighted ? CGAffineTransform(scaleX: 0.95, y: 0.95) : CGAffineTransform.identity

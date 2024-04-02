@@ -7,6 +7,7 @@
 import Foundation
 import UIKit
 
+
 /// Clase que gestiona el inicio de sesión del usuario.
 struct LoginManager {
     /// Referencia débil a la vista controladora para evitar retención circular.
@@ -17,6 +18,8 @@ struct LoginManager {
     /// - Parameters:
     ///   - credential: La credencial del usuario (email o apodo).
     ///   - rememberMe: Booleano que indica si se debe recordar el inicio de sesión.
+    ///
+    /// Este método permite que un usuario inicie sesión en la aplicación proporcionando una credencial (correo electrónico o apodo) y una indicación sobre si se debe recordar el inicio de sesión o no. Utiliza los detalles del usuario recuperados de `UserManager` para verificar las credenciales proporcionadas por el usuario. Si las credenciales son válidas, utiliza una estrategia de inicio de sesión específica, como `ShortLoginStrategy`, para realizar el proceso de inicio de sesión y manejar los casos de éxito y error.
     func loginUser(withCredential credential: String, rememberMe: Bool) {
         // Verificar si se pueden obtener los detalles del usuario
         if let userDetails = UserManager.shared.retrieveUserDetails() {

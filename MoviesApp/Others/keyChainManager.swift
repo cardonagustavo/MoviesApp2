@@ -26,7 +26,10 @@ final class KeyChainManager {
         case deleteError(OSStatus)
     }
     
+    // MARK: - Métodos de Guardado, Lectura y Eliminación
+    
     /// Guarda los datos en el llavero para un servicio y una cuenta específicos.
+    ///
     /// - Parameters:
     ///   - data: Los datos que se guardarán en el llavero.
     ///   - service: El nombre del servicio asociado a los datos.
@@ -47,6 +50,7 @@ final class KeyChainManager {
     }
     
     /// Lee los datos del llavero para un servicio y una cuenta específicos.
+    ///
     /// - Parameters:
     ///   - service: El nombre del servicio asociado a los datos.
     ///   - account: El nombre de la cuenta asociada a los datos.
@@ -75,6 +79,7 @@ final class KeyChainManager {
     }
     
     /// Elimina los datos del llavero para un servicio y una cuenta específicos.
+    ///
     /// - Parameters:
     ///   - service: El nombre del servicio asociado a los datos.
     ///   - account: El nombre de la cuenta asociada a los datos.

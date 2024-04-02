@@ -8,20 +8,33 @@
 import Foundation
 import UIKit
 
+
+/// `UserManager` es una estructura que gestiona la autenticación y registro de usuarios en la aplicación. Proporciona métodos para registrar nuevos usuarios, verificar si un usuario está actualmente autenticado, cerrar sesión y recuperar información del usuario almacenada en el `Keychain`.
+/// La estructura proporciona un singleton `shared` para acceder a la instancia única de `UserManager` en toda la aplicación.
+
 struct UserManager {
+    
+    /// Singleton que proporciona una instancia compartida de UserManager.
     static let shared = UserManager()
     
-    // Agrega el nuevo método 'registerUser'.
+    // MARK: - Registro de Usuario
+    
+    /// Registra un nuevo usuario en la aplicación.
+    ///
+    /// - Parameters:
+    ///   - email: Correo electrónico del usuario.
+    ///   - nickname: Apodo del usuario (opcional).
+    ///   - rememberMe: Booleano que indica si se debe recordar al usuario.
     func registerUser(email: String, nickname: String?, rememberMe: Bool) {
         let safeNickname = nickname ?? ""
         
-        // Verificar si ya se debe registrar al usuario.
+        // Verifica si el usuario ya está registrado.
         guard shouldRegister(email: email, nickname: safeNickname) else {
             print(StringsLocalizable.Messages.checkIfTheUserIsRegistered.localized())
             return
         }
         
-        // Crear un objeto UserTest con los datos del usuario.
+        // Crea un objeto UserTest con los datos del usuario.
         let userInfo = UserTest(email: email, nickname: safeNickname, isLoggedIn: false, rememberMe: rememberMe, rememberedUser: email)
 
         // Intenta guardar los datos del usuario en el Keychain.
@@ -34,35 +47,38 @@ struct UserManager {
         }
     }
     
+    // MARK: - Cierre de Sesión
+    
+    /// Cierra la sesión del usuario actual.
     func logoutUser() {
         if isUserLoggedIn() {
-            // Si el usuario está registrado, lo redirige al short login
             redirectToShortLogin()
         } else {
-            // Si el usuario no está registrado, lo redirige al login completo
             redirectToFullLogin()
         }
     }
     
-    // Método para verificar si el usuario está actualmente registrado (logueado).
+    // MARK: - Métodos Privados
+    
+    /// Verifica si el usuario está actualmente logueado.
     private func isUserLoggedIn() -> Bool {
         // Verifica si existen detalles de usuario en el Keychain.
         return retrieveUserDetails() != nil
     }
     
-    // Método para redirigir al short login.
+    /// Redirige al short login.
     private func redirectToShortLogin() {
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-                print(StringsLocalizable.Messages.AppDelegateError.localized())
-                return
-            }
-            
-            // Por ejemplo, si el short login está representado por un controlador de vista llamado ShortLoginViewController:
-            let shortLoginViewController = ShortLoginViewController()
-            appDelegate.window?.rootViewController = shortLoginViewController
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            print(StringsLocalizable.Messages.AppDelegateError.localized())
+            return
         }
         
-        // Método para redirigir al login completo.
+        // Por ejemplo, si el short login está representado por un controlador de vista llamado ShortLoginViewController:
+        let shortLoginViewController = ShortLoginViewController()
+        appDelegate.window?.rootViewController = shortLoginViewController
+    }
+    
+    /// Redirige al login completo.
     private func redirectToFullLogin() {
         // Por ejemplo, si estás utilizando la estrategia FullLoginStrategy para el inicio de sesión completo:
         let fullLoginStrategy = FullLoginStrategy()
@@ -80,13 +96,13 @@ struct UserManager {
         })
     }
     
-    // Método para verificar si debemos registrar al usuario.
-     func shouldRegister(email: String, nickname: String) -> Bool {
+    /// Verifica si se debe registrar al usuario.
+    private func shouldRegister(email: String, nickname: String) -> Bool {
         return !isUserRegistered(withCredential: email) && !isUserRegistered(withCredential: nickname)
     }
     
-    // Método para verificar si el usuario ya está registrado.
-     func isUserRegistered(withCredential credential: String) -> Bool {
+    /// Verifica si el usuario ya está registrado.
+    func isUserRegistered(withCredential credential: String) -> Bool {
         if let userDetails = retrieveUserDetails() {
             return userDetails.email == credential || userDetails.nickname == credential
         } else {
@@ -94,7 +110,7 @@ struct UserManager {
         }
     }
     
-    // Método para recuperar los detalles del usuario.
+    /// Recupera los detalles del usuario.
      func retrieveUserDetails() -> UserTest? {
         do {
             if let userData = try KeyChainManager.standard.read(service: "com.yourapp.service", account: "userAccount") {
@@ -108,7 +124,11 @@ struct UserManager {
         }
     }
     
-    // Método para cerrar la sesión del usuario (log out).
+    /// Cierra la sesión del usuario.
+    ///
+    /// - Parameters:
+    ///   - credential: Credencial del usuario.
+    ///   - rememberme: Booleano que indica si se debe recordar al usuario.
     func loginUser(withCredential credential: String, rememberme: Bool)  {
         do {
             try KeyChainManager.standard.delete(service: "com.yourapp.service", account: "userAccount")

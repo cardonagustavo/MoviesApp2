@@ -4,57 +4,59 @@
 //
 //  Created by Gustavo Adolfo Cardona Quintero on 1/04/24.
 //
-
 import UIKit
 
-/// Una vista que muestra un carrusel de pósters de películas que rota automáticamente a través de las imágenes.
+/// A part of the app that shows movie pictures one after another on its own.
 class PosterCarouselView: UIView {
-    // MARK: - Private Properties
+    // These are special things that only this part of the app knows about.
     
-    /// La vista de imagen que muestra el póster actual.
+    /// This is the spot where the movie picture shows up.
     private var posterImageView: UIImageView!
     
-    /// Un arreglo de URLs de strings que representan las ubicaciones de los pósters de las películas.
+    /// A list of web addresses that tell us where to find the movie pictures.
     private var posterURLs: [String] = []
     
-    /// El índice del póster actual que se muestra en el carrusel.
+    /// This number tells us which movie picture we are looking at right now.
     private var currentPosterIndex = 0
     
-    /// Un temporizador que cambia el póster actual a intervalos regulares.
+    /// A clock that tells us when to show the next picture.
     private var changePosterTimer: Timer?
     
-    /// Un caché de imágenes para almacenar y reutilizar imágenes descargadas.
+    /// A place to keep pictures after we get them so we don't have to get them again.
     private let imageCache = NSCache<NSString, UIImage>()
     
-    // MARK: - Initializers
+    // These are instructions on how to make this part of the app ready to use.
     
+    /// Makes the view ready with a size and place.
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
     }
     
+    /// Makes the view ready using a storyboard, which is a tool for drawing the app.
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupView()
     }
     
-    // MARK: - Deinitializer
+    // This part is like a cleanup crew.
     
+    /// Stops showing pictures and cleans up when we are done with this part.
     deinit {
         stopCarousel()
     }
     
-    // MARK: - Setup Methods
+    // These instructions set up the room for showing the movie pictures.
     
-    /// Configura la vista y sus subvistas.
+    /// Gets everything ready to show the movie pictures.
     private func setupView() {
         posterImageView = UIImageView()
-        posterImageView.contentMode = .scaleAspectFill // La imagen se ajustará para llenar el contenedor.
-        posterImageView.clipsToBounds = true  // Evita que la imagen se desborde.
-        posterImageView.translatesAutoresizingMaskIntoConstraints = false // Usa Auto Layout.
-        addSubview(posterImageView)
+        posterImageView.contentMode = .scaleAspectFill // Makes sure the picture fills the space nicely.
+        posterImageView.clipsToBounds = true // Cuts off any part of the picture that is too big.
+        posterImageView.translatesAutoresizingMaskIntoConstraints = false // We can tell it where to sit.
+        addSubview(posterImageView) // Puts the spot for the picture in this part of the app.
 
-        // Establece constraints para que `posterImageView` llene el contenedor.
+        // Tells the picture spot to fill up the whole space.
         NSLayoutConstraint.activate([
             posterImageView.topAnchor.constraint(equalTo: topAnchor),
             posterImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -63,58 +65,58 @@ class PosterCarouselView: UIView {
         ])
     }
     
-    // MARK: - Public Methods
+    // These are like doors for other parts of the app to use this one.
     
-    /// Inicia el carrusel con un conjunto dado de URLs de pósters.
-    /// - Parameter posterPaths: Un arreglo de strings que contienen las URLs de los pósters.
+    /// Starts showing the movie pictures one by one.
+    /// - Parameter posterPaths: A list of web addresses for the movie pictures.
     func startCarousel(with posterPaths: [String]) {
         posterURLs = posterPaths
-        loadPoster(at: currentPosterIndex)  // Carga inicial de la primera imagen.
+        loadPoster(at: currentPosterIndex) // Shows the first picture to start with.
         
-        // Configura el temporizador para rotar los pósters automáticamente.
+        // Sets up the clock to change pictures on its own.
         changePosterTimer = Timer.scheduledTimer(timeInterval: 3.0, target: self,
                                                  selector: #selector(changePoster),
                                                  userInfo: nil, repeats: true)
     }
     
-    /// Detiene el carrusel y limpia el temporizador.
+    /// Stops the clock and the showing of pictures.
     func stopCarousel() {
-        changePosterTimer?.invalidate()
-        changePosterTimer = nil
+        changePosterTimer?.invalidate() // Stops the clock.
+        changePosterTimer = nil // Throws away the clock.
     }
     
-    // MARK: - Private Methods
+    // These are secret tools that only this part of the app uses.
     
-    /// Carga y muestra el póster en el índice especificado.
-    /// - Parameter index: El índice del póster a cargar.
+    /// Gets a movie picture ready and shows it.
+    /// - Parameter index: Tells us which picture to get.
     private func loadPoster(at index: Int) {
-        let urlString = posterURLs[index]
-        guard let url = URL(string: urlString) else { return }
+        let urlString = posterURLs[index] // Gets the web address for the picture.
+        guard let url = URL(string: urlString) else { return } // Changes the address into something we can use.
         
-        // Verifica si la imagen ya está en caché y la muestra si es así.
+        // If we already have the picture, just show it.
         if let cachedImage = imageCache.object(forKey: urlString as NSString) {
             posterImageView.image = cachedImage
             return
         }
         
-        // Descarga la imagen si no está en caché y la almacena.
+        // If we don't have the picture, go get it, keep it, and then show it.
         URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             guard let self = self, let data = data, let image = UIImage(data: data) else { return }
             DispatchQueue.main.async {
-                self.imageCache.setObject(image, forKey: urlString as NSString)
-                if self.currentPosterIndex == index {
-                    self.posterImageView.image = image
+                self.imageCache.setObject(image, forKey: urlString as NSString) // Keeps the picture.
+                if self.currentPosterIndex == index { // If we're still looking at the same spot.
+                    self.posterImageView.image = image // Updates the spot with the new picture.
                 }
             }
-        }.resume()
+        }.resume() // Starts the task to get the picture.
     }
 
-    /// Cambia al siguiente póster en el carrusel.
+    /// Moves to the next movie picture.
     @objc private func changePoster() {
-        currentPosterIndex = (currentPosterIndex + 1) % posterURLs.count
+        currentPosterIndex = (currentPosterIndex + 1) % posterURLs.count // Figures out which is the next picture.
         loadPoster(at: currentPosterIndex)
         
-        // Anima la transición de pósters.
+        // Makes the change of pictures look nice and smooth.
         UIView.transition(with: posterImageView, duration: 1.0,
                           options: .transitionCrossDissolve, animations: nil, completion: nil)
     }

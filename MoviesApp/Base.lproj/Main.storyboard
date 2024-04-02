@@ -113,11 +113,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MvY-ro-qr0">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="666.66666666666663"/>
-                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="691.66666666666663"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJx-eL-RIm">
-                                <rect key="frame" x="15" y="616.66666666666663" width="384" height="290"/>
+                                <rect key="frame" x="15" y="641.66666666666663" width="384" height="240"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AMZ-Pv-WPs">
                                         <rect key="frame" x="15" y="30" width="354" height="42"/>
@@ -129,7 +128,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1P-mx-YwC" customClass="ButtonComponent" customModule="MoviesApp" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="92" width="354" height="42"/>
+                                        <rect key="frame" x="15" y="102" width="354" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="8U5-D3-aA7"/>
                                         </constraints>
@@ -145,7 +144,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1JR-Id-eRV">
-                                        <rect key="frame" x="249" y="149" width="120" height="34.333333333333343"/>
+                                        <rect key="frame" x="249" y="164" width="120" height="34.333333333333343"/>
                                         <color key="backgroundColor" name="PrincipalColorBackground"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="120" id="cTh-7A-lsZ"/>
@@ -165,7 +164,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TzM-YU-KKz">
-                                        <rect key="frame" x="15" y="149" width="211" height="35"/>
+                                        <rect key="frame" x="15" y="164" width="211" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="TuU-ZX-d4V"/>
                                         </constraints>
@@ -177,16 +176,16 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="1JR-Id-eRV" secondAttribute="trailing" constant="15" id="AxF-Qy-FaC"/>
                                     <constraint firstItem="TzM-YU-KKz" firstAttribute="leading" secondItem="hJx-eL-RIm" secondAttribute="leading" constant="15" id="KDj-2f-xIy"/>
-                                    <constraint firstAttribute="height" constant="290" id="QAJ-4Y-lAJ"/>
+                                    <constraint firstAttribute="height" constant="240" id="QAJ-4Y-lAJ"/>
                                     <constraint firstItem="1JR-Id-eRV" firstAttribute="leading" secondItem="TzM-YU-KKz" secondAttribute="trailing" constant="23" id="b63-FX-iyV"/>
                                     <constraint firstAttribute="trailing" secondItem="K1P-mx-YwC" secondAttribute="trailing" constant="15" id="fzg-13-8qb"/>
                                     <constraint firstItem="K1P-mx-YwC" firstAttribute="leading" secondItem="hJx-eL-RIm" secondAttribute="leading" constant="15" id="gEZ-gk-Ifh"/>
-                                    <constraint firstItem="TzM-YU-KKz" firstAttribute="top" secondItem="K1P-mx-YwC" secondAttribute="bottom" constant="15" id="hfj-zo-Nsz"/>
+                                    <constraint firstItem="TzM-YU-KKz" firstAttribute="top" secondItem="K1P-mx-YwC" secondAttribute="bottom" constant="20" id="hfj-zo-Nsz"/>
                                     <constraint firstItem="AMZ-Pv-WPs" firstAttribute="leading" secondItem="hJx-eL-RIm" secondAttribute="leading" constant="15" id="hzs-Yv-oFk"/>
-                                    <constraint firstItem="1JR-Id-eRV" firstAttribute="top" secondItem="K1P-mx-YwC" secondAttribute="bottom" constant="15" id="jED-5a-q47"/>
+                                    <constraint firstItem="1JR-Id-eRV" firstAttribute="top" secondItem="K1P-mx-YwC" secondAttribute="bottom" constant="20" id="jED-5a-q47"/>
                                     <constraint firstItem="AMZ-Pv-WPs" firstAttribute="top" secondItem="hJx-eL-RIm" secondAttribute="top" constant="30" id="k9R-Ge-IBY"/>
                                     <constraint firstAttribute="trailing" secondItem="AMZ-Pv-WPs" secondAttribute="trailing" constant="15" id="kWz-9g-8lO"/>
-                                    <constraint firstItem="K1P-mx-YwC" firstAttribute="top" secondItem="AMZ-Pv-WPs" secondAttribute="bottom" constant="20" id="xLj-k8-TK6"/>
+                                    <constraint firstItem="K1P-mx-YwC" firstAttribute="top" secondItem="AMZ-Pv-WPs" secondAttribute="bottom" constant="30" id="xLj-k8-TK6"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -858,9 +857,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

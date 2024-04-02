@@ -1,0 +1,101 @@
+Get Started Scene.
+
+1. **Import UIKit**: This is like saying, "I need to use tools to make an iPhone app." UIKit is a set of tools that help make the buttons, screens, and other things you touch in an iPhone app.
+
+2. **Create a new screen class**: The `GetStartedViewController` is a special piece of code that works like the brain for the start screen of an app.
+
+3. **When the screen is about to show up**: There's a step called `viewDidLoad` that happens when the app is just about to show this start screen for the first time. It's like when you turn on a TV and wait for the picture to come up.
+
+   - Inside `viewDidLoad`, the code says, "Make sure everything on the start screen looks right." It does this by calling `updateComponents()`, which is like adjusting the picture and sound settings on the TV to make sure everything is ready before you watch.
+
+4. **Right before the screen appears**: There's another step called `viewWillAppear` that happens every time right before the start screen comes into view. It's like the moment before your favorite show starts on the TV.
+
+   - During `viewWillAppear`, the code says, "Let's hide the navigation buttons." These are like the "Next" or "Back" buttons you might see on a screen in the app. It makes them go away by replacing them with empty buttons (`UIBarButtonItem()`). This way, when you look at the start screen, you don't see any buttons to press to go forward or backward.
+
+And that's what the `GetStartedViewController` class does! It prepares the start screen of the app, making sure it looks good when you first see it and that there are no extra buttons showing when you're on this screen.
+===============================
+Login View
+
+### Protocols:
+- **LoginViewDelegate**: This is like a list of tasks that the `LoginView` can ask someone else to do. It has two jobs right now:
+  1. `tapButtonLoginShowToMoviesCell()`: When the login button is pushed, it should show the movie list.
+  2. `buttonShortLogin()`: When a special quick login button is pushed, it should do something related to logging in quickly.
+
+- **LoginViewProtocol**: This is another list of tasks but for the `LoginView` itself. It includes:
+  1. `textFieldLoginUpdate()`: Make sure the place where you type your email or nickname looks good.
+  2. `setupNavigationBarAppearance()`: Decorate the top bar of the app where you might see the time and battery.
+  3. `updateLabels()`: Change the look and text of labels, which are pieces of text like "Create Account".
+  4. `buttonsUpdate()`: Update the look and text of buttons.
+
+### Class `LoginView`:
+- **Properties and Outlets**: These are parts of the `LoginView`, like text fields, buttons, and labels that show text. Outlets are like invisible wires that connect these parts to the code.
+
+- **Actions**: These are things that happen when you do something like tap on the screen or a button.
+  - `tapToCloseKeyboard()`: When you tap on the screen, it hides the keyboard.
+  - `buttonRegister()`: When you tap the register button, it should do something (the code is commented out, so it does nothing right now).
+  - `buttonTapLogin()`: When you tap the login button, it asks the delegate to show the movie list.
+  - `buttonShortLogin()`: When you tap the quick login button, it asks the delegate to do the quick login task.
+
+- **Method `awakeFromNib`**: This method is like waking up the `LoginView` and getting it ready.
+  - It checks if `posterCarouselView` (the slideshow of movie pictures) exists. If not, it creates it and makes sure it fits well in its container.
+  - It also talks to a web service to get movie poster URLs and starts the slideshow with those posters.
+
+- **Deinitializer `deinit`**: When `LoginView` is no longer needed, this makes sure to stop the slideshow.
+
+### Extension `LoginView: LoginViewProtocol`:
+This is like giving `LoginView` special abilities to do the tasks listed in `LoginViewProtocol`. It includes methods to decorate the top bar, move things when the keyboard appears or disappears, change how labels and buttons look, and get the email or nickname from the text field.
+
+### Application Delegate Class:
+Finally, there's a class for the app's main helper. When the app starts, it sets up the look of the top bar.
+
+In summary, the `LoginView` is a custom part of the app where a user can log in. It has areas to enter your details, buttons to log in or register, and a pretty slideshow of movie posters. It knows how to make itself look nice and can ask for help from other parts of the app to do specific jobs like showing the movie list after logging in.
+
+Login View Controller
+
+### Class `LoginViewController`:
+
+- **Properties**: These are like the memory slots that the `LoginViewController` uses to remember certain things.
+  - `hasPerformedSegue`: A flag to remember if the screen has already moved to another screen.
+  - `loginView`: A way to talk to the `LoginView` which is the visual part where users interact.
+  - `loginManager`: A helper that manages logging in.
+  - `keyboardManager`: A helper that manages the keyboard, telling it when to show up or hide.
+
+### Lifecycle Methods:
+
+- **`viewDidLoad`**: This is like when you walk into a room and turn on the lights. It's called when the `LoginViewController` is ready to show its screen for the first time.
+  - `setupUI()`: Sets up the screen, making sure everything looks nice and is ready for the user.
+  - `imprimirDatosDeUsuarioGuardados()`: Prints out any saved user details to check what's remembered.
+
+- **`viewDidAppear`**: This happens every time the screen is fully ready and the user can see everything. It's like saying, "Okay, now we are all set!"
+  - Registers for keyboard notifications so it knows when the keyboard shows up or goes away.
+  - Resets the `hasPerformedSegue` flag to false because we are looking at this screen again.
+
+- **`viewDidDisappear`**: This is called when the screen is going away. It's like when you're leaving a room and you turn off the lights.
+  - Stops listening for keyboard notifications.
+
+- **`viewWillAppear`**: This happens right before the screen comes into view.
+  - Hides the navigation buttons like "Back" or "Next" so they don't show up on this screen.
+
+### Private Methods:
+
+- **`setupUI`**: Tells `loginView` to make sure the text fields, labels, buttons, and navigation bar look as they should.
+
+- **`imprimirDatosDeUsuarioGuardados`**: Looks for any user details saved from before and prints them out for checking.
+
+### Extension `LoginViewController: KeyboardManagerDelegate`:
+
+- **Keyboard Management**: When the keyboard is about to show or hide, it adjusts the `LoginView` so nothing important is covered by the keyboard.
+
+### Extension `LoginViewController: LoginViewDelegate`:
+
+- **Button Actions**:
+  - `tapButtonLoginShowToMoviesCell()`: When the login button is tapped, it checks if the user's input is valid and if the user is registered. If all is good, it logs the user in; otherwise, it shows alerts for empty fields or asks the user to register.
+  - `buttonShortLogin()`: Handles a quick login action, but it's not implemented here.
+
+### Private Methods for Alerts:
+
+- **Alerts**:
+  - `showAlertForEmptyField()`: Shows an alert if the login field is empty.
+  - `showAlertForRegistrationRequired()`: Shows an alert if the user needs to register and offers to take them to the registration screen.
+
+In summary, the `LoginViewController` is the controller of the login screen. It sets up the visual parts, manages the keyboard, and handles the user's actions like tapping the login button. It also deals with alerts and transitions to other screens if needed.
