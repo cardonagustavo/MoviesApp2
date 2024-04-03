@@ -51,11 +51,7 @@ struct UserManager {
     
     /// Cierra la sesión del usuario actual.
     func logoutUser() {
-        if isUserLoggedIn() {
-            redirectToShortLogin()
-        } else {
-            redirectToFullLogin()
-        }
+        redirectToFullLogin()
     }
     
     // MARK: - Métodos Privados
@@ -68,32 +64,29 @@ struct UserManager {
     
     /// Redirige al short login.
     private func redirectToShortLogin() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            print(StringsLocalizable.Messages.AppDelegateError.localized())
-            return
-        }
-        
-        // Por ejemplo, si el short login está representado por un controlador de vista llamado ShortLoginViewController:
-        let shortLoginViewController = ShortLoginViewController()
-        appDelegate.window?.rootViewController = shortLoginViewController
+//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+//            print(StringsLocalizable.Messages.AppDelegateError.localized())
+//            return
+//        }
+//        
+//        // Por ejemplo, si el short login está representado por un controlador de vista llamado ShortLoginViewController:
+//        let shortLoginViewController = ShortLoginViewController()
+//        appDelegate.window?.rootViewController = shortLoginViewController
     }
     
     /// Redirige al login completo.
     private func redirectToFullLogin() {
-        // Por ejemplo, si estás utilizando la estrategia FullLoginStrategy para el inicio de sesión completo:
-        let fullLoginStrategy = FullLoginStrategy()
-        
-        // Llama al método de inicio de sesión completo en la estrategia FullLoginStrategy
-        fullLoginStrategy.login(rememberme: false, userEmail: "", completionLoginHandler: {
-            // Aquí puedes realizar cualquier acción necesaria después del inicio de sesión completo
-            // Por ejemplo, presentar una vista específica o actualizar la interfaz de usuario
-            
-            // Por ahora, simplemente imprime un mensaje
-            print("Redireccionando al inicio de sesión completo...")
-        }, completionLoginErrorHandler: {
-            // Maneja cualquier error que pueda ocurrir durante el inicio de sesión completo
-            print("Error durante el inicio de sesión completo.")
-        })
+//        // Por ejemplo, si el controlador de vista de inicio de sesión completo se llama LoginViewController:
+//        let loginViewController = LoginViewController()
+//        
+//        // Obtén la instancia del controlador de navegación actual
+//        guard let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else {
+//            print("Error: No se pudo obtener la instancia del controlador de navegación.")
+//            return
+//        }
+//        
+//        // Realiza una navegación "pop" para mostrar el controlador de vista de inicio de sesión completo
+//        navigationController.pushViewController(loginViewController, animated: true)
     }
     
     /// Verifica si se debe registrar al usuario.
