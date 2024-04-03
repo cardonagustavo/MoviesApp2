@@ -148,9 +148,9 @@ class DetailViewController: UIViewController {
                     // Verifica si hay resultados de video en el modelo
                     if !videoModel.results.isEmpty {
                         // Accede al primer resultado de video y obtén su key
-                        let videoResult = videoModel.results[0]
+                        let videoResult = videoModel.results.last
                         // Crea un objeto de tipo MoviesWebService.VideoResult
-                        let webServiceVideoResult = MoviesWebService.VideoResult(key: videoResult.key)
+                        let webServiceVideoResult = MoviesWebService.VideoResult(key: videoResult?.key ?? "")
                         // Luego puedes usar este objeto para reproducir el video
                         self?.videoKey = webServiceVideoResult.key
                     } else {

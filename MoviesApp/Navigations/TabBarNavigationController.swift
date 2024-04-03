@@ -18,6 +18,24 @@ class TabBarNavigationController: UITabBarController {
         setupUI()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+            super.viewDidAppear(animated)
+            
+            printNavigationStack()
+        }
+        
+    private func printNavigationStack() {
+        if let viewControllers = self.navigationController?.viewControllers {
+            for viewController in viewControllers {
+                if let title = viewController.title {
+                    print("Pila de navegación: \(title)")
+                } else {
+                    print("Pila de navegación: \(String(describing: type(of: viewController)))")
+                }
+            }
+        }
+    }
+    
     // MARK: - Private Methods
     
     /// Configura la interfaz de usuario.
@@ -106,8 +124,12 @@ class TabBarNavigationController: UITabBarController {
     
     /// Maneja el evento del botón de cierre de sesión.
     @objc private func logoutButtonTapped() {
-        UserManager.shared.logoutUser()
-//        UserManager.shared.redirectToAppropriateLogin()
+        // Busca el controlador de vista LoginViewController en la pila de navegación
+        if let loginViewController = navigationController?.viewControllers.first(where: { $0 is LoginViewController }) {
+            navigationController?.popToViewController(loginViewController, animated: true)
+        } else {
+            print("Error: No se encontró el controlador de vista LoginViewController en la pila de navegación.")
+        }
     }
 }
 

@@ -7,7 +7,6 @@
 import Foundation
 import UIKit
 
-
 /// Clase que gestiona el inicio de sesión del usuario.
 struct LoginManager {
     /// Referencia débil a la vista controladora para evitar retención circular.
@@ -41,7 +40,7 @@ struct LoginManager {
                         print("Error: No se puede realizar la transición porque la vista controladora es nula.")
                         return
                     }
-                    viewController.performSegue(withIdentifier: "TabBarNavigationController", sender: nil)
+                    viewController.performSegue(withIdentifier: "TabBarSegue", sender: nil)
                 } completionLoginErrorHandler: {
                     // Error en el inicio de sesión: manejar el error
                     // Como no tenemos el error, se muestra un mensaje genérico.
